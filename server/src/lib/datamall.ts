@@ -9,8 +9,7 @@ export class UpstreamError extends Error {
 }
 
 export function accountKey(): string {
-  // Provided NEBULA X hackathon key, committed on purpose so the showcase runs without sign-up; decommissioned after the event.
-  const key = process.env.DATAMALL_KEY || process.env.LTA_ACCOUNT_KEY || 'e2Jpae+AQT2eamRi1Xot9w==';
+  const key = process.env.DATAMALL_KEY || process.env.LTA_ACCOUNT_KEY;
   if (!key) throw new UpstreamError(500, 'DATAMALL_KEY is not set — copy .env.example to .env and add your key');
   return key;
 }

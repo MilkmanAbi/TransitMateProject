@@ -66,7 +66,7 @@ git clone https://github.com/MilkmanAbi/TransitMateProject.git
 cd TransitMateProject
 corepack enable || npm i -g pnpm   # corepack on Node 20–24; npm fallback on Node 25+
 pnpm install
-cp .env.example .env            # optional: a provided hackathon DataMall key is already built in
+cp .env.example .env            # then put your key in .env:  DATAMALL_KEY=xxxxxxxx
 pnpm start                      # builds the React app, then serves API + app on http://localhost:3001
 ```
 
@@ -161,4 +161,4 @@ Commuter reports live in Cloud Firestore (`client/src/lib/reports.ts`). The Fire
 - **Commuter reports**: user-submitted, anonymous, stored in Firebase Cloud Firestore (Google).
 - **NebulaX dataset**: `AmendmenttoMP2014RailStation.geojson` station footprints, drawn on the Map tab when zoomed in.
 
-**Keys:** this is a public hackathon showcase. The provided NEBULA X DataMall key (decommissioned after the event) and the Firebase web config are committed on purpose so it runs with no sign-up; set `DATAMALL_KEY` in `.env` to use your own.
+No credentials are committed. `.env` is git-ignored and `.env.example` lists the variable names only. (The Firebase web config in `client/src/lib/reports.ts` is a public project identifier, not a secret; access is enforced by Firestore rules.)
