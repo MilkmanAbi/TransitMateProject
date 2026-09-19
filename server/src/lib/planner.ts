@@ -50,6 +50,7 @@ export interface Leg {
   lineName?: string;
   color?: string;
   service?: string;
+  alsoServices?: string[];
   headsign?: string;
   stops?: number;
   stations?: string[];
@@ -610,9 +611,18 @@ export async function plan(input: {
   const usual = calm.options[0] ? await enrich(calm.options[0], calmCtx, true) : null;
   const usualLive = usualSpec ? materialize(usualSpec, liveCtx, 'usual') : null;
 
+  // Buses that run the same stop pair are one option ("Bus 650 / 660"), not two near-identical cards.
+  const shape = (o: Option) => o.legs.filter((l) => l.mode !== 'walk').map((l) => `${l.mode}:${l.from.code}>${l.to.code}`).join('|');
   const pick: Option[] = [];
   for (const o of live.options.filter((x) => x.feasible)) {
     if (pick.length >= 3) break;
+    const twin = pick.find((p) => shape(p) === shape(o));
+    if (twin) {
+      const tb = twin.legs.find((l) => l.mode === 'bus');
+      const ob = o.legs.find((l) => l.mode === 'bus');
+      if (tb && ob?.service && ob.service !== tb.service) tb.alsoServices = [...(tb.alsoServices ?? []), ob.service];
+      continue;
+    }
     const involvesBus = o.kind !== 'rail' && o.kind !== 'walk';
     if (pick.length === 2 && !pick.some((p) => p.kind !== 'rail' && p.kind !== 'walk') && !involvesBus) {
       const alt = live.options.find((x) => x.feasible && x.kind !== 'rail' && x.kind !== 'walk' && !pick.includes(x));

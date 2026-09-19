@@ -113,6 +113,7 @@ export interface Leg {
   lineName?: string;
   color?: string;
   service?: string;
+  alsoServices?: string[];
   headsign?: string;
   stops?: number;
   stations?: string[];

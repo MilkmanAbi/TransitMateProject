@@ -4,15 +4,15 @@ import puppeteer from 'puppeteer-core';
 const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i + 1] : d; };
 const [path, out] = args;
-const browser = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true, args: ['--hide-scrollbars'] });
+const browser = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true, args: ['--hide-scrollbars', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
 const page = await browser.newPage();
 await page.emulate({ viewport: { width: +opt('w', 375), height: +opt('h', 667), deviceScaleFactor: 2, isMobile: true, hasTouch: true },
   userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1' });
 const errors = [];
 page.on('pageerror', (e) => errors.push(e.message));
-page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
+page.on('console', (m) => ['error', 'warn'].includes(m.type()) && errors.push(m.text().slice(0, 160)));
 const pre = opt('pre');
-if (pre) { await page.goto(`http://localhost:5173/`, { waitUntil: 'domcontentloaded' }); await page.evaluate(pre); }
+if (pre) await page.evaluateOnNewDocument(pre);
 await page.goto(`http://localhost:5173${path}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
 await page.waitForSelector('nav', { timeout: 25000 }).catch(() => errors.push('nav never rendered'));
 await new Promise((r) => setTimeout(r, +opt('wait', 1500)));
