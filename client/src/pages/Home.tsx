@@ -10,6 +10,7 @@ import { Bars, SectionTitle, Skeleton } from '@/components/ui';
 import { type DepartMode, useCommute } from '@/hooks/useCommute';
 import { monthSaved } from '@/lib/co2';
 import { ago, CROWD_META, hhmm, todayAt } from '@/lib/format';
+import { STATIC } from '@/api/static';
 import { PERSONAS, useStore } from '@/store/useStore';
 
 const TONE = {
@@ -50,7 +51,7 @@ export default function Home() {
     if (!key || !notify || key === lastNotified.current || !('Notification' in window) || Notification.permission !== 'granted') return;
     lastNotified.current = key;
     const body = `${cie.sub}${plan?.simulated ? ' (simulated disruption)' : ''}`;
-    const opts = { body, tag: 'tm-commute', icon: '/icon.svg' };
+    const opts = { body, tag: 'tm-commute', icon: `${import.meta.env.BASE_URL}icon.svg` };
     const fallback = () => void new Notification(cie.headline, opts);
     if (!navigator.serviceWorker) return fallback();
     navigator.serviceWorker.getRegistration().then((reg) => (reg ? reg.showNotification(cie.headline, opts) : fallback())).catch(fallback);
@@ -60,14 +61,14 @@ export default function Home() {
     <div className="animate-rise">
       <div className="flex items-center justify-between pt-1">
         <span className="flex items-center gap-2">
-          <img src="/icon.svg" alt="" className="h-7 w-7" />
+          <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="" className="h-7 w-7" />
           <span className="text-[1.0625rem] font-extrabold tracking-tight">
             Transit<span className="text-brand-400">Mate</span>
           </span>
         </span>
         <span className="flex items-center gap-1.5 text-[0.6875rem] text-slate-400">
-          <span className={`h-2 w-2 rounded-full ${alerts && !stale ? 'bg-emerald-400 shadow-[0_0_8px] shadow-emerald-400' : 'bg-slate-500'}`} />
-          {alerts && !stale ? `Live · LTA ${ago(alerts.fetchedAt)}` : 'Saved data'}
+          <span className={`h-2 w-2 rounded-full ${STATIC ? 'bg-sky-400' : alerts && !stale ? 'bg-emerald-400 shadow-[0_0_8px] shadow-emerald-400' : 'bg-slate-500'}`} />
+          {STATIC ? 'Snapshot · not live' : alerts && !stale ? `Live · LTA ${ago(alerts.fetchedAt)}` : 'Saved data'}
         </span>
       </div>
 
@@ -99,7 +100,7 @@ export default function Home() {
       {!onboarded && (
         <div className="mt-3 rounded-2xl bg-brand-500/10 p-3.5 ring-1 ring-brand-400/30">
           <p className="text-[0.8125rem] leading-snug text-brand-50">
-            <b className="text-white">You’re seeing Rachel’s commute</b> — Tampines → Raffles Place on the EWL, live. TransitMate stays quiet until her trip is worse by more than 10 min.
+            <b className="text-white">You’re seeing Rachel’s commute</b> — Tampines → Raffles Place on the EWL{STATIC ? ' (recorded snapshot)' : ', live'}. TransitMate stays quiet until her trip is worse by more than 10 min.
           </p>
           <div className="mt-2.5 grid grid-cols-2 gap-2">
             <button onClick={() => { setSettings(true); set({ onboarded: true }); }} className="h-11 rounded-xl bg-white/10 text-[0.8125rem] font-semibold active:bg-white/15">

@@ -7,6 +7,7 @@ import { Sheet } from '@/components/Layout/Sheet';
 import { StationSheet } from '@/components/Map/StationSheet';
 import { TransitMap } from '@/components/Map/TransitMap';
 import { type Station, useRailNet } from '@/hooks/useStations';
+import { STATIC } from '@/api/static';
 import { useStore } from '@/store/useStore';
 import type { StopSummary } from '@/types';
 
@@ -69,7 +70,7 @@ export default function MapPage() {
         </div>
 
         <div className="absolute bottom-6 left-3 z-[600] rounded-xl bg-surface/85 px-3 py-2 text-[0.6875rem] text-slate-300 backdrop-blur">
-          <p className="mb-1 font-semibold text-slate-200">Station crowd · live</p>
+          <p className="mb-1 font-semibold text-slate-200">Station crowd · {STATIC ? 'snapshot' : 'live'}</p>
           <p className="flex items-center gap-3">
             <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-green-500" />Low</span>
             <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-amber-500" />Mod</span>

@@ -5,7 +5,11 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
+// VITE_BASE=/TransitMateProject/ for the GitHub Pages build (served from a sub-path).
+const base = process.env.VITE_BASE || '/';
+
 export default defineConfig({
+  base,
   plugins: [
     react(),
     // Offline app shell for the no-signal-underground case (PS2 §2.6). No push notifications.
@@ -16,7 +20,7 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,json,webmanifest}'],
         globIgnores: ['**/mrt-stations.geojson'],
-        navigateFallback: '/index.html',
+        navigateFallback: `${base}index.html`,
         navigateFallbackDenylist: [/^\/api\//],
         runtimeCaching: [
           { urlPattern: /\/api\/(train\/alerts|plan|bus\/arrivals)/, handler: 'NetworkFirst', options: { cacheName: 'api', networkTimeoutSeconds: 6, expiration: { maxEntries: 40, maxAgeSeconds: 86400 } } },

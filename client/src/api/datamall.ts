@@ -14,6 +14,8 @@ import type {
   TrainAlerts,
 } from '@/types';
 
+import { STATIC, staticGet } from './static';
+
 const BASE = `${import.meta.env.VITE_API_BASE ?? ''}/api`;
 
 export class ApiError extends Error {
@@ -23,6 +25,7 @@ export class ApiError extends Error {
 }
 
 async function get<T>(path: string, params: Record<string, string | number | undefined | null> = {}): Promise<T> {
+  if (STATIC) return (await staticGet(path, params)) as T;
   const qs = Object.entries(params)
     .filter(([, v]) => v !== undefined && v !== null && v !== '')
     .map(([k, v]) => `${k}=${encodeURIComponent(String(v))}`)

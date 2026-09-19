@@ -1,0 +1,61 @@
+# Static demo on GitHub Pages. There is no server on Pages, so this build answers API calls from a
+# recorded, clearly labelled snapshot (client/snapshot, made by scripts/snapshot.mjs). The live app is
+# the Express + React build in the README.
+name: Deploy static demo to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build client in static-snapshot mode
+        run: pnpm --filter client build
+        env:
+          VITE_STATIC: '1'
+          VITE_BASE: /${{ github.event.repository.name }}/
+
+      - name: Add snapshot + SPA fallback
+        run: |
+          cp -r client/snapshot client/dist/snapshot
+          cp client/dist/index.html client/dist/404.html
+          touch client/dist/.nojekyll
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: client/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

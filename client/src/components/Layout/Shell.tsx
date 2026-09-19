@@ -1,8 +1,9 @@
 import { Bell, Home, Map, Route, WifiOff, X } from 'lucide-react';
-import { type ReactNode, useEffect, useRef } from 'react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useOnline } from '@/hooks/useOnline';
 import { ago } from '@/lib/format';
+import { snapshotManifest, STATIC } from '@/api/static';
 import { useStore } from '@/store/useStore';
 
 const NAV = [
@@ -42,6 +43,26 @@ function BottomNav() {
   );
 }
 
+// On GitHub Pages there is no server: say so on every screen, with when the data was recorded.
+function SnapshotBanner() {
+  const [at, setAt] = useState<number | null>(null);
+  useEffect(() => {
+    snapshotManifest().then((m) => setAt(m.capturedAt)).catch(() => undefined);
+  }, []);
+  return (
+    <a
+      href="https://github.com/MilkmanAbi/TransitMateProject#install-and-run-copy-paste"
+      className="snap-stripes flex items-center gap-2 border-b border-sky-400/40 px-4 py-1.5 text-[0.75rem] font-semibold text-sky-100"
+    >
+      <span className="rounded bg-sky-400 px-1.5 py-0.5 text-[0.625rem] font-black tracking-wider text-black">STATIC DEMO</span>
+      <span className="flex-1 truncate">
+        Recorded LTA data{at ? ` from ${new Date(at).toLocaleString('en-SG', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', timeZone: 'Asia/Singapore' })} SGT` : ''} · run locally for live
+      </span>
+      <span className="underline">How</span>
+    </a>
+  );
+}
+
 function StatusBanners() {
   const { alerts, scenario, set } = useStore();
   const online = useOnline();
@@ -57,6 +78,7 @@ function StatusBanners() {
   }, []);
   return (
     <div ref={ref} className="sticky top-0 z-[1001] bg-surface" style={{ paddingTop: 'var(--safe-top)' }}>
+      {STATIC && <SnapshotBanner />}
       {!online && (
         <div className="flex items-center gap-2 bg-slate-800 px-4 py-2 text-[0.8125rem] text-slate-200">
           <WifiOff size={16} /> Offline — showing your last saved journey{alerts ? ` (alerts from ${ago(alerts.fetchedAt)})` : ''}.

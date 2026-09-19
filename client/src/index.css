@@ -48,6 +48,9 @@ button {
   color: #e2e8f0 !important;
   border-color: #334155 !important;
 }
+.snap-stripes {
+  background-image: repeating-linear-gradient(-45deg, rgba(56, 189, 248, 0.16) 0 10px, rgba(56, 189, 248, 0.05) 10px 20px);
+}
 .sim-stripes {
   background-image: repeating-linear-gradient(-45deg, rgba(245, 158, 11, 0.16) 0 10px, rgba(245, 158, 11, 0.05) 10px 20px);
 }

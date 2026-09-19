@@ -49,7 +49,7 @@ function Footprints() {
   const [zoom, setZoom] = useState(map.getZoom());
   useMapEvents({ zoomend: () => setZoom(map.getZoom()) });
   useEffect(() => {
-    if (zoom >= 15 && !data) fetch('/mrt-stations.geojson').then((r) => r.json()).then(setData).catch(() => undefined);
+    if (zoom >= 15 && !data) fetch(`${import.meta.env.BASE_URL}mrt-stations.geojson`).then((r) => r.json()).then(setData).catch(() => undefined);
   }, [zoom, data]);
   if (zoom < 15 || !data) return null;
   return (

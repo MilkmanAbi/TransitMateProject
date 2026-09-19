@@ -26,7 +26,7 @@ export function useRailNet(): RailNet {
   const [net, setNet] = useState<RailNet>(cache ?? { stations: [], edges: [] });
   useEffect(() => {
     if (cache) return;
-    pending ??= fetch('/mrt.json')
+    pending ??= fetch(`${import.meta.env.BASE_URL}mrt.json`)
       .then((r) => r.json())
       .then((d: RailNet) => (cache = { stations: d.stations, edges: d.edges }));
     pending.then(setNet).catch(() => undefined);

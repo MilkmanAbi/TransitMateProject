@@ -7,6 +7,7 @@ import { usePoll } from '@/hooks/usePoll';
 import { stationNames, useStations } from '@/hooks/useStations';
 import { linesOf } from '@/lib/cie';
 import { ago, LINE_META } from '@/lib/format';
+import { STATIC } from '@/api/static';
 import { PERSONAS, useStore } from '@/store/useStore';
 import type { LiftOutage, TaxiCount } from '@/types';
 
@@ -57,7 +58,7 @@ export default function AlertsPage() {
     <div className="animate-rise">
       <h1 className="pt-1 text-[1.375rem] font-bold">Network alerts</h1>
       <p className="text-[0.8125rem] text-slate-400">
-        LTA TrainServiceAlerts · polled every 60 s{alerts ? ` · updated ${ago(alerts.fetchedAt)}` : ''}
+        {STATIC ? 'LTA TrainServiceAlerts · recorded snapshot (static demo)' : `LTA TrainServiceAlerts · polled every 60 s${alerts ? ` · updated ${ago(alerts.fetchedAt)}` : ''}`}
       </p>
 
       {alerts && (
