@@ -1,4 +1,5 @@
 import { Check, ShieldCheck } from 'lucide-react';
+import { PlaceInput } from '@/components/Journey/PlaceInput';
 import { PERSONAS, useStore } from '@/store/useStore';
 import { Sheet } from './Sheet';
 
@@ -34,7 +35,29 @@ export function SettingsSheet({ open, onClose }: { open: boolean; onClose: () =>
         ))}
       </div>
 
-      <div className="mt-5 grid grid-cols-2 gap-3">
+      <p className="mt-5 text-[0.75rem] font-medium text-slate-400">Your commute</p>
+      <div className="mt-1.5 space-y-2">
+        <PlaceInput label="Home — search an address or station" value={commute.from} onChange={(p) => setCommute({ from: { ...p, name: p.name.startsWith('Home') ? p.name : `Home · ${p.name}` } })} dot="bg-brand-500" />
+        <PlaceInput label="Work — search an address or station" value={commute.to} onChange={(p) => setCommute({ to: { ...p, name: p.name.startsWith('Work') || p.name.startsWith('Office') ? p.name : `Work · ${p.name}` } })} dot="bg-pink-600" />
+      </div>
+      <div className="mt-2 flex justify-between gap-1" role="group" aria-label="Commute days">
+        {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => {
+          const on = commute.days.includes(i);
+          return (
+            <button
+              key={i}
+              onClick={() => setCommute({ days: on ? commute.days.filter((x) => x !== i) : [...commute.days, i].sort() })}
+              aria-pressed={on}
+              aria-label={['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][i]}
+              className={`h-11 flex-1 rounded-xl text-sm font-bold ${on ? 'bg-brand-500 text-white' : 'bg-surface-card text-slate-400'}`}
+            >
+              {d}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="mt-3 grid grid-cols-2 gap-3">
         <label className="block">
           <span className="text-[0.75rem] font-medium text-slate-400">Usually leave at</span>
           <input type="time" value={commute.departTime} onChange={(e) => setCommute({ departTime: e.target.value })} className="mt-1 h-12 w-full rounded-xl border border-white/10 bg-surface-card px-3 text-base" />

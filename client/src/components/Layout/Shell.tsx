@@ -1,5 +1,5 @@
 import { Bell, Home, Map, Route, WifiOff, X } from 'lucide-react';
-import type { ReactNode } from 'react';
+import { type ReactNode, useEffect, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useOnline } from '@/hooks/useOnline';
 import { ago } from '@/lib/format';
@@ -47,8 +47,16 @@ function StatusBanners() {
   const online = useOnline();
   const loc = useLocation();
   const live = alerts?.disruptions ?? [];
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => document.documentElement.style.setProperty('--banner-h', `${el.offsetHeight}px`));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
   return (
-    <div className="sticky top-0 z-[1001] bg-surface" style={{ paddingTop: 'var(--safe-top)' }}>
+    <div ref={ref} className="sticky top-0 z-[1001] bg-surface" style={{ paddingTop: 'var(--safe-top)' }}>
       {!online && (
         <div className="flex items-center gap-2 bg-slate-800 px-4 py-2 text-[0.8125rem] text-slate-200">
           <WifiOff size={16} /> Offline — showing your last saved journey{alerts ? ` (alerts from ${ago(alerts.fetchedAt)})` : ''}.

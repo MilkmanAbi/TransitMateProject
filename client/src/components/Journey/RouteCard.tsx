@@ -5,7 +5,7 @@ import { co2SavedVsTaxi, logTrip } from '@/lib/co2';
 import { hhmm, range } from '@/lib/format';
 import { useStore } from '@/store/useStore';
 import type { Leg, RouteOption } from '@/types';
-import { LegStrip } from './LegStrip';
+import { JourneyBar } from './JourneyBar';
 
 function LegRow({ l }: { l: Leg }) {
   if (l.mode === 'walk')
@@ -94,7 +94,7 @@ export function RouteCard({ o, index, selected, onSelect, departAt }: { o: Route
           </div>
         </div>
         <div className="mt-2.5">
-          <LegStrip legs={o.legs} />
+          <JourneyBar legs={o.legs} height={26} />
         </div>
         <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[0.75rem]">
           <span className="text-slate-400">

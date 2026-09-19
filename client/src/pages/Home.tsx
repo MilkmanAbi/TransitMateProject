@@ -28,7 +28,7 @@ function Meta({ icon, children }: { icon: React.ReactNode; children: React.React
 }
 
 export default function Home() {
-  const { savedStops, profile, commute, weather, alerts, notify } = useStore();
+  const { savedStops, profile, commute, weather, alerts, notify, onboarded, set } = useStore();
   const [mode, setMode] = useState<DepartMode>('auto');
   const [settings, setSettings] = useState(false);
   const { plan, cie, dep, crowdSlots, loading, updatedAt, stale, refresh } = useCommute(mode);
@@ -88,6 +88,15 @@ export default function Home() {
           </span>
         )}
       </header>
+
+      {!onboarded && (
+        <button onClick={() => { setSettings(true); set({ onboarded: true }); }} className="mt-3 flex w-full items-center gap-3 rounded-2xl bg-brand-500/10 px-4 py-3 text-left ring-1 ring-brand-400/30">
+          <span className="flex-1 text-[0.8125rem] leading-snug text-brand-50">
+            <b className="text-white">Demo: planning for Rachel</b>, Tampines → Raffles Place on the EWL. Tap to switch persona or set your own home, work and times.
+          </span>
+          <ChevronDown size={16} className="-rotate-90 text-brand-300" />
+        </button>
+      )}
 
       <section key={cie.verdict} className={`relative mt-3 overflow-hidden rounded-3xl bg-surface-card/85 p-4 ring-1 ${tone.ring} ${plan ? tone.anim : ''}`}>
         <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${tone.glow} to-transparent`} />

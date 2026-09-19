@@ -2,7 +2,7 @@ import { ArrowDownUp, Clock, Info, Pencil, Search, Siren, TriangleAlert } from '
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { api } from '@/api/datamall';
-import { LegStrip } from '@/components/Journey/LegStrip';
+import { StayOrSwitch } from '@/components/Journey/StayOrSwitch';
 import { PlaceInput } from '@/components/Journey/PlaceInput';
 import { RouteCard } from '@/components/Journey/RouteCard';
 import { RouteMap } from '@/components/Map/RouteMap';
@@ -137,27 +137,7 @@ export default function JourneyPage() {
 
           <RouteMap option={option} usual={showUsual ? plan.usualLive : null} from={plan.from} to={plan.to} />
 
-          {showUsual && plan.usualLive && (
-            <div className="flex items-center gap-3 rounded-2xl border border-dashed border-white/15 px-4 py-3">
-              <div className="min-w-0 flex-1">
-                <p className="text-[0.75rem] font-medium uppercase tracking-wide text-slate-400">Your usual route, as it runs then</p>
-                <div className="mt-1">
-                  <LegStrip legs={plan.usualLive.legs} dim />
-                </div>
-              </div>
-              <div className="text-right">
-                {plan.usualLive.feasible ? (
-                  <>
-                    <p className="text-[1.125rem] font-bold tabular-nums text-slate-300">{plan.usualLive.minutes} min</p>
-                    <p className="text-[0.75rem] text-amber-300">+{Math.max(0, plan.usualLive.minutes - (plan.usual?.minutes ?? 0))} vs normal</p>
-                  </>
-                ) : (
-                  <Pill tone="red">Not running</Pill>
-                )}
-              </div>
-            </div>
-          )}
-
+          {showUsual && plan.usualLive && plan.options[0] && sel === 0 && <StayOrSwitch usual={plan.usualLive} best={plan.options[0]} departAt={plan.departAt} />}
           <SectionTitle right={<span className="text-[0.6875rem] text-slate-400">ranked for {profile === 'lim' ? 'Mdm Lim' : profile[0].toUpperCase() + profile.slice(1)}</span>}>Options</SectionTitle>
           {plan.options.length === 0 && <p className="text-sm text-slate-400">No route found. Try a nearby landmark or station.</p>}
           <div className="space-y-3">

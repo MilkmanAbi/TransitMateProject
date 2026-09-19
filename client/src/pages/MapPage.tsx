@@ -36,7 +36,7 @@ export default function MapPage() {
 
   return (
     <div className="-mx-4 -mt-3 animate-rise">
-      <div className="relative" style={{ height: 'calc(100dvh - 64px - var(--safe-bottom))' }}>
+      <div className="relative" style={{ height: 'calc(100dvh - 64px - var(--safe-bottom) - var(--banner-h, 0px))' }}>
         <TransitMap stations={stations} edges={edges} crowd={crowdNow} disrupted={disrupted} center={[commute.from.lat, commute.from.lng]} flyTo={flyTo} onStop={setStop} />
 
         <div className="absolute inset-x-3 top-3 z-[600]">
