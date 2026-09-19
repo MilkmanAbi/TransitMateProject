@@ -42,8 +42,8 @@ export default function AlertsPage() {
             <Card className="flex items-center gap-3 p-4">
               <CheckCircle2 size={28} className="shrink-0 text-emerald-400" />
               <div>
-                <p className="font-semibold text-white">Trains running normally</p>
-                <p className="text-[0.8125rem] text-slate-400">No affected segments on any MRT/LRT line right now.</p>
+                <p className="font-semibold text-white">No unplanned disruptions right now</p>
+                <p className="text-[0.8125rem] text-slate-400">No affected segments in the live feed. Planned works are listed under Service notices and applied automatically when you plan a trip on that date.</p>
               </div>
             </Card>
           ) : (

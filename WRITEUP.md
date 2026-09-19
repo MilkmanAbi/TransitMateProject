@@ -141,7 +141,7 @@ A deterministic rules engine. Every card traces back to a feed field and a thres
 |---|---|
 | 5,208 bus stops · 798 route patterns · 220 rail stations | Server start-up log (`[network] …`) after loading DataMall `BusStops`/`BusRoutes`/`BusServices` and `mrt.json` on 19 Sep 2026 |
 | 30 interchange groups, 217 rail edges | Output of `python scripts/build-mrt.py` |
-| Plan latency 0.2–1.2 s | `curl -w %{time_total}` against `/api/plan`, 5 trips (Tampines–Raffles Place, Punggol–one-north, Jurong East–Changi Airport, Woodlands–HarbourFront, Bedok North–SGH) on the dev laptop. The first request of a trip includes OSM foot routing; repeats hit the cache. |
+| Plan latency: first request for a trip ~1–3.3 s, repeats 0.2–0.9 s | `curl -w %{time_total}` against `/api/plan` on the dev laptop (Windows 11, home fibre), 5 trips (Tampines–Raffles Place, Punggol–one-north, Jurong East–Changi Airport, Woodlands–HarbourFront, Bedok North–SGH), plus a fresh-clone run (3.31 s first, 0.39 s repeat). The first request of a trip includes OSM foot routing and live bus arrivals; repeats hit the in-memory caches. |
 | "Take DTL, +1 min vs a normal day" (EWL fault replay) and "+6 min" (signalling-fault replay) | Planner output for Tampines Central → One Raffles Place at the time of the run. The value changes with live bus/crowd data and departure time. |
 | Sample routes are sensible | Planner output on the 5 trips above: Punggol→one-north = NEL→CCL via Serangoon, Woodlands→HarbourFront = TEL→NEL via Outram Park, Jurong East→Changi Airport = EWL direct. Checked by hand against the network map. **Ride times were not validated against a timetable.** |
 
