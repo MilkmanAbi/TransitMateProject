@@ -28,7 +28,7 @@ export default function JourneyPage() {
   const hFrom = parseP('from');
   const hTo = parseP('to');
   const handoff = hFrom && hTo ? { from: hFrom, to: hTo } : null;
-  const [from, setFrom] = useState<Place | null>(hFrom ?? (isCommute ? commute.from : hTo ? null : (lastPlan?.from ?? commute.from)));
+  const [from, setFrom] = useState<Place | null>(hFrom ?? (isCommute || hTo ? commute.from : (lastPlan?.from ?? commute.from)));
   const [to, setTo] = useState<Place | null>(hTo ?? (isCommute ? commute.to : hFrom ? null : (lastPlan?.to ?? null)));
   const [day, setDay] = useState<'now' | 'today' | 'tomorrow'>('now');
   const [when, setWhen] = useState<string>(commute.departTime);
