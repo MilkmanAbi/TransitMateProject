@@ -86,8 +86,9 @@ A deterministic rules engine. Every card traces back to a feed field and a thres
 
 | Rule | Input | Fires when | Output |
 |---|---|---|---|
-| Reroute | `TrainServiceAlerts` + plan | Usual route infeasible, bridged, slower by ≥ threshold, or the recommendation changed | **critical**: one-line instruction, minutes vs normal, free-bus note, CO₂ |
-| Below threshold | same | Line on route affected but extra < threshold | quiet: "isn't interrupting you" |
+| Reroute | `TrainServiceAlerts` (live or planned closure) + plan | Usual route infeasible or bridged, or a line on it is slower by ≥ the commuter's threshold | **critical**: one-line instruction, minutes vs normal, free-bus note, CO₂ |
+| Below threshold | same | Line on route affected but extra < threshold | quiet: "under your N-min threshold, not interrupting you", plus the alternative if one is better |
+| Better option | plan (rain/crowd weighting) | Recommended route differs with no disruption on the route | info card: "Today X suits you better than Y" (no interruption) |
 | Other lines | `TrainServiceAlerts` | Disruption off your route | warning (quiet if already rerouting) + taxi count |
 | Crowding | `PCDForecast` at boarding station and time | Level `h` | warning + nearest time (±60 min) with a lower forecast |
 | Rain | NEA 2-h nowcast, both ends | Rain / showers / thunder | info (warning if heavy) + end-walk minutes |
