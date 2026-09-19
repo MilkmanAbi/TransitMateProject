@@ -10,6 +10,7 @@ import StopPage from '@/pages/StopPage';
 const JourneyPage = lazy(() => import('@/pages/JourneyPage'));
 const AlertsPage = lazy(() => import('@/pages/AlertsPage'));
 const MapPage = lazy(() => import('@/pages/MapPage'));
+const TripPage = lazy(() => import('@/pages/TripPage'));
 
 export default function App() {
   useLiveFeeds();
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/alerts" element={<AlertsPage />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/stop/:code" element={<StopPage />} />
+          <Route path="/trip" element={<TripPage />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </Suspense>

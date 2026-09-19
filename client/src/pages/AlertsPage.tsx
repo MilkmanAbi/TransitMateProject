@@ -6,7 +6,7 @@ import { Card, LineChip, Pill, SectionTitle, Skeleton } from '@/components/ui';
 import { usePoll } from '@/hooks/usePoll';
 import { stationNames, useStations } from '@/hooks/useStations';
 import { linesOf } from '@/lib/cie';
-import { ago } from '@/lib/format';
+import { ago, LINE_META } from '@/lib/format';
 import { PERSONAS, useStore } from '@/store/useStore';
 import type { LiftOutage, TaxiCount } from '@/types';
 
@@ -35,6 +35,27 @@ export default function AlertsPage() {
         LTA TrainServiceAlerts · polled every 60 s{alerts ? ` · updated ${ago(alerts.fetchedAt)}` : ''}
       </p>
 
+      {alerts && (
+        <div className="mt-3 grid grid-cols-3 gap-1.5" role="list" aria-label="Line status">
+          {['NSL', 'EWL', 'NEL', 'CCL', 'DTL', 'TEL', 'BPL', 'SKLRT', 'PGLRT'].map((id) => {
+            const d = alerts.disruptions.find((x) => x.line === id);
+            const planned = alerts.messages.some((m) => m.kind === 'planned' && m.lines.includes(id));
+            const state = d ? (d.status === 2 ? 'No service' : 'Delays') : planned ? 'Planned works' : 'Normal';
+            return (
+              <div key={id} role="listitem" className={`flex items-center gap-1.5 rounded-lg px-2 py-1.5 ring-1 ${d ? 'bg-red-500/15 ring-red-500/40' : planned ? 'bg-blue-500/10 ring-blue-400/25' : 'bg-white/[0.03] ring-white/5'}`}>
+                <span className="h-6 w-1.5 shrink-0 rounded-full" style={{ background: LINE_META[id].color }} />
+                <span className="min-w-0 leading-tight">
+                  <span className="block text-[0.6875rem] font-bold text-white">{LINE_META[id].short === 'SK' ? 'SKLRT' : LINE_META[id].short === 'PG' ? 'PGLRT' : LINE_META[id].short === 'BP' ? 'BPLRT' : id}</span>
+                  <span className={`block truncate text-[0.625rem] ${d ? 'font-semibold text-red-300' : planned ? 'text-blue-200' : 'text-slate-400'}`}>
+                    {d ? '✕ ' : planned ? '◷ ' : '✓ '}
+                    {state}
+                  </span>
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      )}
       {!alerts && !alertsError && <Skeleton className="mt-4 h-24" />}
       {alerts && (
         <div className="mt-4 space-y-3">

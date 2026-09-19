@@ -1,6 +1,14 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import type { AreaForecast, Commute, CrowdLevel, PlanResult, ProfileId, TrainAlerts } from '@/types';
+import type { AreaForecast, Commute, CrowdLevel, Place, PlanResult, ProfileId, RouteOption, TrainAlerts } from '@/types';
+
+export interface Trip {
+  option: RouteOption;
+  from: Place;
+  to: Place;
+  startedAt: number;
+  step: number;
+}
 
 export interface Persona {
   id: ProfileId;
@@ -83,6 +91,7 @@ interface State {
   onboarded: boolean;
   lastCommutePlan: PlanResult | null;
   lastPlan: PlanResult | null;
+  trip: Trip | null;
 
   alerts: TrainAlerts | null;
   alertsError: boolean;
@@ -114,6 +123,7 @@ export const useStore = create<State>()(
       onboarded: false,
       lastCommutePlan: null,
       lastPlan: null,
+      trip: null,
 
       alerts: null,
       alertsError: false,
@@ -155,6 +165,7 @@ export const useStore = create<State>()(
         onboarded: s.onboarded,
         lastCommutePlan: s.lastCommutePlan,
         lastPlan: s.lastPlan,
+        trip: s.trip,
         alerts: s.alerts,
       }),
     },

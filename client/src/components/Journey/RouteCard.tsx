@@ -1,10 +1,11 @@
 import { Accessibility, ArrowUpDown, BusFront, ChevronDown, CloudRain, Footprints, Leaf, Radio, TrainFront, Users } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BusChip, CrowdTag, LineChip, LoadTag, Pill } from '@/components/ui';
 import { co2SavedVsTaxi, logTrip } from '@/lib/co2';
 import { hhmm, range } from '@/lib/format';
 import { useStore } from '@/store/useStore';
-import type { Leg, RouteOption } from '@/types';
+import type { Leg, Place, RouteOption } from '@/types';
 import { JourneyBar } from './JourneyBar';
 
 function LegRow({ l }: { l: Leg }) {
@@ -59,9 +60,10 @@ function LegRow({ l }: { l: Leg }) {
   );
 }
 
-export function RouteCard({ o, index, selected, onSelect, departAt }: { o: RouteOption; index: number; selected: boolean; onSelect: () => void; departAt: number }) {
+export function RouteCard({ o, index, selected, onSelect, departAt, from, to }: { o: RouteOption; index: number; selected: boolean; onSelect: () => void; departAt: number; from: Place; to: Place }) {
   const [open, setOpen] = useState(index === 0);
-  const toast = useStore((s) => s.toast);
+  const { toast, set } = useStore();
+  const nav = useNavigate();
   const co2 = co2SavedVsTaxi(o);
   const firstBus = o.legs.find((l) => l.mode === 'bus' && l.live);
   const crowded = o.legs.find((l) => l.crowd?.level === 'h');
@@ -125,10 +127,12 @@ export function RouteCard({ o, index, selected, onSelect, departAt }: { o: Route
           onClick={() => {
             logTrip(o);
             toast(`Taking ${o.summary} — ${co2.toFixed(1)} kg CO₂ saved vs taxi`, 'info');
+            set({ trip: { option: o, from, to, startedAt: Math.max(Date.now(), departAt), step: 0 } });
+            nav('/trip');
           }}
           className="h-11 px-4 text-[0.8125rem] font-semibold text-brand-400"
         >
-          I’ll take this
+          I’ll take this →
         </button>
       </div>
       {open && (

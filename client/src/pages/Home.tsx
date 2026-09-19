@@ -28,7 +28,7 @@ function Meta({ icon, children }: { icon: React.ReactNode; children: React.React
 }
 
 export default function Home() {
-  const { savedStops, profile, commute, weather, alerts, notify, onboarded, set } = useStore();
+  const { savedStops, profile, commute, weather, alerts, notify, onboarded, set, trip } = useStore();
   const [mode, setMode] = useState<DepartMode>('auto');
   const [settings, setSettings] = useState(false);
   const { plan, cie, dep, crowdSlots, loading, updatedAt, stale, refresh } = useCommute(mode);
@@ -89,6 +89,13 @@ export default function Home() {
         )}
       </header>
 
+      {trip && (
+        <Link to="/trip" className="mt-3 flex items-center gap-3 rounded-2xl bg-brand-500 px-4 py-3 font-semibold text-white shadow-lg shadow-brand-900/40">
+          <span className="relative flex h-2.5 w-2.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/70" /><span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white" /></span>
+          <span className="flex-1 truncate text-[0.875rem]">Trip in progress · {trip.option.summary} to {trip.to.name.replace(/^(Office|Work|Home) · /, '')}</span>
+          <span className="text-[0.8125rem]">Resume →</span>
+        </Link>
+      )}
       {!onboarded && (
         <button onClick={() => { setSettings(true); set({ onboarded: true }); }} className="mt-3 flex w-full items-center gap-3 rounded-2xl bg-brand-500/10 px-4 py-3 text-left ring-1 ring-brand-400/30">
           <span className="flex-1 text-[0.8125rem] leading-snug text-brand-50">

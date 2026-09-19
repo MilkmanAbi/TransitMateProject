@@ -16,8 +16,18 @@ export default function JourneyPage() {
   const [params] = useSearchParams();
   const { commute, profile, scenario, lastPlan, set, toast } = useStore();
   const isCommute = params.get('commute') === '1';
-  const [from, setFrom] = useState<Place | null>(isCommute ? commute.from : (lastPlan?.from ?? commute.from));
-  const [to, setTo] = useState<Place | null>(isCommute ? commute.to : (lastPlan?.to ?? null));
+  // Re-plan hand-off from Trip mode: /plan?from=<Place json>&to=<Place json>
+  const handoff = (() => {
+    try {
+      const f = params.get('from');
+      const t = params.get('to');
+      return f && t ? { from: JSON.parse(f) as Place, to: JSON.parse(t) as Place } : null;
+    } catch {
+      return null;
+    }
+  })();
+  const [from, setFrom] = useState<Place | null>(handoff?.from ?? (isCommute ? commute.from : (lastPlan?.from ?? commute.from)));
+  const [to, setTo] = useState<Place | null>(handoff?.to ?? (isCommute ? commute.to : (lastPlan?.to ?? null)));
   const [day, setDay] = useState<'now' | 'today' | 'tomorrow'>('now');
   const [when, setWhen] = useState<string>(commute.departTime);
   const [plan, setPlan] = useState<PlanResult | null>(isCommute ? null : lastPlan);
@@ -44,6 +54,10 @@ export default function JourneyPage() {
   };
 
   useEffect(() => {
+    if (handoff) {
+      run(handoff.from, handoff.to);
+      return;
+    }
     if (isCommute) {
       const dep = departureFor(commute.departTime, commute.days, 'auto');
       if (dep.scheduled) {
@@ -142,7 +156,7 @@ export default function JourneyPage() {
           {plan.options.length === 0 && <p className="text-sm text-slate-400">No route found. Try a nearby landmark or station.</p>}
           <div className="space-y-3">
             {plan.options.map((o, i) => (
-              <RouteCard key={o.id} o={o} index={i} selected={i === sel} onSelect={() => setSel(i)} departAt={plan.departAt} />
+              <RouteCard key={o.id} o={o} index={i} selected={i === sel} onSelect={() => setSel(i)} departAt={plan.departAt} from={plan.from} to={plan.to} />
             ))}
           </div>
 
