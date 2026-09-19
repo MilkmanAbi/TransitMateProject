@@ -1,0 +1,17 @@
+{
+  "name": "transitmate",
+  "private": true,
+  "version": "1.0.0",
+  "description": "TransitMate — proactive, disruption-aware commuter companion (NEBULA X PS2)",
+  "scripts": {
+    "dev": "concurrently -n server,client -c cyan,magenta \"pnpm --filter server dev\" \"pnpm --filter client dev\"",
+    "build": "pnpm --filter client build",
+    "start": "pnpm --filter server start",
+    "typecheck": "pnpm --filter server typecheck && pnpm --filter client typecheck"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  },
+  "packageManager": "pnpm@11.9.0",
+  "engines": { "node": ">=20" }
+}

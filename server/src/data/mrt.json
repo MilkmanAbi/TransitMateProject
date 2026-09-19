@@ -1,0 +1,3191 @@
+{
+"source": "OpenStreetMap contributors (ODbL), Overpass extract 2026-09-19",
+"stations": [
+{
+"code": "BP1",
+"name": "Choa Chu Kang",
+"lat": 1.384749,
+"lng": 103.744534,
+"line": "BPL"
+},
+{
+"code": "BP2",
+"name": "South View",
+"lat": 1.380272,
+"lng": 103.745283,
+"line": "BPL"
+},
+{
+"code": "BP3",
+"name": "Keat Hong",
+"lat": 1.378603,
+"lng": 103.749021,
+"line": "BPL"
+},
+{
+"code": "BP4",
+"name": "Teck Whye",
+"lat": 1.37667,
+"lng": 103.753647,
+"line": "BPL"
+},
+{
+"code": "BP5",
+"name": "Phoenix",
+"lat": 1.378616,
+"lng": 103.758008,
+"line": "BPL"
+},
+{
+"code": "BP6",
+"name": "Bukit Panjang",
+"lat": 1.377917,
+"lng": 103.763095,
+"line": "BPL"
+},
+{
+"code": "BP7",
+"name": "Petir",
+"lat": 1.377765,
+"lng": 103.766629,
+"line": "BPL"
+},
+{
+"code": "BP8",
+"name": "Pending",
+"lat": 1.376184,
+"lng": 103.771259,
+"line": "BPL"
+},
+{
+"code": "BP9",
+"name": "Bangkit",
+"lat": 1.380041,
+"lng": 103.77265,
+"line": "BPL"
+},
+{
+"code": "BP10",
+"name": "Fajar",
+"lat": 1.384593,
+"lng": 103.770875,
+"line": "BPL"
+},
+{
+"code": "BP11",
+"name": "Segar",
+"lat": 1.387785,
+"lng": 103.76958,
+"line": "BPL"
+},
+{
+"code": "BP12",
+"name": "Jelapang",
+"lat": 1.386694,
+"lng": 103.764514,
+"line": "BPL"
+},
+{
+"code": "BP13",
+"name": "Senja",
+"lat": 1.382678,
+"lng": 103.762382,
+"line": "BPL"
+},
+{
+"code": "CC1",
+"name": "Dhoby Ghaut",
+"lat": 1.299602,
+"lng": 103.845554,
+"line": "CCL"
+},
+{
+"code": "CC2",
+"name": "Bras Basah",
+"lat": 1.296876,
+"lng": 103.850895,
+"line": "CCL"
+},
+{
+"code": "CC3",
+"name": "Esplanade",
+"lat": 1.293441,
+"lng": 103.855528,
+"line": "CCL"
+},
+{
+"code": "CC4",
+"name": "Promenade",
+"lat": 1.293114,
+"lng": 103.860565,
+"line": "CCL"
+},
+{
+"code": "CC5",
+"name": "Nicoll Highway",
+"lat": 1.299838,
+"lng": 103.863866,
+"line": "CCL"
+},
+{
+"code": "CC6",
+"name": "Stadium",
+"lat": 1.302872,
+"lng": 103.875351,
+"line": "CCL"
+},
+{
+"code": "CC7",
+"name": "Mountbatten",
+"lat": 1.306393,
+"lng": 103.882442,
+"line": "CCL"
+},
+{
+"code": "CC8",
+"name": "Dakota",
+"lat": 1.308431,
+"lng": 103.888616,
+"line": "CCL"
+},
+{
+"code": "CC9",
+"name": "Paya Lebar",
+"lat": 1.317498,
+"lng": 103.892657,
+"line": "CCL"
+},
+{
+"code": "CC10",
+"name": "MacPherson",
+"lat": 1.326231,
+"lng": 103.88956,
+"line": "CCL"
+},
+{
+"code": "CC11",
+"name": "Tai Seng",
+"lat": 1.335401,
+"lng": 103.888209,
+"line": "CCL"
+},
+{
+"code": "CC12",
+"name": "Bartley",
+"lat": 1.342907,
+"lng": 103.879704,
+"line": "CCL"
+},
+{
+"code": "CC13",
+"name": "Serangoon",
+"lat": 1.349806,
+"lng": 103.872678,
+"line": "CCL"
+},
+{
+"code": "CC14",
+"name": "Lorong Chuan",
+"lat": 1.351543,
+"lng": 103.863955,
+"line": "CCL"
+},
+{
+"code": "CC15",
+"name": "Bishan",
+"lat": 1.350989,
+"lng": 103.849039,
+"line": "CCL"
+},
+{
+"code": "CC16",
+"name": "Marymount",
+"lat": 1.34863,
+"lng": 103.839545,
+"line": "CCL"
+},
+{
+"code": "CC17",
+"name": "Caldecott",
+"lat": 1.337367,
+"lng": 103.839814,
+"line": "CCL"
+},
+{
+"code": "CC19",
+"name": "Botanic Gardens",
+"lat": 1.322103,
+"lng": 103.815647,
+"line": "CCL"
+},
+{
+"code": "CC20",
+"name": "Farrer Road",
+"lat": 1.317455,
+"lng": 103.807489,
+"line": "CCL"
+},
+{
+"code": "CC21",
+"name": "Holland Village",
+"lat": 1.311731,
+"lng": 103.79641,
+"line": "CCL"
+},
+{
+"code": "CC22",
+"name": "Buona Vista",
+"lat": 1.306626,
+"lng": 103.790345,
+"line": "CCL"
+},
+{
+"code": "CC23",
+"name": "one-north",
+"lat": 1.29965,
+"lng": 103.787387,
+"line": "CCL"
+},
+{
+"code": "CC24",
+"name": "Kent Ridge",
+"lat": 1.29326,
+"lng": 103.784681,
+"line": "CCL"
+},
+{
+"code": "CC25",
+"name": "Haw Par Villa",
+"lat": 1.282678,
+"lng": 103.781853,
+"line": "CCL"
+},
+{
+"code": "CC26",
+"name": "Pasir Panjang",
+"lat": 1.2762,
+"lng": 103.791354,
+"line": "CCL"
+},
+{
+"code": "CC27",
+"name": "Labrador Park",
+"lat": 1.272251,
+"lng": 103.802995,
+"line": "CCL"
+},
+{
+"code": "CC28",
+"name": "Telok Blangah",
+"lat": 1.27089,
+"lng": 103.809874,
+"line": "CCL"
+},
+{
+"code": "CC29",
+"name": "HarbourFront",
+"lat": 1.265362,
+"lng": 103.821552,
+"line": "CCL"
+},
+{
+"code": "CC30",
+"name": "Keppel",
+"lat": 1.270462,
+"lng": 103.830708,
+"line": "CCL"
+},
+{
+"code": "CC31",
+"name": "Cantonment",
+"lat": 1.273107,
+"lng": 103.837062,
+"line": "CCL"
+},
+{
+"code": "CC32",
+"name": "Prince Edward Road",
+"lat": 1.273286,
+"lng": 103.847099,
+"line": "CCL"
+},
+{
+"code": "CC33",
+"name": "Marina Bay",
+"lat": 1.275471,
+"lng": 103.85531,
+"line": "CCL"
+},
+{
+"code": "CC34",
+"name": "Bayfront",
+"lat": 1.282602,
+"lng": 103.859681,
+"line": "CCL"
+},
+{
+"code": "DT1",
+"name": "Bukit Panjang",
+"lat": 1.379101,
+"lng": 103.761534,
+"line": "DTL"
+},
+{
+"code": "DT2",
+"name": "Cashew",
+"lat": 1.36936,
+"lng": 103.76473,
+"line": "DTL"
+},
+{
+"code": "DT3",
+"name": "Hillview",
+"lat": 1.362349,
+"lng": 103.767463,
+"line": "DTL"
+},
+{
+"code": "DT4",
+"name": "Hume",
+"lat": 1.354468,
+"lng": 103.769124,
+"line": "DTL"
+},
+{
+"code": "DT5",
+"name": "Beauty World",
+"lat": 1.341091,
+"lng": 103.775878,
+"line": "DTL"
+},
+{
+"code": "DT6",
+"name": "King Albert Park",
+"lat": 1.335663,
+"lng": 103.783826,
+"line": "DTL"
+},
+{
+"code": "DT7",
+"name": "Sixth Avenue",
+"lat": 1.331095,
+"lng": 103.797246,
+"line": "DTL"
+},
+{
+"code": "DT8",
+"name": "Tan Kah Kee",
+"lat": 1.325903,
+"lng": 103.80726,
+"line": "DTL"
+},
+{
+"code": "DT9",
+"name": "Botanic Gardens",
+"lat": 1.322103,
+"lng": 103.815647,
+"line": "DTL"
+},
+{
+"code": "DT10",
+"name": "Stevens",
+"lat": 1.319976,
+"lng": 103.825763,
+"line": "DTL"
+},
+{
+"code": "DT11",
+"name": "Newton",
+"lat": 1.313064,
+"lng": 103.83784,
+"line": "DTL"
+},
+{
+"code": "DT12",
+"name": "Little India",
+"lat": 1.306879,
+"lng": 103.849174,
+"line": "DTL"
+},
+{
+"code": "DT13",
+"name": "Rochor",
+"lat": 1.303943,
+"lng": 103.852465,
+"line": "DTL"
+},
+{
+"code": "DT14",
+"name": "Bugis",
+"lat": 1.299946,
+"lng": 103.856275,
+"line": "DTL"
+},
+{
+"code": "DT15",
+"name": "Promenade",
+"lat": 1.293114,
+"lng": 103.860565,
+"line": "DTL"
+},
+{
+"code": "DT16",
+"name": "Bayfront",
+"lat": 1.282602,
+"lng": 103.859681,
+"line": "DTL"
+},
+{
+"code": "DT17",
+"name": "Downtown",
+"lat": 1.279511,
+"lng": 103.852791,
+"line": "DTL"
+},
+{
+"code": "DT18",
+"name": "Telok Ayer",
+"lat": 1.282355,
+"lng": 103.848275,
+"line": "DTL"
+},
+{
+"code": "DT19",
+"name": "Chinatown",
+"lat": 1.284688,
+"lng": 103.844135,
+"line": "DTL"
+},
+{
+"code": "DT20",
+"name": "Fort Canning",
+"lat": 1.292488,
+"lng": 103.844346,
+"line": "DTL"
+},
+{
+"code": "DT21",
+"name": "Bencoolen",
+"lat": 1.29852,
+"lng": 103.85028,
+"line": "DTL"
+},
+{
+"code": "DT22",
+"name": "Jalan Besar",
+"lat": 1.305374,
+"lng": 103.855563,
+"line": "DTL"
+},
+{
+"code": "DT23",
+"name": "Bendemeer",
+"lat": 1.313636,
+"lng": 103.862725,
+"line": "DTL"
+},
+{
+"code": "DT24",
+"name": "Geylang Bahru",
+"lat": 1.321505,
+"lng": 103.871959,
+"line": "DTL"
+},
+{
+"code": "DT25",
+"name": "Mattar",
+"lat": 1.326848,
+"lng": 103.88334,
+"line": "DTL"
+},
+{
+"code": "DT26",
+"name": "MacPherson",
+"lat": 1.326231,
+"lng": 103.88956,
+"line": "DTL"
+},
+{
+"code": "DT27",
+"name": "Ubi",
+"lat": 1.329941,
+"lng": 103.899249,
+"line": "DTL"
+},
+{
+"code": "DT28",
+"name": "Kaki Bukit",
+"lat": 1.335069,
+"lng": 103.908372,
+"line": "DTL"
+},
+{
+"code": "DT29",
+"name": "Bedok North",
+"lat": 1.334599,
+"lng": 103.918312,
+"line": "DTL"
+},
+{
+"code": "DT30",
+"name": "Bedok Reservoir",
+"lat": 1.336604,
+"lng": 103.932465,
+"line": "DTL"
+},
+{
+"code": "DT31",
+"name": "Tampines West",
+"lat": 1.345703,
+"lng": 103.938528,
+"line": "DTL"
+},
+{
+"code": "DT32",
+"name": "Tampines",
+"lat": 1.354229,
+"lng": 103.944083,
+"line": "DTL"
+},
+{
+"code": "DT33",
+"name": "Tampines East",
+"lat": 1.355994,
+"lng": 103.954731,
+"line": "DTL"
+},
+{
+"code": "DT34",
+"name": "Upper Changi",
+"lat": 1.341902,
+"lng": 103.961471,
+"line": "DTL"
+},
+{
+"code": "DT35",
+"name": "Expo",
+"lat": 1.335077,
+"lng": 103.96266,
+"line": "DTL"
+},
+{
+"code": "DT36",
+"name": "Xilin",
+"lat": 1.328656,
+"lng": 103.9649,
+"line": "DTL"
+},
+{
+"code": "DT37",
+"name": "Sungei Bedok",
+"lat": 1.320391,
+"lng": 103.95726,
+"line": "DTL"
+},
+{
+"code": "CG1",
+"name": "Expo",
+"lat": 1.335077,
+"lng": 103.96266,
+"line": "EWL"
+},
+{
+"code": "EW1",
+"name": "Pasir Ris",
+"lat": 1.37129,
+"lng": 103.949473,
+"line": "EWL"
+},
+{
+"code": "CG2",
+"name": "Changi Airport",
+"lat": 1.357573,
+"lng": 103.988533,
+"line": "EWL"
+},
+{
+"code": "EW2",
+"name": "Tampines",
+"lat": 1.354229,
+"lng": 103.944083,
+"line": "EWL"
+},
+{
+"code": "EW3",
+"name": "Simei",
+"lat": 1.343188,
+"lng": 103.953371,
+"line": "EWL"
+},
+{
+"code": "EW4",
+"name": "Tanah Merah",
+"lat": 1.327204,
+"lng": 103.946592,
+"line": "EWL"
+},
+{
+"code": "EW5",
+"name": "Bedok",
+"lat": 1.323967,
+"lng": 103.930217,
+"line": "EWL"
+},
+{
+"code": "EW6",
+"name": "Kembangan",
+"lat": 1.321032,
+"lng": 103.912927,
+"line": "EWL"
+},
+{
+"code": "EW7",
+"name": "Eunos",
+"lat": 1.319802,
+"lng": 103.902889,
+"line": "EWL"
+},
+{
+"code": "EW8",
+"name": "Paya Lebar",
+"lat": 1.317498,
+"lng": 103.892657,
+"line": "EWL"
+},
+{
+"code": "EW9",
+"name": "Aljunied",
+"lat": 1.316452,
+"lng": 103.882909,
+"line": "EWL"
+},
+{
+"code": "EW10",
+"name": "Kallang",
+"lat": 1.311467,
+"lng": 103.871339,
+"line": "EWL"
+},
+{
+"code": "EW11",
+"name": "Lavender",
+"lat": 1.307361,
+"lng": 103.862774,
+"line": "EWL"
+},
+{
+"code": "EW12",
+"name": "Bugis",
+"lat": 1.299946,
+"lng": 103.856275,
+"line": "EWL"
+},
+{
+"code": "EW13",
+"name": "City Hall",
+"lat": 1.293047,
+"lng": 103.852618,
+"line": "EWL"
+},
+{
+"code": "EW14",
+"name": "Raffles Place",
+"lat": 1.283477,
+"lng": 103.85176,
+"line": "EWL"
+},
+{
+"code": "EW15",
+"name": "Tanjong Pagar",
+"lat": 1.27661,
+"lng": 103.845712,
+"line": "EWL"
+},
+{
+"code": "EW16",
+"name": "Outram Park",
+"lat": 1.280694,
+"lng": 103.839255,
+"line": "EWL"
+},
+{
+"code": "EW17",
+"name": "Tiong Bahru",
+"lat": 1.286132,
+"lng": 103.826956,
+"line": "EWL"
+},
+{
+"code": "EW18",
+"name": "Redhill",
+"lat": 1.289635,
+"lng": 103.816769,
+"line": "EWL"
+},
+{
+"code": "EW19",
+"name": "Queenstown",
+"lat": 1.294623,
+"lng": 103.806037,
+"line": "EWL"
+},
+{
+"code": "EW20",
+"name": "Commonwealth",
+"lat": 1.302443,
+"lng": 103.798309,
+"line": "EWL"
+},
+{
+"code": "EW21",
+"name": "Buona Vista",
+"lat": 1.306626,
+"lng": 103.790345,
+"line": "EWL"
+},
+{
+"code": "EW22",
+"name": "Dover",
+"lat": 1.311416,
+"lng": 103.778611,
+"line": "EWL"
+},
+{
+"code": "EW23",
+"name": "Clementi",
+"lat": 1.316134,
+"lng": 103.765904,
+"line": "EWL"
+},
+{
+"code": "EW24",
+"name": "Jurong East",
+"lat": 1.333108,
+"lng": 103.742294,
+"line": "EWL"
+},
+{
+"code": "EW25",
+"name": "Chinese Garden",
+"lat": 1.342414,
+"lng": 103.732547,
+"line": "EWL"
+},
+{
+"code": "EW26",
+"name": "Lakeside",
+"lat": 1.34425,
+"lng": 103.720693,
+"line": "EWL"
+},
+{
+"code": "EW27",
+"name": "Boon Lay",
+"lat": 1.33855,
+"lng": 103.705812,
+"line": "EWL"
+},
+{
+"code": "EW28",
+"name": "Pioneer",
+"lat": 1.337588,
+"lng": 103.69741,
+"line": "EWL"
+},
+{
+"code": "EW29",
+"name": "Joo Koon",
+"lat": 1.327735,
+"lng": 103.678222,
+"line": "EWL"
+},
+{
+"code": "EW30",
+"name": "Gul Circle",
+"lat": 1.319635,
+"lng": 103.660655,
+"line": "EWL"
+},
+{
+"code": "EW31",
+"name": "Tuas Crescent",
+"lat": 1.321158,
+"lng": 103.648906,
+"line": "EWL"
+},
+{
+"code": "EW32",
+"name": "Tuas West Road",
+"lat": 1.330052,
+"lng": 103.639569,
+"line": "EWL"
+},
+{
+"code": "EW33",
+"name": "Tuas Link",
+"lat": 1.340294,
+"lng": 103.636772,
+"line": "EWL"
+},
+{
+"code": "NE1",
+"name": "HarbourFront",
+"lat": 1.265362,
+"lng": 103.821552,
+"line": "NEL"
+},
+{
+"code": "NE3",
+"name": "Outram Park",
+"lat": 1.280694,
+"lng": 103.839255,
+"line": "NEL"
+},
+{
+"code": "NE4",
+"name": "Chinatown",
+"lat": 1.284688,
+"lng": 103.844135,
+"line": "NEL"
+},
+{
+"code": "NE5",
+"name": "Clarke Quay",
+"lat": 1.28826,
+"lng": 103.846598,
+"line": "NEL"
+},
+{
+"code": "NE6",
+"name": "Dhoby Ghaut",
+"lat": 1.299602,
+"lng": 103.845554,
+"line": "NEL"
+},
+{
+"code": "NE7",
+"name": "Little India",
+"lat": 1.306879,
+"lng": 103.849174,
+"line": "NEL"
+},
+{
+"code": "NE8",
+"name": "Farrer Park",
+"lat": 1.31249,
+"lng": 103.854337,
+"line": "NEL"
+},
+{
+"code": "NE9",
+"name": "Boon Keng",
+"lat": 1.319133,
+"lng": 103.861555,
+"line": "NEL"
+},
+{
+"code": "NE10",
+"name": "Potong Pasir",
+"lat": 1.331433,
+"lng": 103.869039,
+"line": "NEL"
+},
+{
+"code": "NE11",
+"name": "Woodleigh",
+"lat": 1.339202,
+"lng": 103.870752,
+"line": "NEL"
+},
+{
+"code": "NE12",
+"name": "Serangoon",
+"lat": 1.349806,
+"lng": 103.872678,
+"line": "NEL"
+},
+{
+"code": "NE13",
+"name": "Kovan",
+"lat": 1.36021,
+"lng": 103.885,
+"line": "NEL"
+},
+{
+"code": "NE14",
+"name": "Hougang",
+"lat": 1.370778,
+"lng": 103.891243,
+"line": "NEL"
+},
+{
+"code": "NE15",
+"name": "Buangkok",
+"lat": 1.382974,
+"lng": 103.893135,
+"line": "NEL"
+},
+{
+"code": "NE16",
+"name": "Sengkang",
+"lat": 1.391699,
+"lng": 103.895483,
+"line": "NEL"
+},
+{
+"code": "NE17",
+"name": "Punggol",
+"lat": 1.405383,
+"lng": 103.90264,
+"line": "NEL"
+},
+{
+"code": "NE18",
+"name": "Punggol Coast",
+"lat": 1.414966,
+"lng": 103.910117,
+"line": "NEL"
+},
+{
+"code": "NS1",
+"name": "Jurong East",
+"lat": 1.333108,
+"lng": 103.742294,
+"line": "NSL"
+},
+{
+"code": "NS2",
+"name": "Bukit Batok",
+"lat": 1.349057,
+"lng": 103.749591,
+"line": "NSL"
+},
+{
+"code": "NS3",
+"name": "Bukit Gombak",
+"lat": 1.358893,
+"lng": 103.751825,
+"line": "NSL"
+},
+{
+"code": "NS4",
+"name": "Choa Chu Kang",
+"lat": 1.385317,
+"lng": 103.744325,
+"line": "NSL"
+},
+{
+"code": "NS5",
+"name": "Yew Tee",
+"lat": 1.397461,
+"lng": 103.747401,
+"line": "NSL"
+},
+{
+"code": "NS7",
+"name": "Kranji",
+"lat": 1.425219,
+"lng": 103.761989,
+"line": "NSL"
+},
+{
+"code": "NS8",
+"name": "Marsiling",
+"lat": 1.43257,
+"lng": 103.774124,
+"line": "NSL"
+},
+{
+"code": "NS9",
+"name": "Woodlands",
+"lat": 1.43591,
+"lng": 103.787462,
+"line": "NSL"
+},
+{
+"code": "NS10",
+"name": "Admiralty",
+"lat": 1.440637,
+"lng": 103.800959,
+"line": "NSL"
+},
+{
+"code": "NS11",
+"name": "Sembawang",
+"lat": 1.449093,
+"lng": 103.820055,
+"line": "NSL"
+},
+{
+"code": "NS12",
+"name": "Canberra",
+"lat": 1.443213,
+"lng": 103.82963,
+"line": "NSL"
+},
+{
+"code": "NS13",
+"name": "Yishun",
+"lat": 1.429384,
+"lng": 103.835028,
+"line": "NSL"
+},
+{
+"code": "NS14",
+"name": "Khatib",
+"lat": 1.41736,
+"lng": 103.833018,
+"line": "NSL"
+},
+{
+"code": "NS15",
+"name": "Yio Chu Kang",
+"lat": 1.38179,
+"lng": 103.844936,
+"line": "NSL"
+},
+{
+"code": "NS16",
+"name": "Ang Mo Kio",
+"lat": 1.37008,
+"lng": 103.849523,
+"line": "NSL"
+},
+{
+"code": "NS17",
+"name": "Bishan",
+"lat": 1.350989,
+"lng": 103.849039,
+"line": "NSL"
+},
+{
+"code": "NS18",
+"name": "Braddell",
+"lat": 1.340302,
+"lng": 103.846923,
+"line": "NSL"
+},
+{
+"code": "NS19",
+"name": "Toa Payoh",
+"lat": 1.332617,
+"lng": 103.847141,
+"line": "NSL"
+},
+{
+"code": "NS20",
+"name": "Novena",
+"lat": 1.320516,
+"lng": 103.843871,
+"line": "NSL"
+},
+{
+"code": "NS21",
+"name": "Newton",
+"lat": 1.313064,
+"lng": 103.83784,
+"line": "NSL"
+},
+{
+"code": "NS22",
+"name": "Orchard",
+"lat": 1.303126,
+"lng": 103.831416,
+"line": "NSL"
+},
+{
+"code": "NS23",
+"name": "Somerset",
+"lat": 1.30033,
+"lng": 103.839134,
+"line": "NSL"
+},
+{
+"code": "NS24",
+"name": "Dhoby Ghaut",
+"lat": 1.299602,
+"lng": 103.845554,
+"line": "NSL"
+},
+{
+"code": "NS25",
+"name": "City Hall",
+"lat": 1.293047,
+"lng": 103.852618,
+"line": "NSL"
+},
+{
+"code": "NS26",
+"name": "Raffles Place",
+"lat": 1.283477,
+"lng": 103.85176,
+"line": "NSL"
+},
+{
+"code": "NS27",
+"name": "Marina Bay",
+"lat": 1.275471,
+"lng": 103.85531,
+"line": "NSL"
+},
+{
+"code": "NS28",
+"name": "Marina South Pier",
+"lat": 1.271446,
+"lng": 103.86282,
+"line": "NSL"
+},
+{
+"code": "PTC",
+"name": "Punggol",
+"lat": 1.405383,
+"lng": 103.90264,
+"line": "PGLRT"
+},
+{
+"code": "PW1",
+"name": "Sam Kee",
+"lat": 1.409717,
+"lng": 103.904884,
+"line": "PGLRT"
+},
+{
+"code": "PE1",
+"name": "Cove",
+"lat": 1.399461,
+"lng": 103.905802,
+"line": "PGLRT"
+},
+{
+"code": "PW2",
+"name": "Teck Lee",
+"lat": 1.412782,
+"lng": 103.906589,
+"line": "PGLRT"
+},
+{
+"code": "PE2",
+"name": "Meridian",
+"lat": 1.396937,
+"lng": 103.908883,
+"line": "PGLRT"
+},
+{
+"code": "PW3",
+"name": "Punggol Point",
+"lat": 1.416852,
+"lng": 103.906651,
+"line": "PGLRT"
+},
+{
+"code": "PE3",
+"name": "Coral Edge",
+"lat": 1.39385,
+"lng": 103.912667,
+"line": "PGLRT"
+},
+{
+"code": "PW4",
+"name": "Samudera",
+"lat": 1.415889,
+"lng": 103.90214,
+"line": "PGLRT"
+},
+{
+"code": "PE4",
+"name": "Riviera",
+"lat": 1.394546,
+"lng": 103.91615,
+"line": "PGLRT"
+},
+{
+"code": "PW5",
+"name": "Nibong",
+"lat": 1.411861,
+"lng": 103.900353,
+"line": "PGLRT"
+},
+{
+"code": "PE5",
+"name": "Kadaloor",
+"lat": 1.399549,
+"lng": 103.916508,
+"line": "PGLRT"
+},
+{
+"code": "PW6",
+"name": "Sumang",
+"lat": 1.408461,
+"lng": 103.898564,
+"line": "PGLRT"
+},
+{
+"code": "PE6",
+"name": "Oasis",
+"lat": 1.40229,
+"lng": 103.912734,
+"line": "PGLRT"
+},
+{
+"code": "PW7",
+"name": "Soo Teck",
+"lat": 1.405332,
+"lng": 103.897268,
+"line": "PGLRT"
+},
+{
+"code": "PE7",
+"name": "Damai",
+"lat": 1.405241,
+"lng": 103.908618,
+"line": "PGLRT"
+},
+{
+"code": "STC",
+"name": "Sengkang",
+"lat": 1.391699,
+"lng": 103.895483,
+"line": "SKLRT"
+},
+{
+"code": "SW1",
+"name": "Cheng Lim",
+"lat": 1.396292,
+"lng": 103.89379,
+"line": "SKLRT"
+},
+{
+"code": "SE1",
+"name": "Compassvale",
+"lat": 1.394518,
+"lng": 103.900435,
+"line": "SKLRT"
+},
+{
+"code": "SW2",
+"name": "Farmway",
+"lat": 1.397195,
+"lng": 103.889224,
+"line": "SKLRT"
+},
+{
+"code": "SE2",
+"name": "Rumbia",
+"lat": 1.391475,
+"lng": 103.905973,
+"line": "SKLRT"
+},
+{
+"code": "SW3",
+"name": "Kupang",
+"lat": 1.398204,
+"lng": 103.881246,
+"line": "SKLRT"
+},
+{
+"code": "SE3",
+"name": "Bakau",
+"lat": 1.388008,
+"lng": 103.905418,
+"line": "SKLRT"
+},
+{
+"code": "SW4",
+"name": "Thanggam",
+"lat": 1.397333,
+"lng": 103.875635,
+"line": "SKLRT"
+},
+{
+"code": "SE4",
+"name": "Kangkar",
+"lat": 1.383929,
+"lng": 103.902205,
+"line": "SKLRT"
+},
+{
+"code": "SE5",
+"name": "Ranggung",
+"lat": 1.384046,
+"lng": 103.897361,
+"line": "SKLRT"
+},
+{
+"code": "SW5",
+"name": "Fernvale",
+"lat": 1.391904,
+"lng": 103.876279,
+"line": "SKLRT"
+},
+{
+"code": "SW6",
+"name": "Layar",
+"lat": 1.392085,
+"lng": 103.880032,
+"line": "SKLRT"
+},
+{
+"code": "SW7",
+"name": "Tongkang",
+"lat": 1.389408,
+"lng": 103.885827,
+"line": "SKLRT"
+},
+{
+"code": "SW8",
+"name": "Renjong",
+"lat": 1.386729,
+"lng": 103.890533,
+"line": "SKLRT"
+},
+{
+"code": "TE1",
+"name": "Woodlands North",
+"lat": 1.448289,
+"lng": 103.785713,
+"line": "TEL"
+},
+{
+"code": "TE2",
+"name": "Woodlands",
+"lat": 1.43591,
+"lng": 103.787462,
+"line": "TEL"
+},
+{
+"code": "TE3",
+"name": "Woodlands South",
+"lat": 1.426733,
+"lng": 103.79378,
+"line": "TEL"
+},
+{
+"code": "TE4",
+"name": "Springleaf",
+"lat": 1.398167,
+"lng": 103.817858,
+"line": "TEL"
+},
+{
+"code": "TE5",
+"name": "Lentor",
+"lat": 1.384749,
+"lng": 103.83637,
+"line": "TEL"
+},
+{
+"code": "TE6",
+"name": "Mayflower",
+"lat": 1.372232,
+"lng": 103.836895,
+"line": "TEL"
+},
+{
+"code": "TE7",
+"name": "Bright Hill",
+"lat": 1.363063,
+"lng": 103.834818,
+"line": "TEL"
+},
+{
+"code": "TE8",
+"name": "Upper Thomson",
+"lat": 1.354569,
+"lng": 103.832827,
+"line": "TEL"
+},
+{
+"code": "TE9",
+"name": "Caldecott",
+"lat": 1.337367,
+"lng": 103.839814,
+"line": "TEL"
+},
+{
+"code": "TE11",
+"name": "Stevens",
+"lat": 1.319976,
+"lng": 103.825763,
+"line": "TEL"
+},
+{
+"code": "TE12",
+"name": "Napier",
+"lat": 1.306715,
+"lng": 103.819149,
+"line": "TEL"
+},
+{
+"code": "TE13",
+"name": "Orchard Boulevard",
+"lat": 1.303188,
+"lng": 103.823867,
+"line": "TEL"
+},
+{
+"code": "TE14",
+"name": "Orchard",
+"lat": 1.303126,
+"lng": 103.831416,
+"line": "TEL"
+},
+{
+"code": "TE15",
+"name": "Great World",
+"lat": 1.294615,
+"lng": 103.833341,
+"line": "TEL"
+},
+{
+"code": "TE16",
+"name": "Havelock",
+"lat": 1.288549,
+"lng": 103.833674,
+"line": "TEL"
+},
+{
+"code": "TE17",
+"name": "Outram Park",
+"lat": 1.280694,
+"lng": 103.839255,
+"line": "TEL"
+},
+{
+"code": "TE18",
+"name": "Maxwell",
+"lat": 1.280622,
+"lng": 103.843882,
+"line": "TEL"
+},
+{
+"code": "TE19",
+"name": "Shenton Way",
+"lat": 1.277534,
+"lng": 103.850919,
+"line": "TEL"
+},
+{
+"code": "TE20",
+"name": "Marina Bay",
+"lat": 1.275471,
+"lng": 103.85531,
+"line": "TEL"
+},
+{
+"code": "TE22",
+"name": "Gardens by the Bay",
+"lat": 1.279231,
+"lng": 103.867945,
+"line": "TEL"
+},
+{
+"code": "TE23",
+"name": "Tanjong Rhu",
+"lat": 1.297343,
+"lng": 103.873459,
+"line": "TEL"
+},
+{
+"code": "TE24",
+"name": "Katong Park",
+"lat": 1.297961,
+"lng": 103.886218,
+"line": "TEL"
+},
+{
+"code": "TE25",
+"name": "Tanjong Katong",
+"lat": 1.299594,
+"lng": 103.897378,
+"line": "TEL"
+},
+{
+"code": "TE26",
+"name": "Marine Parade",
+"lat": 1.303709,
+"lng": 103.907073,
+"line": "TEL"
+},
+{
+"code": "TE27",
+"name": "Marine Terrace",
+"lat": 1.306605,
+"lng": 103.915061,
+"line": "TEL"
+},
+{
+"code": "TE28",
+"name": "Siglap",
+"lat": 1.309591,
+"lng": 103.930025,
+"line": "TEL"
+},
+{
+"code": "TE29",
+"name": "Bayshore",
+"lat": 1.312834,
+"lng": 103.942309,
+"line": "TEL"
+},
+{
+"code": "TE30",
+"name": "Bedok South",
+"lat": 1.316441,
+"lng": 103.949051,
+"line": "TEL"
+},
+{
+"code": "TE31",
+"name": "Sungei Bedok",
+"lat": 1.320391,
+"lng": 103.95726,
+"line": "TEL"
+}
+],
+"edges": [
+{
+"a": "BP1",
+"b": "BP2",
+"line": "BPL",
+"km": 0.505,
+"min": 1.79
+},
+{
+"a": "BP10",
+"b": "BP11",
+"line": "BPL",
+"km": 0.383,
+"min": 1.46
+},
+{
+"a": "BP10",
+"b": "BP9",
+"line": "BPL",
+"km": 0.543,
+"min": 1.9
+},
+{
+"a": "BP11",
+"b": "BP12",
+"line": "BPL",
+"km": 0.576,
+"min": 1.99
+},
+{
+"a": "BP12",
+"b": "BP13",
+"line": "BPL",
+"km": 0.506,
+"min": 1.8
+},
+{
+"a": "BP13",
+"b": "BP6",
+"line": "BPL",
+"km": 0.535,
+"min": 1.88
+},
+{
+"a": "BP2",
+"b": "BP3",
+"line": "BPL",
+"km": 0.455,
+"min": 1.66
+},
+{
+"a": "BP3",
+"b": "BP4",
+"line": "BPL",
+"km": 0.557,
+"min": 1.94
+},
+{
+"a": "BP4",
+"b": "BP5",
+"line": "BPL",
+"km": 0.531,
+"min": 1.87
+},
+{
+"a": "BP5",
+"b": "BP6",
+"line": "BPL",
+"km": 0.571,
+"min": 1.98
+},
+{
+"a": "BP6",
+"b": "BP7",
+"line": "BPL",
+"km": 0.393,
+"min": 1.49
+},
+{
+"a": "BP7",
+"b": "BP8",
+"line": "BPL",
+"km": 0.544,
+"min": 1.9
+},
+{
+"a": "BP8",
+"b": "BP9",
+"line": "BPL",
+"km": 0.456,
+"min": 1.66
+},
+{
+"a": "CC1",
+"b": "CC2",
+"line": "CCL",
+"km": 0.667,
+"min": 1.52
+},
+{
+"a": "CC10",
+"b": "CC11",
+"line": "CCL",
+"km": 1.031,
+"min": 2.08
+},
+{
+"a": "CC10",
+"b": "CC9",
+"line": "CCL",
+"km": 1.03,
+"min": 2.08
+},
+{
+"a": "CC11",
+"b": "CC12",
+"line": "CCL",
+"km": 1.261,
+"min": 2.43
+},
+{
+"a": "CC12",
+"b": "CC13",
+"line": "CCL",
+"km": 1.095,
+"min": 2.18
+},
+{
+"a": "CC13",
+"b": "CC14",
+"line": "CCL",
+"km": 0.989,
+"min": 2.02
+},
+{
+"a": "CC14",
+"b": "CC15",
+"line": "CCL",
+"km": 1.659,
+"min": 3.04
+},
+{
+"a": "CC15",
+"b": "CC16",
+"line": "CCL",
+"km": 1.088,
+"min": 2.17
+},
+{
+"a": "CC16",
+"b": "CC17",
+"line": "CCL",
+"km": 1.253,
+"min": 2.42
+},
+{
+"a": "CC17",
+"b": "CC19",
+"line": "CCL",
+"km": 3.178,
+"min": 5.37
+},
+{
+"a": "CC19",
+"b": "CC20",
+"line": "CCL",
+"km": 1.044,
+"min": 2.1
+},
+{
+"a": "CC2",
+"b": "CC3",
+"line": "CCL",
+"km": 0.641,
+"min": 1.48
+},
+{
+"a": "CC20",
+"b": "CC21",
+"line": "CCL",
+"km": 1.386,
+"min": 2.63
+},
+{
+"a": "CC21",
+"b": "CC22",
+"line": "CCL",
+"km": 0.881,
+"min": 1.85
+},
+{
+"a": "CC22",
+"b": "CC23",
+"line": "CCL",
+"km": 0.843,
+"min": 1.79
+},
+{
+"a": "CC23",
+"b": "CC24",
+"line": "CCL",
+"km": 0.772,
+"min": 1.68
+},
+{
+"a": "CC24",
+"b": "CC25",
+"line": "CCL",
+"km": 1.218,
+"min": 2.37
+},
+{
+"a": "CC25",
+"b": "CC26",
+"line": "CCL",
+"km": 1.278,
+"min": 2.46
+},
+{
+"a": "CC26",
+"b": "CC27",
+"line": "CCL",
+"km": 1.367,
+"min": 2.6
+},
+{
+"a": "CC27",
+"b": "CC28",
+"line": "CCL",
+"km": 0.78,
+"min": 1.7
+},
+{
+"a": "CC28",
+"b": "CC29",
+"line": "CCL",
+"km": 1.436,
+"min": 2.7
+},
+{
+"a": "CC29",
+"b": "CC30",
+"line": "CCL",
+"km": 1.165,
+"min": 2.29
+},
+{
+"a": "CC3",
+"b": "CC4",
+"line": "CCL",
+"km": 0.561,
+"min": 1.36
+},
+{
+"a": "CC30",
+"b": "CC31",
+"line": "CCL",
+"km": 0.765,
+"min": 1.67
+},
+{
+"a": "CC31",
+"b": "CC32",
+"line": "CCL",
+"km": 1.116,
+"min": 2.21
+},
+{
+"a": "CC32",
+"b": "CC33",
+"line": "CCL",
+"km": 0.945,
+"min": 1.95
+},
+{
+"a": "CC33",
+"b": "CC34",
+"line": "CCL",
+"km": 0.93,
+"min": 1.93
+},
+{
+"a": "CC34",
+"b": "CC4",
+"line": "CCL",
+"km": 1.173,
+"min": 2.3
+},
+{
+"a": "CC4",
+"b": "CC5",
+"line": "CCL",
+"km": 0.833,
+"min": 1.78
+},
+{
+"a": "CC5",
+"b": "CC6",
+"line": "CCL",
+"km": 1.321,
+"min": 2.52
+},
+{
+"a": "CC6",
+"b": "CC7",
+"line": "CCL",
+"km": 0.88,
+"min": 1.85
+},
+{
+"a": "CC7",
+"b": "CC8",
+"line": "CCL",
+"km": 0.723,
+"min": 1.61
+},
+{
+"a": "CC8",
+"b": "CC9",
+"line": "CCL",
+"km": 1.104,
+"min": 2.19
+},
+{
+"a": "CG1",
+"b": "CG2",
+"line": "EWL",
+"km": 3.812,
+"min": 6.34
+},
+{
+"a": "CG1",
+"b": "EW4",
+"line": "EWL",
+"km": 1.989,
+"min": 3.55
+},
+{
+"a": "DT1",
+"b": "DT2",
+"line": "DTL",
+"km": 1.14,
+"min": 2.25
+},
+{
+"a": "DT10",
+"b": "DT11",
+"line": "DTL",
+"km": 1.547,
+"min": 2.87
+},
+{
+"a": "DT10",
+"b": "DT9",
+"line": "DTL",
+"km": 1.149,
+"min": 2.26
+},
+{
+"a": "DT11",
+"b": "DT12",
+"line": "DTL",
+"km": 1.435,
+"min": 2.7
+},
+{
+"a": "DT12",
+"b": "DT13",
+"line": "DTL",
+"km": 0.49,
+"min": 1.25
+},
+{
+"a": "DT13",
+"b": "DT14",
+"line": "DTL",
+"km": 0.614,
+"min": 1.44
+},
+{
+"a": "DT14",
+"b": "DT15",
+"line": "DTL",
+"km": 0.897,
+"min": 1.88
+},
+{
+"a": "DT15",
+"b": "DT16",
+"line": "DTL",
+"km": 1.173,
+"min": 2.3
+},
+{
+"a": "DT16",
+"b": "DT17",
+"line": "DTL",
+"km": 0.84,
+"min": 1.79
+},
+{
+"a": "DT17",
+"b": "DT18",
+"line": "DTL",
+"km": 0.593,
+"min": 1.41
+},
+{
+"a": "DT18",
+"b": "DT19",
+"line": "DTL",
+"km": 0.528,
+"min": 1.31
+},
+{
+"a": "DT19",
+"b": "DT20",
+"line": "DTL",
+"km": 0.868,
+"min": 1.83
+},
+{
+"a": "DT2",
+"b": "DT3",
+"line": "DTL",
+"km": 0.837,
+"min": 1.78
+},
+{
+"a": "DT20",
+"b": "DT21",
+"line": "DTL",
+"km": 0.941,
+"min": 1.94
+},
+{
+"a": "DT21",
+"b": "DT22",
+"line": "DTL",
+"km": 0.962,
+"min": 1.98
+},
+{
+"a": "DT22",
+"b": "DT23",
+"line": "DTL",
+"km": 1.216,
+"min": 2.36
+},
+{
+"a": "DT23",
+"b": "DT24",
+"line": "DTL",
+"km": 1.349,
+"min": 2.57
+},
+{
+"a": "DT24",
+"b": "DT25",
+"line": "DTL",
+"km": 1.398,
+"min": 2.64
+},
+{
+"a": "DT25",
+"b": "DT26",
+"line": "DTL",
+"km": 0.695,
+"min": 1.57
+},
+{
+"a": "DT26",
+"b": "DT27",
+"line": "DTL",
+"km": 1.153,
+"min": 2.27
+},
+{
+"a": "DT27",
+"b": "DT28",
+"line": "DTL",
+"km": 1.163,
+"min": 2.28
+},
+{
+"a": "DT28",
+"b": "DT29",
+"line": "DTL",
+"km": 1.106,
+"min": 2.2
+},
+{
+"a": "DT29",
+"b": "DT30",
+"line": "DTL",
+"km": 1.589,
+"min": 2.94
+},
+{
+"a": "DT3",
+"b": "DT4",
+"line": "DTL",
+"km": 0.896,
+"min": 1.87
+},
+{
+"a": "DT30",
+"b": "DT31",
+"line": "DTL",
+"km": 1.216,
+"min": 2.36
+},
+{
+"a": "DT31",
+"b": "DT32",
+"line": "DTL",
+"km": 1.131,
+"min": 2.23
+},
+{
+"a": "DT32",
+"b": "DT33",
+"line": "DTL",
+"km": 1.2,
+"min": 2.34
+},
+{
+"a": "DT33",
+"b": "DT34",
+"line": "DTL",
+"km": 1.737,
+"min": 3.16
+},
+{
+"a": "DT34",
+"b": "DT35",
+"line": "DTL",
+"km": 0.77,
+"min": 1.68
+},
+{
+"a": "DT35",
+"b": "DT36",
+"line": "DTL",
+"km": 0.756,
+"min": 1.66
+},
+{
+"a": "DT36",
+"b": "DT37",
+"line": "DTL",
+"km": 1.251,
+"min": 2.42
+},
+{
+"a": "DT4",
+"b": "DT5",
+"line": "DTL",
+"km": 1.666,
+"min": 3.05
+},
+{
+"a": "DT5",
+"b": "DT6",
+"line": "DTL",
+"km": 1.07,
+"min": 2.14
+},
+{
+"a": "DT6",
+"b": "DT7",
+"line": "DTL",
+"km": 1.576,
+"min": 2.92
+},
+{
+"a": "DT7",
+"b": "DT8",
+"line": "DTL",
+"km": 1.254,
+"min": 2.42
+},
+{
+"a": "DT8",
+"b": "DT9",
+"line": "DTL",
+"km": 1.024,
+"min": 2.07
+},
+{
+"a": "EW1",
+"b": "EW2",
+"line": "EWL",
+"km": 1.989,
+"min": 3.55
+},
+{
+"a": "EW10",
+"b": "EW11",
+"line": "EWL",
+"km": 1.056,
+"min": 2.12
+},
+{
+"a": "EW10",
+"b": "EW9",
+"line": "EWL",
+"km": 1.401,
+"min": 2.65
+},
+{
+"a": "EW11",
+"b": "EW12",
+"line": "EWL",
+"km": 1.096,
+"min": 2.18
+},
+{
+"a": "EW12",
+"b": "EW13",
+"line": "EWL",
+"km": 0.868,
+"min": 1.83
+},
+{
+"a": "EW13",
+"b": "EW14",
+"line": "EWL",
+"km": 1.068,
+"min": 2.14
+},
+{
+"a": "EW14",
+"b": "EW15",
+"line": "EWL",
+"km": 1.017,
+"min": 2.06
+},
+{
+"a": "EW15",
+"b": "EW16",
+"line": "EWL",
+"km": 0.849,
+"min": 1.8
+},
+{
+"a": "EW16",
+"b": "EW17",
+"line": "EWL",
+"km": 1.495,
+"min": 2.79
+},
+{
+"a": "EW17",
+"b": "EW18",
+"line": "EWL",
+"km": 1.198,
+"min": 2.34
+},
+{
+"a": "EW18",
+"b": "EW19",
+"line": "EWL",
+"km": 1.316,
+"min": 2.52
+},
+{
+"a": "EW19",
+"b": "EW20",
+"line": "EWL",
+"km": 1.222,
+"min": 2.37
+},
+{
+"a": "EW2",
+"b": "EW3",
+"line": "EWL",
+"km": 1.604,
+"min": 2.96
+},
+{
+"a": "EW20",
+"b": "EW21",
+"line": "EWL",
+"km": 1.0,
+"min": 2.03
+},
+{
+"a": "EW21",
+"b": "EW22",
+"line": "EWL",
+"km": 1.409,
+"min": 2.66
+},
+{
+"a": "EW22",
+"b": "EW23",
+"line": "EWL",
+"km": 1.507,
+"min": 2.81
+},
+{
+"a": "EW23",
+"b": "EW24",
+"line": "EWL",
+"km": 3.233,
+"min": 5.46
+},
+{
+"a": "EW24",
+"b": "EW25",
+"line": "EWL",
+"km": 1.498,
+"min": 2.8
+},
+{
+"a": "EW25",
+"b": "EW26",
+"line": "EWL",
+"km": 1.333,
+"min": 2.54
+},
+{
+"a": "EW26",
+"b": "EW27",
+"line": "EWL",
+"km": 1.772,
+"min": 3.22
+},
+{
+"a": "EW27",
+"b": "EW28",
+"line": "EWL",
+"km": 0.94,
+"min": 1.94
+},
+{
+"a": "EW28",
+"b": "EW29",
+"line": "EWL",
+"km": 2.398,
+"min": 4.18
+},
+{
+"a": "EW29",
+"b": "EW30",
+"line": "EWL",
+"km": 2.151,
+"min": 3.8
+},
+{
+"a": "EW3",
+"b": "EW4",
+"line": "EWL",
+"km": 1.93,
+"min": 3.46
+},
+{
+"a": "EW30",
+"b": "EW31",
+"line": "EWL",
+"km": 1.317,
+"min": 2.52
+},
+{
+"a": "EW31",
+"b": "EW32",
+"line": "EWL",
+"km": 1.434,
+"min": 2.7
+},
+{
+"a": "EW32",
+"b": "EW33",
+"line": "EWL",
+"km": 1.181,
+"min": 2.31
+},
+{
+"a": "EW4",
+"b": "EW5",
+"line": "EWL",
+"km": 1.856,
+"min": 3.35
+},
+{
+"a": "EW5",
+"b": "EW6",
+"line": "EWL",
+"km": 1.95,
+"min": 3.49
+},
+{
+"a": "EW6",
+"b": "EW7",
+"line": "EWL",
+"km": 1.124,
+"min": 2.22
+},
+{
+"a": "EW7",
+"b": "EW8",
+"line": "EWL",
+"km": 1.166,
+"min": 2.29
+},
+{
+"a": "EW8",
+"b": "EW9",
+"line": "EWL",
+"km": 1.09,
+"min": 2.17
+},
+{
+"a": "NE1",
+"b": "NE3",
+"line": "NEL",
+"km": 2.604,
+"min": 4.49
+},
+{
+"a": "NE10",
+"b": "NE11",
+"line": "NEL",
+"km": 0.885,
+"min": 1.86
+},
+{
+"a": "NE10",
+"b": "NE9",
+"line": "NEL",
+"km": 1.601,
+"min": 2.95
+},
+{
+"a": "NE11",
+"b": "NE12",
+"line": "NEL",
+"km": 1.198,
+"min": 2.34
+},
+{
+"a": "NE12",
+"b": "NE13",
+"line": "NEL",
+"km": 1.793,
+"min": 3.25
+},
+{
+"a": "NE13",
+"b": "NE14",
+"line": "NEL",
+"km": 1.365,
+"min": 2.59
+},
+{
+"a": "NE14",
+"b": "NE15",
+"line": "NEL",
+"km": 1.372,
+"min": 2.6
+},
+{
+"a": "NE15",
+"b": "NE16",
+"line": "NEL",
+"km": 1.005,
+"min": 2.04
+},
+{
+"a": "NE16",
+"b": "NE17",
+"line": "NEL",
+"km": 1.717,
+"min": 3.13
+},
+{
+"a": "NE17",
+"b": "NE18",
+"line": "NEL",
+"km": 1.351,
+"min": 2.57
+},
+{
+"a": "NE3",
+"b": "NE4",
+"line": "NEL",
+"km": 0.701,
+"min": 1.58
+},
+{
+"a": "NE4",
+"b": "NE5",
+"line": "NEL",
+"km": 0.482,
+"min": 1.24
+},
+{
+"a": "NE5",
+"b": "NE6",
+"line": "NEL",
+"km": 1.267,
+"min": 2.44
+},
+{
+"a": "NE6",
+"b": "NE7",
+"line": "NEL",
+"km": 0.904,
+"min": 1.89
+},
+{
+"a": "NE7",
+"b": "NE8",
+"line": "NEL",
+"km": 0.848,
+"min": 1.8
+},
+{
+"a": "NE8",
+"b": "NE9",
+"line": "NEL",
+"km": 1.091,
+"min": 2.17
+},
+{
+"a": "NS1",
+"b": "NS2",
+"line": "NSL",
+"km": 1.95,
+"min": 3.49
+},
+{
+"a": "NS10",
+"b": "NS11",
+"line": "NSL",
+"km": 2.322,
+"min": 4.06
+},
+{
+"a": "NS10",
+"b": "NS9",
+"line": "NSL",
+"km": 1.59,
+"min": 2.94
+},
+{
+"a": "NS11",
+"b": "NS12",
+"line": "NSL",
+"km": 1.249,
+"min": 2.42
+},
+{
+"a": "NS12",
+"b": "NS13",
+"line": "NSL",
+"km": 1.651,
+"min": 3.03
+},
+{
+"a": "NS13",
+"b": "NS14",
+"line": "NSL",
+"km": 1.356,
+"min": 2.58
+},
+{
+"a": "NS14",
+"b": "NS15",
+"line": "NSL",
+"km": 4.171,
+"min": 6.9
+},
+{
+"a": "NS15",
+"b": "NS16",
+"line": "NSL",
+"km": 1.398,
+"min": 2.64
+},
+{
+"a": "NS16",
+"b": "NS17",
+"line": "NSL",
+"km": 2.124,
+"min": 3.76
+},
+{
+"a": "NS17",
+"b": "NS18",
+"line": "NSL",
+"km": 1.211,
+"min": 2.36
+},
+{
+"a": "NS18",
+"b": "NS19",
+"line": "NSL",
+"km": 0.855,
+"min": 1.81
+},
+{
+"a": "NS19",
+"b": "NS20",
+"line": "NSL",
+"km": 1.394,
+"min": 2.64
+},
+{
+"a": "NS2",
+"b": "NS3",
+"line": "NSL",
+"km": 1.122,
+"min": 2.22
+},
+{
+"a": "NS20",
+"b": "NS21",
+"line": "NSL",
+"km": 1.066,
+"min": 2.13
+},
+{
+"a": "NS21",
+"b": "NS22",
+"line": "NSL",
+"km": 1.316,
+"min": 2.52
+},
+{
+"a": "NS22",
+"b": "NS23",
+"line": "NSL",
+"km": 0.913,
+"min": 1.9
+},
+{
+"a": "NS23",
+"b": "NS24",
+"line": "NSL",
+"km": 0.718,
+"min": 1.6
+},
+{
+"a": "NS24",
+"b": "NS25",
+"line": "NSL",
+"km": 1.071,
+"min": 2.14
+},
+{
+"a": "NS25",
+"b": "NS26",
+"line": "NSL",
+"km": 1.068,
+"min": 2.14
+},
+{
+"a": "NS26",
+"b": "NS27",
+"line": "NSL",
+"km": 0.974,
+"min": 1.99
+},
+{
+"a": "NS27",
+"b": "NS28",
+"line": "NSL",
+"km": 0.947,
+"min": 1.95
+},
+{
+"a": "NS3",
+"b": "NS4",
+"line": "NSL",
+"km": 3.054,
+"min": 5.18
+},
+{
+"a": "NS4",
+"b": "NS5",
+"line": "NSL",
+"km": 1.393,
+"min": 2.64
+},
+{
+"a": "NS5",
+"b": "NS7",
+"line": "NSL",
+"km": 3.487,
+"min": 5.85
+},
+{
+"a": "NS7",
+"b": "NS8",
+"line": "NSL",
+"km": 1.577,
+"min": 2.92
+},
+{
+"a": "NS8",
+"b": "NS9",
+"line": "NSL",
+"km": 1.528,
+"min": 2.84
+},
+{
+"a": "PE1",
+"b": "PE2",
+"line": "PGLRT",
+"km": 0.443,
+"min": 1.62
+},
+{
+"a": "PE1",
+"b": "PTC",
+"line": "PGLRT",
+"km": 0.746,
+"min": 2.46
+},
+{
+"a": "PE2",
+"b": "PE3",
+"line": "PGLRT",
+"km": 0.543,
+"min": 1.9
+},
+{
+"a": "PE3",
+"b": "PE4",
+"line": "PGLRT",
+"km": 0.395,
+"min": 1.49
+},
+{
+"a": "PE4",
+"b": "PE5",
+"line": "PGLRT",
+"km": 0.558,
+"min": 1.94
+},
+{
+"a": "PE5",
+"b": "PE6",
+"line": "PGLRT",
+"km": 0.519,
+"min": 1.83
+},
+{
+"a": "PE6",
+"b": "PE7",
+"line": "PGLRT",
+"km": 0.563,
+"min": 1.95
+},
+{
+"a": "PE7",
+"b": "PTC",
+"line": "PGLRT",
+"km": 0.665,
+"min": 2.23
+},
+{
+"a": "PTC",
+"b": "PW1",
+"line": "PGLRT",
+"km": 0.543,
+"min": 1.9
+},
+{
+"a": "PTC",
+"b": "PW7",
+"line": "PGLRT",
+"km": 0.597,
+"min": 2.05
+},
+{
+"a": "PW1",
+"b": "PW2",
+"line": "PGLRT",
+"km": 0.39,
+"min": 1.48
+},
+{
+"a": "PW2",
+"b": "PW3",
+"line": "PGLRT",
+"km": 0.453,
+"min": 1.65
+},
+{
+"a": "PW3",
+"b": "PW4",
+"line": "PGLRT",
+"km": 0.513,
+"min": 1.82
+},
+{
+"a": "PW4",
+"b": "PW5",
+"line": "PGLRT",
+"km": 0.49,
+"min": 1.75
+},
+{
+"a": "PW5",
+"b": "PW6",
+"line": "PGLRT",
+"km": 0.427,
+"min": 1.58
+},
+{
+"a": "PW6",
+"b": "PW7",
+"line": "PGLRT",
+"km": 0.377,
+"min": 1.44
+},
+{
+"a": "SE1",
+"b": "SE2",
+"line": "SKLRT",
+"km": 0.702,
+"min": 2.34
+},
+{
+"a": "SE1",
+"b": "STC",
+"line": "SKLRT",
+"km": 0.633,
+"min": 2.15
+},
+{
+"a": "SE2",
+"b": "SE3",
+"line": "SKLRT",
+"km": 0.39,
+"min": 1.48
+},
+{
+"a": "SE3",
+"b": "SE4",
+"line": "SKLRT",
+"km": 0.577,
+"min": 1.99
+},
+{
+"a": "SE4",
+"b": "SE5",
+"line": "SKLRT",
+"km": 0.539,
+"min": 1.89
+},
+{
+"a": "SE5",
+"b": "STC",
+"line": "SKLRT",
+"km": 0.876,
+"min": 2.82
+},
+{
+"a": "STC",
+"b": "SW1",
+"line": "SKLRT",
+"km": 0.544,
+"min": 1.9
+},
+{
+"a": "STC",
+"b": "SW8",
+"line": "SKLRT",
+"km": 0.78,
+"min": 2.55
+},
+{
+"a": "SW1",
+"b": "SW2",
+"line": "SKLRT",
+"km": 0.517,
+"min": 1.83
+},
+{
+"a": "SW2",
+"b": "SW3",
+"line": "SKLRT",
+"km": 0.894,
+"min": 2.87
+},
+{
+"a": "SW3",
+"b": "SW4",
+"line": "SKLRT",
+"km": 0.631,
+"min": 2.14
+},
+{
+"a": "SW4",
+"b": "SW5",
+"line": "SKLRT",
+"km": 0.608,
+"min": 2.08
+},
+{
+"a": "SW5",
+"b": "SW6",
+"line": "SKLRT",
+"km": 0.418,
+"min": 1.55
+},
+{
+"a": "SW6",
+"b": "SW7",
+"line": "SKLRT",
+"km": 0.71,
+"min": 2.36
+},
+{
+"a": "SW7",
+"b": "SW8",
+"line": "SKLRT",
+"km": 0.602,
+"min": 2.06
+},
+{
+"a": "TE1",
+"b": "TE2",
+"line": "TEL",
+"km": 1.39,
+"min": 2.63
+},
+{
+"a": "TE11",
+"b": "TE12",
+"line": "TEL",
+"km": 1.648,
+"min": 3.03
+},
+{
+"a": "TE11",
+"b": "TE9",
+"line": "TEL",
+"km": 2.486,
+"min": 4.31
+},
+{
+"a": "TE12",
+"b": "TE13",
+"line": "TEL",
+"km": 0.655,
+"min": 1.5
+},
+{
+"a": "TE13",
+"b": "TE14",
+"line": "TEL",
+"km": 0.839,
+"min": 1.79
+},
+{
+"a": "TE14",
+"b": "TE15",
+"line": "TEL",
+"km": 0.97,
+"min": 1.99
+},
+{
+"a": "TE15",
+"b": "TE16",
+"line": "TEL",
+"km": 0.676,
+"min": 1.54
+},
+{
+"a": "TE16",
+"b": "TE17",
+"line": "TEL",
+"km": 1.071,
+"min": 2.14
+},
+{
+"a": "TE17",
+"b": "TE18",
+"line": "TEL",
+"km": 0.514,
+"min": 1.29
+},
+{
+"a": "TE18",
+"b": "TE19",
+"line": "TEL",
+"km": 0.854,
+"min": 1.81
+},
+{
+"a": "TE19",
+"b": "TE20",
+"line": "TEL",
+"km": 0.539,
+"min": 1.33
+},
+{
+"a": "TE2",
+"b": "TE3",
+"line": "TEL",
+"km": 1.239,
+"min": 2.4
+},
+{
+"a": "TE20",
+"b": "TE22",
+"line": "TEL",
+"km": 1.466,
+"min": 2.75
+},
+{
+"a": "TE22",
+"b": "TE23",
+"line": "TEL",
+"km": 2.105,
+"min": 3.73
+},
+{
+"a": "TE23",
+"b": "TE24",
+"line": "TEL",
+"km": 1.42,
+"min": 2.68
+},
+{
+"a": "TE24",
+"b": "TE25",
+"line": "TEL",
+"km": 1.254,
+"min": 2.42
+},
+{
+"a": "TE25",
+"b": "TE26",
+"line": "TEL",
+"km": 1.171,
+"min": 2.3
+},
+{
+"a": "TE26",
+"b": "TE27",
+"line": "TEL",
+"km": 0.945,
+"min": 1.95
+},
+{
+"a": "TE27",
+"b": "TE28",
+"line": "TEL",
+"km": 1.696,
+"min": 3.1
+},
+{
+"a": "TE28",
+"b": "TE29",
+"line": "TEL",
+"km": 1.412,
+"min": 2.67
+},
+{
+"a": "TE29",
+"b": "TE30",
+"line": "TEL",
+"km": 0.85,
+"min": 1.8
+},
+{
+"a": "TE3",
+"b": "TE4",
+"line": "TEL",
+"km": 4.154,
+"min": 6.87
+},
+{
+"a": "TE30",
+"b": "TE31",
+"line": "TEL",
+"km": 1.013,
+"min": 2.05
+},
+{
+"a": "TE4",
+"b": "TE5",
+"line": "TEL",
+"km": 2.542,
+"min": 4.4
+},
+{
+"a": "TE5",
+"b": "TE6",
+"line": "TEL",
+"km": 1.393,
+"min": 2.64
+},
+{
+"a": "TE6",
+"b": "TE7",
+"line": "TEL",
+"km": 1.045,
+"min": 2.1
+},
+{
+"a": "TE7",
+"b": "TE8",
+"line": "TEL",
+"km": 0.97,
+"min": 1.99
+},
+{
+"a": "TE8",
+"b": "TE9",
+"line": "TEL",
+"km": 2.064,
+"min": 3.67
+}
+],
+"interchanges": [
+[
+"EW24",
+"NS1"
+],
+[
+"BP6",
+"DT1"
+],
+[
+"BP1",
+"NS4"
+],
+[
+"CC29",
+"NE1"
+],
+[
+"CC33",
+"NS27",
+"TE20"
+],
+[
+"NS22",
+"TE14"
+],
+[
+"DT10",
+"TE11"
+],
+[
+"DT37",
+"TE31"
+],
+[
+"NS9",
+"TE2"
+],
+[
+"DT32",
+"EW2"
+],
+[
+"CC10",
+"DT26"
+],
+[
+"CG1",
+"DT35"
+],
+[
+"CC17",
+"TE9"
+],
+[
+"CC15",
+"NS17"
+],
+[
+"DT11",
+"NS21"
+],
+[
+"CC1",
+"NE6",
+"NS24"
+],
+[
+"CC19",
+"DT9"
+],
+[
+"EW14",
+"NS26"
+],
+[
+"DT14",
+"EW12"
+],
+[
+"DT12",
+"NE7"
+],
+[
+"DT19",
+"NE4"
+],
+[
+"EW13",
+"NS25"
+],
+[
+"CC34",
+"DT16"
+],
+[
+"CC13",
+"NE12"
+],
+[
+"CC22",
+"EW21"
+],
+[
+"CC9",
+"EW8"
+],
+[
+"CC4",
+"DT15"
+],
+[
+"NE16",
+"STC"
+],
+[
+"NE17",
+"PTC"
+],
+[
+"EW16",
+"NE3",
+"TE17"
+]
+]
+}

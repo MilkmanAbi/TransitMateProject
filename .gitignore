@@ -1,0 +1,11 @@
+# Reference material — never commit (BusTech contains a hardcoded DataMall key)
+BusTech-Design-Absolute-Reference/
+NebulaX-Hackathon-ProblemStatement-main/
+
+node_modules/
+dist/
+.env
+.env.local
+server/.cache/
+*.log
+.DS_Store
