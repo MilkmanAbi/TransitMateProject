@@ -28,7 +28,7 @@ NEBULA X 2026 · Problem Statement 2 — Smart Commuter Companion · built for *
 
 ## What it does
 
-- **Proactive commute verdict.** The Home screen re-plans Rachel's saved commute every 60 s against live conditions. It shows one of three states: **All clear**, **Heads-up**, or **Take X today**. She only gets the red card when her trip gets worse by more than her own threshold (10 min by default).
+- **Proactive commute verdict.** The Home screen re-plans Rachel's saved commute every 60 s against live conditions. It shows one of three states: **All clear**, **Heads-up**, or **Take X today**. She only gets the red card when her trip gets worse by more than her own threshold (10 min by default). She can opt in to a device notification when that happens.
 - **Door-to-door route planning that reacts to the network.** It combines rail, bus and walking, and each option carries a **time range**, not a single number. Walking legs are routed on OpenStreetMap footpaths, and bus waits come from live LTA arrivals. When conditions change, the plan changes and **says why**.
 - **Visual trade-off.** The map shows the recommended route, your usual route (dashed), and the disrupted stretch (red). Every option shows expected arrival, fare estimate, crowding at boarding, live bus load and CO₂ saved.
 - **Planned and unplanned events.**

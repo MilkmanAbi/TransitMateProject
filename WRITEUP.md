@@ -154,7 +154,7 @@ A deterministic rules engine. Every card traces back to a feed field and a thres
   - Walking geometry uses the public FOSSGIS OSRM demo server and falls back to straight lines (×1.25) if it's slow.
   - Tiles are OSM France / HOT community tiles. Production should self-host tiles and OSRM (GraphHopper or Valhalla on a Geofabrik extract).
   - OneMap search is used without a token and may need registration in future. Station names still resolve locally.
-- **No push notifications.** Proactivity is in-app (verdict, cards, banner). A production version would add Web Push at "leave-by − 15 min".
+- **No server-sent Web Push.** Proactivity is in-app (verdict, cards, banner), plus an opt-in **device notification** fired by the page when the verdict turns red while the app is open or backgrounded. A production version would add Web Push (VAPID) at "leave-by − 15 min" so it works with the app closed.
 - **HTTPS for location.** "Current location" needs HTTPS on phones; see README for a tunnel.
 - **Not a native app.** Tested in Chrome with iPhone-SE-sized (375 px) emulation. It still needs a pass on a physical phone.
 
