@@ -1,4 +1,4 @@
-import { AlertOctagon, ArrowUpDown, CalendarClock, ChevronDown, CloudRain, Leaf, Sun, TrainFront, Users } from 'lucide-react';
+import { AlertOctagon, ArrowUpDown, CalendarClock, ChevronDown, CloudRain, Database, Leaf, Sun, TrainFront, Users } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ago } from '@/lib/format';
@@ -35,10 +35,16 @@ export function CIECard({ r }: { r: CIERecommendation }) {
               {r.title}
             </h3>
             <p className="mt-1 text-[0.8125rem] leading-relaxed text-slate-300">{r.body}</p>
+            {r.source && (
+              <p className="mt-1.5 flex items-start gap-1 font-mono text-[0.625rem] leading-snug text-slate-400">
+                <Database size={10} className="mt-[2px] shrink-0" />
+                <span>{r.source}</span>
+              </p>
+            )}
           </div>
         </div>
         <div className="mt-2 flex items-center justify-between gap-2 pl-7">
-          <span className="flex items-center gap-2 text-[0.6875rem] text-slate-500">
+          <span className="flex items-center gap-2 text-[0.6875rem] text-slate-400">
             {ago(r.timestamp)}
             {r.co2Delta ? (
               <span className="inline-flex items-center gap-0.5 text-emerald-400/90">

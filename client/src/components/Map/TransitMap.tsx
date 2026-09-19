@@ -1,9 +1,9 @@
 import type { FeatureCollection } from 'geojson';
 import L from 'leaflet';
 import { useEffect, useState } from 'react';
-import { CircleMarker, GeoJSON, MapContainer, Tooltip, useMap, useMapEvents } from 'react-leaflet';
+import { CircleMarker, GeoJSON, MapContainer, Polyline, Tooltip, useMap, useMapEvents } from 'react-leaflet';
 import { api } from '@/api/datamall';
-import type { Station } from '@/hooks/useStations';
+import type { RailEdge, Station } from '@/hooks/useStations';
 import { CROWD_META, LINE_META } from '@/lib/format';
 import type { CrowdLevel, StopSummary } from '@/types';
 import { BaseLayer } from './BaseLayer';
@@ -61,6 +61,28 @@ function Footprints() {
   );
 }
 
+// The network itself, in official line colours, so station dots read as a transit map rather than scatter.
+function RailLines({ stations, edges, disrupted }: { stations: Station[]; edges: RailEdge[]; disrupted: Set<string> }) {
+  const at = new Map(stations.map((s) => [s.code, [s.lat, s.lng] as [number, number]]));
+  return (
+    <>
+      {edges.map((e) => {
+        const a = at.get(e.a);
+        const b = at.get(e.b);
+        if (!a || !b) return null;
+        const hit = disrupted.has(e.a) && disrupted.has(e.b);
+        return (
+          <Polyline
+            key={`${e.a}-${e.b}`}
+            positions={[a, b]}
+            pathOptions={hit ? { color: '#ef4444', weight: 7, opacity: 1, dashArray: '2 9', lineCap: 'round' } : { color: LINE_META[e.line]?.color ?? '#94a3b8', weight: 4, opacity: 0.9 }}
+          />
+        );
+      })}
+    </>
+  );
+}
+
 function Recenter({ to }: { to: [number, number] | null }) {
   const map = useMap();
   useEffect(() => {
@@ -71,6 +93,7 @@ function Recenter({ to }: { to: [number, number] | null }) {
 
 export function TransitMap({
   stations,
+  edges,
   crowd,
   disrupted,
   center,
@@ -78,6 +101,7 @@ export function TransitMap({
   onStop,
 }: {
   stations: Station[];
+  edges: RailEdge[];
   crowd: Record<string, CrowdLevel>;
   disrupted: Set<string>;
   center: [number, number];
@@ -89,6 +113,7 @@ export function TransitMap({
       <BaseLayer />
       <Recenter to={flyTo} />
       <Footprints />
+      <RailLines stations={stations} edges={edges} disrupted={disrupted} />
       {stations
         .filter((s) => !['STC', 'PTC'].includes(s.code))
         .map((s) => {

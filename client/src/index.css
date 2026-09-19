@@ -60,3 +60,26 @@ button {
 .tm-dark-tiles {
   filter: invert(1) hue-rotate(180deg) brightness(0.85) contrast(0.9) saturate(0.3);
 }
+
+/* Verdict change: the green -> red moment is the one the commuter must not miss. */
+@keyframes tm-verdict-in {
+  0% { transform: scale(0.965); opacity: 0.35; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes tm-act-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55); }
+  100% { box-shadow: 0 0 0 16px rgba(239, 68, 68, 0); }
+}
+@keyframes tm-wiggle {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(-14deg); }
+  40% { transform: rotate(12deg); }
+  60% { transform: rotate(-8deg); }
+  80% { transform: rotate(5deg); }
+}
+.tm-verdict { animation: tm-verdict-in 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.15) both; }
+.tm-act { animation: tm-verdict-in 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.15) both, tm-act-pulse 1.3s ease-out 0.3s 3; }
+.tm-wiggle { animation: tm-wiggle 0.8s ease-in-out 0.4s 2; transform-origin: 50% 20%; }
+@media (prefers-reduced-motion: reduce) {
+  .tm-verdict, .tm-act, .tm-wiggle, .animate-rise { animation: none !important; }
+}

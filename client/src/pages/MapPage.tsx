@@ -5,12 +5,12 @@ import { api } from '@/api/datamall';
 import { ArrivalPanel } from '@/components/Arrivals/ArrivalPanel';
 import { Sheet } from '@/components/Layout/Sheet';
 import { TransitMap } from '@/components/Map/TransitMap';
-import { useStations } from '@/hooks/useStations';
+import { useRailNet } from '@/hooks/useStations';
 import { useStore } from '@/store/useStore';
 import type { StopSummary } from '@/types';
 
 export default function MapPage() {
-  const stations = useStations();
+  const { stations, edges } = useRailNet();
   const { crowdNow, alerts, commute, toast } = useStore();
   const [stop, setStop] = useState<StopSummary | null>(null);
   const [flyTo, setFlyTo] = useState<[number, number] | null>(null);
@@ -37,12 +37,12 @@ export default function MapPage() {
   return (
     <div className="-mx-4 -mt-3 animate-rise">
       <div className="relative" style={{ height: 'calc(100dvh - 64px - var(--safe-bottom))' }}>
-        <TransitMap stations={stations} crowd={crowdNow} disrupted={disrupted} center={[commute.from.lat, commute.from.lng]} flyTo={flyTo} onStop={setStop} />
+        <TransitMap stations={stations} edges={edges} crowd={crowdNow} disrupted={disrupted} center={[commute.from.lat, commute.from.lng]} flyTo={flyTo} onStop={setStop} />
 
         <div className="absolute inset-x-3 top-3 z-[600]">
           <label className="flex h-12 items-center gap-2 rounded-2xl bg-surface/90 px-3 shadow-xl ring-1 ring-white/10 backdrop-blur">
             <Search size={18} className="text-slate-400" />
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search bus stop — name, road or 5-digit code" className="h-full min-w-0 flex-1 bg-transparent text-[1rem] placeholder:text-slate-500 focus:outline-none" />
+            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search bus stop — name, road or 5-digit code" className="h-full min-w-0 flex-1 bg-transparent text-[1rem] placeholder:text-slate-400 focus:outline-none" />
             {q && (
               <button onClick={() => setQ('')} className="grid h-11 w-11 place-items-center" aria-label="Clear search">
                 <X size={16} />
@@ -57,7 +57,7 @@ export default function MapPage() {
                     <span className="rounded-md bg-emerald-600/20 px-1.5 py-0.5 font-mono text-[0.75rem] text-emerald-300">{r.code}</span>
                     <span className="min-w-0">
                       <span className="block truncate text-[0.875rem] text-white">{r.name}</span>
-                      <span className="block truncate text-[0.75rem] text-slate-500">{r.road}</span>
+                      <span className="block truncate text-[0.75rem] text-slate-400">{r.road}</span>
                     </span>
                   </button>
                 </li>
@@ -73,7 +73,7 @@ export default function MapPage() {
             <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-amber-500" />Mod</span>
             <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-red-500" />High</span>
           </p>
-          <p className="mt-1 text-slate-500">Zoom in for bus stops</p>
+          <p className="mt-1 text-slate-400">Zoom in for bus stops</p>
         </div>
         <button onClick={locate} className="absolute bottom-6 right-3 z-[600] grid h-12 w-12 place-items-center rounded-full bg-brand-500 shadow-xl" aria-label="Go to my location">
           <LocateFixed size={20} />

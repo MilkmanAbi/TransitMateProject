@@ -14,7 +14,7 @@ function LegRow({ l }: { l: Leg }) {
         <Footprints size={18} className="mt-0.5 shrink-0 text-slate-400" />
         <p className="text-[0.8125rem] text-slate-300">
           Walk {Math.max(1, Math.round(l.minutes))} min{l.km ? ` · ${Math.round(l.km * 1000)} m` : ''} to <span className="font-medium text-white">{l.to.name}</span>
-          {l.note ? <span className="text-slate-500"> · {l.note}</span> : null}
+          {l.note ? <span className="text-slate-400"> · {l.note}</span> : null}
         </p>
       </div>
     );
@@ -43,7 +43,7 @@ function LegRow({ l }: { l: Leg }) {
           )}
           {l.live && <LoadTag load={l.live.load} />}
           {l.live?.wab && <Accessibility size={14} className="text-sky-300" aria-label="Wheelchair accessible bus" />}
-          {l.mode === 'bus' && !l.live && <span className="text-[0.75rem] text-slate-500">wait ~{Math.round(l.waitMin)} min (timetable)</span>}
+          {l.mode === 'bus' && !l.live && <span className="text-[0.75rem] text-slate-400">wait ~{Math.round(l.waitMin)} min (timetable)</span>}
           {l.crowd && l.crowd.level !== 'NA' && <CrowdTag level={l.crowd.level} prefix={`${l.from.name} ${l.crowd.source === 'forecast' ? '(forecast): ' : 'now: '}`} />}
           {l.delayMin ? <Pill tone="amber">+{l.delayMin} min delay</Pill> : null}
           {l.blocked && <Pill tone="red">No train service</Pill>}

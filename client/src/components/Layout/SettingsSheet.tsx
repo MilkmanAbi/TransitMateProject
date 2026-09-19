@@ -25,7 +25,7 @@ export function SettingsSheet({ open, onClose }: { open: boolean; onClose: () =>
             <div className="min-w-0 flex-1">
               <p className="font-semibold">{p.name}</p>
               <p className="text-[0.75rem] text-slate-400">{p.blurb}</p>
-              <p className="truncate text-[0.75rem] text-slate-500">
+              <p className="truncate text-[0.75rem] text-slate-400">
                 {p.commute.from.name.replace(/^Home · /, '')} → {p.commute.to.name.replace(/^(Office|Work) · /, '')}
               </p>
             </div>
@@ -71,7 +71,7 @@ export function SettingsSheet({ open, onClose }: { open: boolean; onClose: () =>
         </span>
       </button>
 
-      <p className="mt-5 flex gap-2 text-[0.75rem] leading-relaxed text-slate-500">
+      <p className="mt-5 flex gap-2 text-[0.75rem] leading-relaxed text-slate-400">
         <ShieldCheck size={16} className="shrink-0 text-emerald-500" />
         Your commute, saved stops and last journey stay in this browser's local storage only. Nothing is sent anywhere except the origin/destination coordinates needed to plan a route.
       </p>

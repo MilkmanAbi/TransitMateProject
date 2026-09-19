@@ -59,7 +59,7 @@ export function PlaceInput({ label, value, onChange, dot }: { label: string; val
           }}
           onBlur={() => setTimeout(() => setFocus(false), 200)}
           placeholder={label}
-          className="h-full min-w-0 flex-1 bg-transparent text-[1rem] text-white placeholder:text-slate-500 focus:outline-none"
+          className="h-full min-w-0 flex-1 bg-transparent text-[1rem] text-white placeholder:text-slate-400 focus:outline-none"
           enterKeyHint="search"
           autoComplete="off"
         />
@@ -82,7 +82,7 @@ export function PlaceInput({ label, value, onChange, dot }: { label: string; val
               {r.kind === 'station' ? <TrainFront size={18} className="shrink-0 text-brand-400" /> : <MapPin size={18} className="shrink-0 text-slate-400" />}
               <span className="min-w-0">
                 <span className="block truncate text-[0.875rem] text-white">{r.name}</span>
-                <span className="block truncate text-[0.75rem] text-slate-500">{r.address}</span>
+                <span className="block truncate text-[0.75rem] text-slate-400">{r.address}</span>
               </span>
             </button>
           ))}

@@ -54,9 +54,9 @@ export default function AlertsPage() {
         </div>
       )}
 
-      <SectionTitle right={<span className="text-[0.6875rem] text-slate-500">{alerts?.messages.length ?? 0} live</span>}>Service notices</SectionTitle>
+      <SectionTitle right={<span className="text-[0.6875rem] text-slate-400">{alerts?.messages.length ?? 0} live</span>}>Service notices</SectionTitle>
       <div className="space-y-2">
-        {alerts?.messages.length === 0 && <p className="px-1 text-[0.8125rem] text-slate-500">No notices in the feed.</p>}
+        {alerts?.messages.length === 0 && <p className="px-1 text-[0.8125rem] text-slate-400">No notices in the feed.</p>}
         {alerts?.messages.map((m, i) => {
           const mine = m.lines.some((l) => myLines.includes(l));
           const [label, tone] = KIND[m.kind];
@@ -68,11 +68,11 @@ export default function AlertsPage() {
                 {m.lines.map((l) => (
                   <LineChip key={l} line={l} />
                 ))}
-                {mine ? <Pill tone="violet">On your route</Pill> : <span className="text-[0.6875rem] text-slate-500">not on your route</span>}
+                {mine ? <Pill tone="violet">On your route</Pill> : <span className="text-[0.6875rem] text-slate-400">not on your route</span>}
                 {injected && <Pill tone="amber">SIMULATED</Pill>}
               </div>
               <p className="mt-2 text-[0.8125rem] leading-relaxed text-slate-200">{m.content}</p>
-              <p className="mt-1 text-[0.6875rem] text-slate-500">{m.created}</p>
+              <p className="mt-1 text-[0.6875rem] text-slate-400">{m.created}</p>
             </Card>
           );
         })}

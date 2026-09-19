@@ -197,6 +197,7 @@ export interface CIERecommendation {
   timestamp: number;
   simulated?: boolean;
   affectsYou?: boolean;
+  source?: string;
 }
 
 export interface Commute {

@@ -140,7 +140,7 @@ export default function JourneyPage() {
           {showUsual && plan.usualLive && (
             <div className="flex items-center gap-3 rounded-2xl border border-dashed border-white/15 px-4 py-3">
               <div className="min-w-0 flex-1">
-                <p className="text-[0.75rem] font-medium uppercase tracking-wide text-slate-500">Your usual route, as it runs then</p>
+                <p className="text-[0.75rem] font-medium uppercase tracking-wide text-slate-400">Your usual route, as it runs then</p>
                 <div className="mt-1">
                   <LegStrip legs={plan.usualLive.legs} dim />
                 </div>
@@ -158,7 +158,7 @@ export default function JourneyPage() {
             </div>
           )}
 
-          <SectionTitle right={<span className="text-[0.6875rem] text-slate-500">ranked for {profile === 'lim' ? 'Mdm Lim' : profile[0].toUpperCase() + profile.slice(1)}</span>}>Options</SectionTitle>
+          <SectionTitle right={<span className="text-[0.6875rem] text-slate-400">ranked for {profile === 'lim' ? 'Mdm Lim' : profile[0].toUpperCase() + profile.slice(1)}</span>}>Options</SectionTitle>
           {plan.options.length === 0 && <p className="text-sm text-slate-400">No route found. Try a nearby landmark or station.</p>}
           <div className="space-y-3">
             {plan.options.map((o, i) => (
@@ -166,7 +166,7 @@ export default function JourneyPage() {
             ))}
           </div>
 
-          <p className="flex gap-2 px-1 pt-2 text-[0.6875rem] leading-relaxed text-slate-500">
+          <p className="flex gap-2 px-1 pt-2 text-[0.6875rem] leading-relaxed text-slate-400">
             <Info size={14} className="shrink-0" />
             Times are ranges, not promises: train waits use typical headways, bus waits use live LTA arrivals when you’re leaving within 45 min, and ride times carry ±10–35% spread. Walking legs are routed on OpenStreetMap footpaths.
           </p>

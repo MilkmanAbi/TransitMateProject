@@ -8,21 +8,33 @@ export interface Station {
   line: string;
 }
 
-let cache: Station[] | null = null;
-let pending: Promise<Station[]> | null = null;
+export interface RailEdge {
+  a: string;
+  b: string;
+  line: string;
+}
+interface RailNet {
+  stations: Station[];
+  edges: RailEdge[];
+}
 
-// Rail stations derived from OpenStreetMap (see scripts/build-mrt.py), bundled as a static asset.
-export function useStations() {
-  const [stations, setStations] = useState<Station[]>(cache ?? []);
+let cache: RailNet | null = null;
+let pending: Promise<RailNet> | null = null;
+
+// Rail network derived from OpenStreetMap (see scripts/build-mrt.py), bundled as a static asset.
+export function useRailNet(): RailNet {
+  const [net, setNet] = useState<RailNet>(cache ?? { stations: [], edges: [] });
   useEffect(() => {
     if (cache) return;
     pending ??= fetch('/mrt.json')
       .then((r) => r.json())
-      .then((d: { stations: Station[] }) => (cache = d.stations));
-    pending.then(setStations).catch(() => undefined);
+      .then((d: RailNet) => (cache = { stations: d.stations, edges: d.edges }));
+    pending.then(setNet).catch(() => undefined);
   }, []);
-  return stations;
+  return net;
 }
+
+export const useStations = () => useRailNet().stations;
 
 export function stationNames(stations: Station[]) {
   return Object.fromEntries(stations.map((s) => [s.code, s.name]));

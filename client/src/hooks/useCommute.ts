@@ -57,6 +57,7 @@ export function useCommute(mode: DepartMode = 'auto') {
   const boardAt = plan ? plan.departAt + (plan.options[0]?.legs[0]?.mode === 'walk' ? plan.options[0].legs[0].minutes * 60_000 : 0) : 0;
   const key = board?.from.code ? pcdKey(board.from.code) : null;
   const [crowd, setCrowd] = useState<{ station: string; level: CrowdLevel; better?: { at: number; level: CrowdLevel } } | null>(null);
+  const [slots, setSlots] = useState<{ station: string; boardAt: number; slots: { start: number; level: CrowdLevel }[] } | null>(null);
   useEffect(() => {
     if (!key || !board) return setCrowd(null);
     let alive = true;
@@ -71,6 +72,11 @@ export function useCommute(mode: DepartMode = 'auto') {
           .filter((s) => Math.abs(s.start - boardAt) <= 60 * 60_000 && s.start > Date.now() && rank[s.level] < rank[cur.level])
           .sort((a, b) => Math.abs(a.start - boardAt) - Math.abs(b.start - boardAt))[0];
         setCrowd({ station: board.from.name, level: cur.level, better: better ? { at: better.start, level: better.level } : undefined });
+        setSlots({
+          station: board.from.name,
+          boardAt,
+          slots: slots.filter((s) => s.start >= cur.start - 60 * 60_000 && s.start <= cur.start + 150 * 60_000),
+        });
       })
       .catch(() => undefined);
     return () => {
@@ -97,5 +103,5 @@ export function useCommute(mode: DepartMode = 'auto') {
     [alerts, plan, commute, profile, threshold, weather, weatherDest, crowd, liftsQ.data, taxiQ.data],
   );
 
-  return { plan, cie, dep, loading: planQ.loading, updatedAt: planQ.updatedAt ?? plan?.generatedAt ?? null, stale: !planQ.data && !!lastCommutePlan, refresh: () => setTick((t) => t + 1) };
+  return { plan, cie, dep, crowdSlots: slots, loading: planQ.loading, updatedAt: planQ.updatedAt ?? plan?.generatedAt ?? null, stale: !planQ.data && !!lastCommutePlan, refresh: () => setTick((t) => t + 1) };
 }

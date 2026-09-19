@@ -11,9 +11,9 @@ function Eta({ bus, big }: { bus: BusETA; big?: boolean }) {
   const label = bus.mins <= 0 ? 'Arr' : `${bus.mins}`;
   return (
     <span className={`whitespace-nowrap tabular-nums ${big ? 'text-2xl font-bold' : 'text-sm font-semibold text-slate-400'} ${bus.monitored ? '' : 'opacity-80'}`}>
-      {!bus.monitored && <span className="text-slate-500">≈</span>}
+      {!bus.monitored && <span className="text-slate-400">≈</span>}
       {label}
-      {bus.mins > 0 && <span className={big ? 'ml-0.5 text-xs font-medium text-slate-400' : 'text-[0.6875rem] text-slate-500'}>{big ? 'min' : 'm'}</span>}
+      {bus.mins > 0 && <span className={big ? 'ml-0.5 text-xs font-medium text-slate-400' : 'text-[0.6875rem] text-slate-400'}>{big ? 'min' : 'm'}</span>}
     </span>
   );
 }

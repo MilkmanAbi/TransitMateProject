@@ -41,6 +41,9 @@ export interface CIEOutput {
   hero: RouteOption | null;
 }
 
+const segSrc = (d: { line: string; stations: string[]; status: number; planned?: unknown }) =>
+  `${d.planned ? 'TrainServiceAlerts.Message (planned)' : 'TrainServiceAlerts'} · ${d.line} ${d.stations[0]}–${d.stations[d.stations.length - 1]} · Status ${d.status}`;
+
 const RANK: Record<CIESeverity, number> = { critical: 0, warning: 1, info: 2, ok: 3 };
 
 export function linesOf(o: RouteOption | null | undefined): string[] {
@@ -91,6 +94,7 @@ export function runCIE(i: CIEInput): CIEOutput {
       timestamp: i.alerts?.fetchedAt ?? i.now,
       simulated: sim,
       affectsYou: true,
+      source: onRoute[0] ? segSrc(onRoute[0]) : `Planner · usual ${usual?.summary} ${usualLive?.feasible ? `+${Math.round(extra)} min` : 'infeasible'}`,
     });
   } else if (onRoute.length) {
     quiet.push({
@@ -103,6 +107,7 @@ export function runCIE(i: CIEInput): CIEOutput {
       timestamp: i.now,
       simulated: sim,
       affectsYou: true,
+      source: `${segSrc(onRoute[0])} · threshold ${i.threshold} min`,
     });
   } else if (plan?.changed && best && usual) {
     cards.push({
@@ -114,6 +119,7 @@ export function runCIE(i: CIEInput): CIEOutput {
       action: { label: 'Compare', route: '/plan?commute=1' },
       timestamp: i.now,
       affectsYou: true,
+      source: 'Planner ranking · live weather / crowd weights',
     });
   }
 
@@ -130,6 +136,7 @@ export function runCIE(i: CIEInput): CIEOutput {
       action: { label: 'Details', route: '/alerts' },
       timestamp: i.alerts?.fetchedAt ?? i.now,
       simulated: sim,
+      source: `${segSrc(d)}${i.taxi ? ' · Taxi-Availability' : ''}`,
     };
     (verdict === 'act' ? quiet : cards).push(card);
   }
@@ -148,6 +155,7 @@ export function runCIE(i: CIEInput): CIEOutput {
       action: { label: 'Plan', route: '/plan?commute=1' },
       timestamp: i.now,
       affectsYou: true,
+      source: `PCDForecast · ${c.station} · level h at your boarding slot`,
     });
     if (verdict === 'clear') verdict = 'heads-up';
   }
@@ -164,10 +172,11 @@ export function runCIE(i: CIEInput): CIEOutput {
       body: `Factor in shelter time${lastWalk?.mode === 'walk' ? ` — ${Math.round(lastWalk.minutes)} min walk at the end` : ''}. Routes with less open-air walking are ranked higher while it's wet.`,
       timestamp: i.now,
       affectsYou: true,
+      source: `NEA 2-h nowcast · ${wet.map((w) => `${w.area}: ${w.forecast}`).join(' · ')}`,
     });
     if (verdict === 'clear' && wet.some((w) => w.heavy)) verdict = 'heads-up';
   } else if (i.weatherOrigin) {
-    quiet.push({ id: 'dry', kind: 'weather', severity: 'ok', title: `${i.weatherOrigin.forecast} at ${i.weatherOrigin.area}`, body: 'No rain in the 2-hour nowcast for your route.', timestamp: i.now });
+    quiet.push({ id: 'dry', kind: 'weather', severity: 'ok', title: `${i.weatherOrigin.forecast} at ${i.weatherOrigin.area}`, body: 'No rain in the 2-hour nowcast for your route.', timestamp: i.now, source: `NEA 2-h nowcast · ${i.weatherOrigin.area}${i.weatherDest ? ` · ${i.weatherDest.area}: ${i.weatherDest.forecast}` : ''}` });
   }
 
   // Planned notices from the live TrainServiceAlerts Message stream
@@ -182,6 +191,7 @@ export function runCIE(i: CIEInput): CIEOutput {
       body: m.content.replace(/^\s*[\d/]*\s*\d{1,2}:\d{2}-([A-Z]{2}-)?/, ''),
       timestamp: Date.parse(m.created.replace(' ', 'T') + '+08:00') || i.now,
       affectsYou: mine,
+      source: `TrainServiceAlerts.Message · ${m.created} · lines ${m.lines.join(', ') || 'none'} vs yours ${commuteLines.join(', ') || '—'}`,
     };
     (mine ? cards : quiet).push(card);
     if (mine && verdict === 'clear') verdict = 'heads-up';
@@ -199,6 +209,7 @@ export function runCIE(i: CIEInput): CIEOutput {
       body: `${liftHits[0].LiftDesc}. ${i.profile === 'lim' ? 'Use another exit or allow extra time — your route avoids this where possible.' : ''}`,
       timestamp: i.now,
       affectsYou: true,
+      source: `v2/FacilitiesMaintenance · ${liftHits[0].StationCode} lift ${liftHits[0].LiftID || '—'}`,
     };
     (i.profile === 'lim' ? cards : quiet).push(c);
     if (i.profile === 'lim' && verdict === 'clear') verdict = 'heads-up';
@@ -217,6 +228,7 @@ export function runCIE(i: CIEInput): CIEOutput {
         body: `Worst case you arrive ${hhmm(latest)}. Leave by ${hhmm(deadline - best.max * 60_000)} to be safe.`,
         timestamp: i.now,
         affectsYou: true,
+        source: `Planner · worst case ${best.max} min vs arrive-by ${i.commute.arriveBy}`,
       });
       if (verdict === 'clear') verdict = 'heads-up';
     }
@@ -238,7 +250,7 @@ export function runCIE(i: CIEInput): CIEOutput {
         headline = 'Leave as usual';
         sub = `${onRoute[0].lineName} +${Math.max(0, Math.round(extra))} min — under your ${i.threshold}-min threshold · ${hero.min}–${hero.max} min door to door`;
       } else {
-        headline = verdict === 'clear' ? 'All clear — leave as usual' : 'Heads-up on your commute';
+        headline = verdict === 'clear' ? 'Leave as usual' : 'Heads-up on your commute';
         sub = `${hero.summary} · ${hero.min}–${hero.max} min door to door`;
       }
     }
