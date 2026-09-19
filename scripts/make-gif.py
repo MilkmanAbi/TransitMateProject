@@ -15,7 +15,7 @@ for f in files:
 frames[0].save("docs/demo.gif", save_all=True, append_images=frames[1:], duration=durations, loop=0, optimize=True)
 print("docs/demo.gif", os.path.getsize("docs/demo.gif") // 1024, "KB,", len(frames), "frames")
 
-stills = {"home-live": "home", "home-sim": "home-sim", "plan-why": "plan", "alerts-disruption": "alerts", "map-crowd": "map"}
+stills = {"home-live": "home", "home-sim": "home-sim", "plan-stay": "plan", "trip": "trip", "alerts-disruption": "alerts", "map-crowd": "map"}
 for f in files:
     for key, name in stills.items():
         if re.search(rf"\d+-{key}-h", f):

@@ -87,7 +87,7 @@ function StatusBanners() {
 function Toasts() {
   const { toasts, dismissToast } = useStore();
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-20 z-[1002] flex flex-col items-center gap-2 px-4">
+    <div className="pointer-events-none fixed inset-x-0 z-[1002] flex flex-col items-center gap-2 px-4" style={{ top: 'calc(var(--banner-h, 0px) + 10px)' }}>
       {toasts.map((t) => (
         <button
           key={t.id}

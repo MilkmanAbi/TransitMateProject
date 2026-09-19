@@ -17,9 +17,9 @@ NEBULA X 2026 · Problem Statement 2 — Smart Commuter Companion · built for *
 　＼二つ
 ```
 
-| Normal day: all clear | EWL fault (replay): one-line action | Why it changed: usual vs new route | Alerts: live feed + labelled replay |
-|---|---|---|---|
-| ![Home](docs/home.jpg) | ![Home, disrupted](docs/home-sim.jpg) | ![Plan](docs/plan.jpg) | ![Alerts](docs/alerts.jpg) |
+| Normal day: leave as usual | EWL fault (replay): one action | Stay or switch? | Trip mode | Network + live crowding |
+|---|---|---|---|---|
+| ![Home](docs/home.jpg) | ![Home, disrupted](docs/home-sim.jpg) | ![Stay or switch](docs/plan.jpg) | ![Trip](docs/trip.jpg) | ![Map](docs/map.jpg) |
 
 - **Demo walkthrough:** [`docs/demo.gif`](docs/demo.gif), a phone-sized capture of the journey below.
 - **Write-up** (persona, architecture, assumptions, limitations, how every number was measured): [`WRITEUP.md`](WRITEUP.md)
@@ -30,7 +30,11 @@ NEBULA X 2026 · Problem Statement 2 — Smart Commuter Companion · built for *
 
 - **Proactive commute verdict.** The Home screen re-plans Rachel's saved commute every 60 s against live conditions. It shows one of three states: **All clear**, **Heads-up**, or **Take X today**. She only gets the red card when her trip gets worse by more than her own threshold (10 min by default). She can opt in to a device notification when that happens.
 - **Door-to-door route planning that reacts to the network.** It combines rail, bus and walking, and each option carries a **time range**, not a single number. Walking legs are routed on OpenStreetMap footpaths, and bus waits come from live LTA arrivals. When conditions change, the plan changes and **says why**.
-- **Visual trade-off.** The map shows the recommended route, your usual route (dashed), and the disrupted stretch (red). Every option shows expected arrival, fare estimate, crowding at boarding, live bus load and CO₂ saved.
+- **Visual trade-off.** A **Stay or switch?** card puts your usual route (as it runs today) next to the recommendation, each with a proportional walk/wait/ride bar and an arrival window. The map shows both routes with the disrupted stretch in red. Every option shows expected arrival, fare estimate, crowding at boarding, live bus load and CO₂ saved.
+- **Best time to leave.** A one-glance strip of LTA's 30-min crowd forecast for your boarding platform, e.g. "Crowded when you board · moderate at 8:30 am".
+- **Trip mode for the platform.** "I'll take this" opens step-by-step guidance with big text and a thumb-zone *Next* button. It shows a live bus countdown at your stop and watches the rest of your route: *"Disruption ahead → Re-plan from here"*. It keeps working with no signal.
+- **Inspectable reasoning.** Every alert card carries a one-line source (e.g. `TrainServiceAlerts · EWL EW4–EW8 · Status 2`, `PCDForecast · Tampines · level h`), so you can check why the app said what it said.
+- **Your own commute.** Rachel is a demo persona; set your own home, work, days and times, or switch to Arjun / Mdm Lim.
 - **Planned and unplanned events.**
   - Unplanned: live `TrainServiceAlerts` affected segments block or slow those rail edges. LTA's own mitigation (free public bus stations and bridging buses) is read from the feed and routed on.
   - Planned: the notice stream (e.g. today's real *"Bukit Panjang LRT closed on 20 Sep"*) is classified and checked against your route.
@@ -88,9 +92,10 @@ Tested: a fresh `git clone` → `pnpm install` → `pnpm start` with an empty ca
 3. **Home** turns red: **Take DTL today**, with the reason in one line and the first instruction ("Walk 5 min, then Downtown Line from Tampines to Telok Ayer").
 4. Tap **Show me the new route**. The map draws the usual EWL route dashed with the cut segment in red, next to the recommended route. The *Route changed — here's why* panel explains the change. Each option shows a time range, live bus ETA and load, and crowding.
 5. Back in **Alerts**, switch to **EWL signalling fault (+20 min delays)**. It is now a *delay*, not a cut, and the engine compares it against Rachel's 10-min threshold. Open the persona switcher (*Planning for Rachel ▾*) to try a 5-min or 20-min threshold and see when it stops interrupting.
-6. **Map** tab: every MRT/LRT station is coloured by **live** LTA crowd level. Search a stop (e.g. `Raffles Pl`, `75009`) or zoom in and tap a green stop for live arrivals.
-7. Stop the simulation with the ✕ on the amber banner.
-8. **Planned works, from a real LTA notice (not simulated).** The 19 Sep live feed announces that the *Bukit Panjang LRT will be closed on 20 Sep and 27 Sep 2026*. Go to **Plan**, set From: `Senja` (Senja LRT), To: `Choa Chu Kang MRT`, **Tomorrow at 08:00**, then tap **Plan**. You get *"Planned closure: Bukit Panjang LRT is closed on Sun, 20 Sept for renewal works — shuttle buses replace it · Recommended Bus 190"*, with the usual LRT ride dashed on the map. This is date-aware: leave today and the LRT is used as normal. Once that notice has left the live feed, use the Alerts replay **Planned: Bukit Panjang LRT closed tomorrow**. It re-issues the same notice text with rolling dates and is labelled SIMULATED.
+6. On the new route, tap **I'll take this →** to open **Trip mode**: the current step in big type, the next step, and a live bus countdown where there is a bus. It re-checks the remaining legs against the live feed.
+7. **Map** tab: the MRT/LRT network is drawn in line colours, with any disrupted segment in red. Every station is filled by its **live** LTA crowd level. Search a stop (e.g. `Raffles Pl`, `75009`) or zoom in and tap a green stop for live arrivals.
+8. Stop the simulation with the ✕ on the amber banner.
+9. **Planned works, from a real LTA notice (not simulated).** The 19 Sep live feed announces that the *Bukit Panjang LRT will be closed on 20 Sep and 27 Sep 2026*. Go to **Plan**, set From: `Senja` (Senja LRT), To: `Choa Chu Kang MRT`, **Tomorrow at 08:00**, then tap **Plan**. You get *"Planned closure: Bukit Panjang LRT is closed on Sun, 20 Sept for renewal works — shuttle buses replace it · Recommended Bus 190"*, with the usual LRT ride dashed on the map. This is date-aware: leave today and the LRT is used as normal. Once that notice has left the live feed, use the Alerts replay **Planned: Bukit Panjang LRT closed tomorrow**. It re-issues the same notice text with rolling dates and is labelled SIMULATED.
 
 ---
 

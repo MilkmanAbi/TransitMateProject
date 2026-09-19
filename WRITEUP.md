@@ -98,6 +98,20 @@ A deterministic rules engine. Every card traces back to a feed field and a thres
 
 **Use of AI (PS2 §3.3.1).** We deliberately used rules, not a model. Every recommendation must be explainable in one sentence, reproducible by a judge from the same feed, and must keep working offline. Nothing needs a paid API. AI (Claude Code) was used to *build* the app, not inside it.
 
+## 4b. Interaction design, mapped to the brief (§3.2.3)
+
+| Brief asks for | What's on screen |
+|---|---|
+| Route on a map, affected portion distinguished | Route map: recommended route solid in line colours, usual route dashed, disrupted stretch as a red dotted overlay with a tooltip ("No train service"). The Map tab draws the whole MRT/LRT network in line colours with disrupted segments in red. |
+| Alternative shown against the original | **Stay or switch?** card: two rows (usual-as-it-runs-today vs recommended), each with a proportional journey bar, a time range and an arrival window. The headline states the saving, or "Your usual route is cut". |
+| Crowding readable in one second (3-level) | Every crowd reading uses the same three-bar glyph plus a word (Quiet / Moderate / Crowded), never colour alone. The Home crowd strip shows LTA's 30-min forecast for the boarding platform around your departure, with your slot outlined and a quieter slot suggested. |
+| Time and delay cost obvious | Options lead with a range ("41–55 min") and an arrival window; the journey bar splits walk / wait (hatched) / ride. Delays show as "+N min" and blocked legs are struck through. |
+| Works on a phone, in motion, one hand | 375 px first layout, bottom nav, ≥ 44 px touch targets. Primary actions sit in the thumb zone. **Trip mode** gives one step at a time in 22 px type and auto-advances by elapsed time when there's no signal. |
+| Every visual element earns its place | The hero shows one verdict, one instruction, one arrival time. The reroute is not repeated as a card. Low-priority notices collapse into "N notices checked — none need you". |
+| Accessibility | Text contrast ≥ 4.5:1 on cards (slate-400 or lighter on slate-800). A large-text mode scales every label (all sizes in rem). `prefers-reduced-motion` disables animation. State is never conveyed by colour alone (bars, words, ✓/✕ glyphs). |
+
+The verdict change (green → red) animates with a scale-in, a pulse on the card and a shake of the siren icon, because it is the one moment the commuter must not miss.
+
 ## 5. Planned vs unplanned events
 
 - **Planned closures are routed, not just listed.** `plannedClosuresOn()` reads whole-line closures with dates out of the live notice stream (e.g. *"Bukit Panjang LRT will be closed on 20 Sep and 27 Sep 2026 … use shuttle and regular bus services"*). When the departure date matches, the planner blocks that line and adds bridging-bus edges.
@@ -156,6 +170,8 @@ A deterministic rules engine. Every card traces back to a feed field and a thres
   - OneMap search is used without a token and may need registration in future. Station names still resolve locally.
 - **No server-sent Web Push.** Proactivity is in-app (verdict, cards, banner), plus an opt-in **device notification** fired by the page when the verdict turns red while the app is open or backgrounded. A production version would add Web Push (VAPID) at "leave-by − 15 min" so it works with the app closed.
 - **HTTPS for location.** "Current location" needs HTTPS on phones; see README for a tunnel.
+- **Trip mode has no GPS.** It advances by elapsed time plus manual "Next". A production version would snap to the nearest stop/station when located.
+- **Sheltered walkways not yet used.** `CoveredLinkWay` (DataMall geospatial layer) would turn "factor in shelter time" into a real routing signal for wet days; it ships as zipped SHP and was out of scope for this build.
 - **Not a native app.** Tested in Chrome with iPhone-SE-sized (375 px) emulation. It still needs a pass on a physical phone.
 
 ## 11. Beyond the brief
