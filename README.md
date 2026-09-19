@@ -22,7 +22,7 @@ NEBULA X 2026 · Problem Statement 2 — Smart Commuter Companion · built for *
 | ![Home](docs/home.jpg) | ![Home, disrupted](docs/home-sim.jpg) | ![Stay or switch](docs/plan.jpg) | ![Trip](docs/trip.jpg) | ![Map](docs/map.jpg) |
 
 - **Try it in a browser:** https://milkmanabi.github.io/TransitMateProject/ is a **static demo** built by GitHub Actions (`.github/workflows/pages.yml`). Pages can't run the server, so it replays a **recorded snapshot** of LTA/NEA data (made with `scripts/snapshot.mjs`, labelled on every screen). The demo journeys work: Rachel / Arjun / Mdm Lim commutes, the EWL fault and delay replays, the planned BPLRT closure, trip mode and the network map. For live data and planning any trip, run it locally (below).
-- **Demo walkthrough:** [`docs/demo.gif`](docs/demo.gif), a phone-sized capture of the journey below.
+- **Demo video (2:10):** [`docs/transitmate-demo.mp4`](docs/transitmate-demo.mp4), a phone-sized walkthrough with captions; voiceover script in [`docs/VOICEOVER.md`](docs/VOICEOVER.md). A quick GIF version is at [`docs/demo.gif`](docs/demo.gif).
 - **Write-up** (persona, architecture, assumptions, limitations, how every number was measured): [`WRITEUP.md`](WRITEUP.md)
 
 ---
@@ -66,7 +66,7 @@ git clone https://github.com/MilkmanAbi/TransitMateProject.git
 cd TransitMateProject
 corepack enable || npm i -g pnpm   # corepack on Node 20–24; npm fallback on Node 25+
 pnpm install
-cp .env.example .env            # then put your key in .env:  DATAMALL_KEY=xxxxxxxx
+cp .env.example .env            # optional: a provided hackathon DataMall key is already built in
 pnpm start                      # builds the React app, then serves API + app on http://localhost:3001
 ```
 
@@ -161,4 +161,4 @@ Commuter reports live in Cloud Firestore (`client/src/lib/reports.ts`). The Fire
 - **Commuter reports**: user-submitted, anonymous, stored in Firebase Cloud Firestore (Google).
 - **NebulaX dataset**: `AmendmenttoMP2014RailStation.geojson` station footprints, drawn on the Map tab when zoomed in.
 
-No credentials are committed. `.env` is git-ignored and `.env.example` lists the variable names only.
+**Keys:** this is a public hackathon showcase. The provided NEBULA X DataMall key (decommissioned after the event) and the Firebase web config are committed on purpose so it runs with no sign-up; set `DATAMALL_KEY` in `.env` to use your own.
