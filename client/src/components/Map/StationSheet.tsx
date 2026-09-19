@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '@/api/datamall';
 import { CrowdStrip } from '@/components/CIE/CrowdStrip';
+import { ReportPicker, ReportRow } from '@/components/CIE/Reports';
+import { useReports } from '@/lib/reports';
 import { Sheet } from '@/components/Layout/Sheet';
 import { CrowdTag, LineChip } from '@/components/ui';
 import type { Station } from '@/hooks/useStations';
@@ -16,6 +18,7 @@ const pcdKey = (code: string) =>
 // A station is only worth a tap if it answers "should I go through here right now?"
 export function StationSheet({ station, siblings, onClose }: { station: Station | null; siblings: Station[]; onClose: () => void }) {
   const { crowdNow, alerts } = useStore();
+  const { reports } = useReports();
   const nav = useNavigate();
   const [fc, setFc] = useState<{ station: string; boardAt: number; slots: { start: number; level: CrowdLevel }[] } | null>(null);
   const [lifts, setLifts] = useState<LiftOutage[]>([]);
@@ -62,7 +65,15 @@ export function StationSheet({ station, siblings, onClose }: { station: Station 
           {d.freeBusStations.some((s) => codes.includes(s)) ? ' Free bus boarding here.' : ''}
         </p>
       ))}
+      {reports.filter((r) => codes.includes(r.station)).length > 0 && (
+        <ul className="mt-3 rounded border border-surface-border bg-surface-card px-3">
+          {reports.filter((r) => codes.includes(r.station)).map((r) => (
+            <ReportRow key={r.id} r={r} />
+          ))}
+        </ul>
+      )}
       {fc && fc.slots.length > 2 && <CrowdStrip data={fc} when="right now" />}
+      <ReportPicker station={station.code} stationName={station.name} line={station.line} lat={station.lat} lng={station.lng} />
       <div className="mt-3 rounded-2xl bg-surface-card/60 p-3.5 ring-1 ring-white/[0.07]">
         <p className="flex items-center gap-1.5 text-[0.8125rem] font-semibold">
           <ArrowUpDown size={15} className="text-amber-400" /> Lifts

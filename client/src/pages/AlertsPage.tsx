@@ -2,6 +2,8 @@ import { ArrowUpDown, CheckCircle2, ChevronDown, FlaskConical, Play, Square } fr
 import { useEffect, useState } from 'react';
 import { api } from '@/api/datamall';
 import { DisruptionCard } from '@/components/CIE/DisruptionCard';
+import { ReportRow } from '@/components/CIE/Reports';
+import { useReports } from '@/lib/reports';
 import { Card, LineChip, Pill, SectionTitle, Skeleton } from '@/components/ui';
 import { usePoll } from '@/hooks/usePoll';
 import { stationNames, useStations } from '@/hooks/useStations';
@@ -44,6 +46,7 @@ export default function AlertsPage() {
   const names = stationNames(stations);
   const [scenarios, setScenarios] = useState<{ id: string; label: string }[]>([]);
   const [liftsOpen, setLiftsOpen] = useState(false);
+  const { reports, error: reportsError } = useReports();
   const planned = linesOf(lastCommutePlan?.usual);
   const myLines = planned.length ? planned : (PERSONAS.find((p) => p.id === profile)?.lines ?? []);
   const disrupted = (alerts?.disruptions.length ?? 0) > 0;
@@ -56,7 +59,7 @@ export default function AlertsPage() {
 
   return (
     <div className="animate-rise">
-      <h1 className="pt-1 text-[1.375rem] font-bold">Network alerts</h1>
+      <h1 className="pt-1 font-serif text-[1.5rem] font-semibold">Network alerts</h1>
       <p className="text-[0.8125rem] text-slate-400">
         {STATIC ? 'LTA TrainServiceAlerts · recorded snapshot (static demo)' : `LTA TrainServiceAlerts · polled every 60 s${alerts ? ` · updated ${ago(alerts.fetchedAt)}` : ''}`}
       </p>
@@ -100,6 +103,21 @@ export default function AlertsPage() {
           )}
         </div>
       )}
+
+      <SectionTitle right={<span className="text-[0.6875rem] text-slate-400">Firestore · real time</span>}>From commuters · last 90 min</SectionTitle>
+      <Card className="px-3">
+        {reportsError ? (
+          <p className="py-3 text-[0.8125rem] text-amber-300">Commuter reports unavailable: {reportsError}</p>
+        ) : reports.length === 0 ? (
+          <p className="py-3 text-[0.8125rem] text-slate-400">No commuter reports right now. Tap any station on the Map to report what you see.</p>
+        ) : (
+          <ul>
+            {reports.map((r) => (
+              <ReportRow key={r.id} r={r} />
+            ))}
+          </ul>
+        )}
+      </Card>
 
       <SectionTitle right={<span className="text-[0.6875rem] text-slate-400">{alerts?.messages.length ?? 0} live</span>}>Service notices</SectionTitle>
       <div className="space-y-2">
@@ -170,7 +188,7 @@ export default function AlertsPage() {
             <button
               key={s.id}
               onClick={() => set({ scenario: scenario === s.id ? null : s.id })}
-              className={`flex min-h-[52px] w-full items-center gap-3 rounded-xl px-3 text-left text-[0.875rem] ${scenario === s.id ? 'bg-amber-500/20 ring-1 ring-amber-500/50' : 'bg-black/25'}`}
+              className={`flex min-h-[52px] w-full items-center gap-3 rounded-xl px-3 text-left text-[0.875rem] ${scenario === s.id ? 'bg-amber-500/20 ring-1 ring-amber-500/50' : 'bg-sunken'}`}
             >
               {scenario === s.id ? <Square size={16} className="text-amber-300" /> : <Play size={16} className="text-slate-300" />}
               <span className="flex-1">{s.label}</span>

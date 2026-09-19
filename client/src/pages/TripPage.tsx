@@ -180,7 +180,7 @@ export default function TripPage() {
       {!done && step < legs.length - 1 && (
         <button
           onClick={() => set({ trip: { ...trip, step: step + 1 } })}
-          className="sticky bottom-20 mt-5 flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-brand-500 text-[1.0625rem] font-bold shadow-xl shadow-black/40 active:bg-brand-700"
+          className="sticky bottom-20 mt-5 flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-brand-500 text-[1.0625rem] font-bold active:bg-brand-700"
         >
           Done — next step <ArrowRight size={18} />
         </button>

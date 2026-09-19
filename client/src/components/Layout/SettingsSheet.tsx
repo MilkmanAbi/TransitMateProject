@@ -22,7 +22,7 @@ export function SettingsSheet({ open, onClose }: { open: boolean; onClose: () =>
             onClick={() => setPersona(p.id)}
             className={`flex w-full items-center gap-3 rounded-2xl border p-3 text-left ${profile === p.id ? 'border-brand-400 bg-brand-500/10' : 'border-white/10 bg-surface-card/50'}`}
           >
-            <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-brand-500 to-cyan-500 text-sm font-bold">{p.name[0]}</div>
+            <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-500 font-serif text-sm font-semibold">{p.name[0]}</div>
             <div className="min-w-0 flex-1">
               <p className="font-semibold">{p.name}</p>
               <p className="text-[0.75rem] text-slate-400">{p.blurb}</p>

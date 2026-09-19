@@ -5,7 +5,7 @@ import { JourneyBar } from './JourneyBar';
 
 function Row({ label, o, departAt, win, dead }: { label: string; o: RouteOption; departAt: number; win: boolean; dead: boolean }) {
   return (
-    <div className={`rounded-xl p-3 ${win ? 'bg-emerald-500/10 ring-1 ring-emerald-500/40' : 'bg-black/20 ring-1 ring-white/5'}`}>
+    <div className={`rounded-xl p-3 ${win ? 'bg-emerald-500/10 ring-1 ring-emerald-500/40' : 'bg-sunken ring-1 ring-white/5'}`}>
       <div className="flex items-center justify-between gap-2">
         <p className="flex min-w-0 items-center gap-1.5 text-[0.8125rem] font-semibold text-white">
           {win ? <Check size={15} className="shrink-0 text-emerald-400" /> : dead ? <X size={15} className="shrink-0 text-red-400" /> : <span className="w-[15px]" />}

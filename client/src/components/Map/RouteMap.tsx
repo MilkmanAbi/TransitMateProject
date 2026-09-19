@@ -43,11 +43,11 @@ export function RouteMap({ option, usual, from, to, height = '40dvh' }: { option
         )}
         {option?.legs.map((l, i) => {
           if (l.mode === 'walk')
-            return <Polyline key={i} positions={l.path} pathOptions={{ color: '#e2e8f0', weight: 4, opacity: 0.9, dashArray: '1 7', lineCap: 'round' }} />;
+            return <Polyline key={i} positions={l.path} pathOptions={{ color: '#1f1c17', weight: 4, opacity: 0.85, dashArray: '1 7', lineCap: 'round' }} />;
           const color = l.mode === 'bus' ? '#10b981' : l.mode === 'shuttle' ? '#f59e0b' : (l.color ?? '#60a5fa');
           return (
             <Fragment key={i}>
-              <Polyline positions={l.path} pathOptions={{ color: '#0b1220', weight: 10, opacity: 0.9 }} />
+              <Polyline positions={l.path} pathOptions={{ color: '#faf7f1', weight: 10, opacity: 0.95 }} />
               <Polyline positions={l.path} pathOptions={{ color, weight: 6, opacity: 1, dashArray: l.mode === 'shuttle' ? '10 8' : undefined }}>
                 <Tooltip sticky>{l.mode === 'bus' ? `Bus ${l.service}` : l.lineName}</Tooltip>
               </Polyline>

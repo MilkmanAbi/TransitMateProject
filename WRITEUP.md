@@ -176,6 +176,9 @@ The verdict change (green → red) animates with a scale-in, a pulse on the card
 
 ## 11. Beyond the brief
 
+- **Commuters as sensors.** Cloud Firestore holds anonymous, schema-validated reports ("train stopped at Bedok"). They sync in real time and expire from view after 90 min. `TrainServiceAlerts` typically lags the platform by several minutes; a report on your route surfaces on Home as "not in LTA's feed yet", labelled as commuter-sourced. Rules allow create-with-schema and `+1 confirm` only.
+- **PaperDesign visual system** (by the author, github.com/MilkmanAbi/PaperDesign). The light paper theme is chosen deliberately for bright-sunlight legibility on a platform. It uses a serif for reading, monospace for times and codes, and 4px geometry.
+
 - **Interruption threshold with quiet mode.** The engine proves *why it stayed silent* (e.g. "EWL +4 min on your route — below your 10-min threshold").
 - **Usual vs live comparison.** Every recommendation is justified against what she would normally do, both on the map and in words.
 - **The mitigation is in the feed.** Free public bus stations and bridging buses from `TrainServiceAlerts` become routable, free legs.

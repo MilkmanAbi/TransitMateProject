@@ -3,13 +3,13 @@ import { CROWD_META, LINE_META, LOAD_META } from '@/lib/format';
 import type { CrowdLevel, LoadCode } from '@/types';
 
 export function Card({ children, className = '', as: As = 'div' }: { children: ReactNode; className?: string; as?: 'div' | 'section' | 'article' }) {
-  return <As className={`rounded-2xl border border-white/[0.07] bg-surface-card/70 shadow-lg shadow-black/20 backdrop-blur ${className}`}>{children}</As>;
+  return <As className={`rounded border border-surface-border bg-surface-card ${className}`}>{children}</As>;
 }
 
 export function SectionTitle({ children, right }: { children: ReactNode; right?: ReactNode }) {
   return (
     <div className="mb-2 mt-6 flex items-end justify-between px-1">
-      <h2 className="text-[0.8125rem] font-semibold uppercase tracking-wider text-slate-400">{children}</h2>
+      <h2 className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-slate-500 border-b border-surface-border pb-1 flex-1">{children}</h2>
       {right}
     </div>
   );
@@ -23,7 +23,7 @@ export function LineChip({ line, label }: { line: string; label?: string }) {
   const meta = LINE_META[line];
   return (
     <span
-      className="inline-flex h-6 min-w-[2.25rem] items-center justify-center rounded-md px-1.5 text-[0.75rem] font-bold text-white"
+      className="inline-flex h-6 min-w-[2.25rem] items-center justify-center rounded px-1.5 font-mono text-[0.75rem] font-bold text-paper"
       style={{ background: meta?.color ?? '#475569' }}
     >
       {label ?? meta?.short ?? line}
@@ -33,7 +33,7 @@ export function LineChip({ line, label }: { line: string; label?: string }) {
 
 export function BusChip({ service }: { service: string }) {
   return (
-    <span className="inline-flex h-6 min-w-[2.5rem] items-center justify-center rounded-md bg-emerald-600 px-1.5 text-[0.75rem] font-bold tabular-nums text-white">
+    <span className="inline-flex h-6 min-w-[2.5rem] items-center justify-center rounded-md bg-emerald-600 px-1.5 text-[0.75rem] font-bold tabular-nums text-paper">
       {service}
     </span>
   );

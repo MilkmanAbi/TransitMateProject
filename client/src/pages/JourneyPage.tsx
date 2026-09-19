@@ -93,7 +93,7 @@ export default function JourneyPage() {
             </button>
           </div>
           <div className="mt-2 flex gap-2">
-            <label className="flex h-12 flex-1 items-center gap-2 rounded-xl bg-black/25 px-3 ring-1 ring-white/10">
+            <label className="flex h-12 flex-1 items-center gap-2 rounded-xl bg-sunken px-3 ring-1 ring-white/10">
               <Clock size={16} className="text-slate-400" />
               <select value={day} onChange={(e) => setDay(e.target.value as typeof day)} className="bg-transparent text-[0.9375rem] focus:outline-none" aria-label="When">
                 <option value="now">Leave now</option>

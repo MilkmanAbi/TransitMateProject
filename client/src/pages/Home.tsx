@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrivalPanel } from '@/components/Arrivals/ArrivalPanel';
 import { AlertFeed } from '@/components/CIE/AlertFeed';
 import { CrowdStrip } from '@/components/CIE/CrowdStrip';
+import { kindLabel, useReports } from '@/lib/reports';
 import { JourneyBar } from '@/components/Journey/JourneyBar';
 import { SettingsSheet } from '@/components/Layout/SettingsSheet';
 import { Bars, SectionTitle, Skeleton } from '@/components/ui';
@@ -14,14 +15,14 @@ import { STATIC } from '@/api/static';
 import { PERSONAS, useStore } from '@/store/useStore';
 
 const TONE = {
-  act: { ring: 'ring-red-500/60', glow: 'from-red-600/35 via-red-900/10', icon: Siren, iconCls: 'text-red-400 tm-wiggle', badge: 'bg-red-500 text-white', label: 'Act now', anim: 'tm-act' },
-  'heads-up': { ring: 'ring-amber-500/45', glow: 'from-amber-500/25 via-amber-900/5', icon: TriangleAlert, iconCls: 'text-amber-400', badge: 'bg-amber-400 text-black', label: 'Heads-up', anim: 'tm-verdict' },
-  clear: { ring: 'ring-emerald-500/35', glow: 'from-emerald-500/20 via-emerald-900/5', icon: CheckCircle2, iconCls: 'text-emerald-400', badge: 'bg-emerald-400 text-black', label: 'All clear', anim: 'tm-verdict' },
+  act: { ring: 'ring-red-600/50', bar: 'bg-red-600', icon: Siren, iconCls: 'text-red-400', badge: 'bg-red-600 text-paper', label: 'Act now', anim: 'tm-act' },
+  'heads-up': { ring: 'ring-amber-600/40', bar: 'bg-amber-600', icon: TriangleAlert, iconCls: 'text-amber-400', badge: 'bg-amber-600 text-paper', label: 'Heads-up', anim: 'tm-verdict' },
+  clear: { ring: 'ring-surface-border', bar: 'bg-emerald-600', icon: CheckCircle2, iconCls: 'text-emerald-400', badge: 'bg-emerald-600 text-paper', label: 'All clear', anim: 'tm-verdict' },
 };
 
 function Meta({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full bg-black/25 px-2.5 py-1 text-[0.75rem] text-slate-200">
+    <span className="inline-flex items-center gap-1.5 rounded-full bg-sunken px-2.5 py-1 text-[0.75rem] text-slate-200">
       {icon}
       {children}
     </span>
@@ -41,6 +42,10 @@ export default function Home() {
   const boardCrowd = best?.legs.find((l) => l.mode === 'mrt')?.crowd;
   const lastNotified = useRef<string | null>(null);
   const usualLive = plan?.usualLive;
+  const { reports } = useReports();
+  // Commuter reports (Firestore) at stations on today's route, from the last 30 min.
+  const routeStations = new Set((plan?.usual ?? best)?.legs.flatMap((l) => l.stations ?? []) ?? []);
+  const onRoute = reports.filter((r) => routeStations.has(r.station) && Date.now() - r.createdAt < 30 * 60_000);
   // The reroute is already the hero; repeating it as a card is noise.
   const feed = cie.cards.filter((c) => c.id !== 'reroute');
   const showStay = cie.verdict === 'act' && usualLive && best && usualLive.signature !== best.signature;
@@ -61,10 +66,8 @@ export default function Home() {
     <div className="animate-rise">
       <div className="flex items-center justify-between pt-1">
         <span className="flex items-center gap-2">
-          <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="" className="h-7 w-7" />
-          <span className="text-[1.0625rem] font-extrabold tracking-tight">
-            Transit<span className="text-brand-400">Mate</span>
-          </span>
+          <span className="font-serif text-[1.375rem] font-semibold leading-none tracking-tight">TransitMate</span>
+          <span className="hidden text-[0.625rem] uppercase tracking-[0.14em] text-slate-500 min-[380px]:inline">Singapore commuter edition</span>
         </span>
         <span className="flex items-center gap-1.5 text-[0.6875rem] text-slate-400">
           <span className={`h-2 w-2 rounded-full ${STATIC ? 'bg-sky-400' : alerts && !stale ? 'bg-emerald-400 shadow-[0_0_8px] shadow-emerald-400' : 'bg-slate-500'}`} />
@@ -74,7 +77,7 @@ export default function Home() {
 
       <header className="mt-2 flex items-center justify-between gap-2">
         <button onClick={() => setSettings(true)} className="-ml-1 flex min-h-[44px] items-center gap-2 rounded-full py-1 pl-1 pr-3 active:bg-white/5" aria-label="Change persona and commute">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-brand-500 to-cyan-500 text-sm font-bold">{persona.name[0]}</span>
+          <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-500 font-serif text-sm font-semibold">{persona.name[0]}</span>
           <span className="text-left leading-tight">
             <span className="block text-[0.75rem] text-slate-400">Planning for</span>
             <span className="flex items-center gap-0.5 font-semibold">
@@ -91,7 +94,7 @@ export default function Home() {
       </header>
 
       {trip && (
-        <Link to="/trip" className="mt-3 flex items-center gap-3 rounded-2xl bg-brand-500 px-4 py-3 font-semibold text-white shadow-lg shadow-brand-900/40">
+        <Link to="/trip" className="mt-3 flex items-center gap-3 rounded-2xl bg-brand-500 px-4 py-3 font-semibold text-white">
           <span className="relative flex h-2.5 w-2.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/70" /><span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white" /></span>
           <span className="flex-1 truncate text-[0.875rem]">Trip in progress · {trip.option.summary} to {trip.to.name.replace(/^(Office|Work|Home) · /, '')}</span>
           <span className="text-[0.8125rem]">Resume →</span>
@@ -113,8 +116,8 @@ export default function Home() {
         </div>
       )}
 
-      <section key={cie.verdict} className={`relative mt-3 overflow-hidden rounded-3xl bg-surface-card/85 p-4 ring-1 ${tone.ring} ${plan ? tone.anim : ''}`}>
-        <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${tone.glow} to-transparent`} />
+      <section key={cie.verdict} className={`relative mt-3 overflow-hidden rounded bg-surface-card p-4 ring-1 ${tone.ring} ${plan ? tone.anim : ''}`}>
+        <div className={`pointer-events-none absolute inset-x-0 top-0 h-[3px] ${tone.bar}`} />
         <div className="relative">
           <div className="flex items-center justify-between gap-2">
             {plan ? <span className={`rounded-full px-2.5 py-0.5 text-[0.6875rem] font-black uppercase tracking-wider ${tone.badge}`}>{tone.label}</span> : <span />}
@@ -124,7 +127,7 @@ export default function Home() {
             {commute.from.name.replace(/^Home · /, '')} → {commute.to.name.replace(/^(Office|Work) · /, '')}
           </p>
           {!plan && error ? (
-            <div className="mt-3 rounded-xl bg-black/25 p-3 text-[0.875rem]">
+            <div className="mt-3 rounded-xl bg-sunken p-3 text-[0.875rem]">
               <p className="font-semibold text-amber-300">Can’t reach live transport data</p>
               <p className="mt-1 text-slate-300">
                 {/DATAMALL_KEY/.test(error.message)
@@ -147,7 +150,7 @@ export default function Home() {
             <>
               <div className="mt-1 flex items-start gap-2">
                 <tone.icon size={28} className={`mt-0.5 shrink-0 ${tone.iconCls}`} />
-                <h1 className="text-[1.5rem] font-extrabold leading-tight tracking-tight text-white">{cie.headline}</h1>
+                <h1 className="font-serif text-[1.5rem] font-semibold leading-tight text-white">{cie.headline}</h1>
               </div>
               <p className="mt-1.5 text-[0.875rem] leading-snug text-slate-200">{cie.sub}</p>
               {cie.verdict === 'act' && plan.why[0] && (
@@ -192,7 +195,7 @@ export default function Home() {
                     {best.transfers > 0 && <Meta icon={<Users size={13} />}>{best.transfers} transfer{best.transfers > 1 ? 's' : ''}</Meta>}
                   </div>
                   {showStay && usualLive && (
-                    <p className="mt-2.5 rounded-xl bg-black/25 px-3 py-2 text-[0.8125rem] text-slate-300">
+                    <p className="mt-2.5 rounded-xl bg-sunken px-3 py-2 text-[0.8125rem] text-slate-300">
                       Staying on {usualLive.summary.replace(/ → Bridging bus → /, ' + bridging bus + ')}:{' '}
                       {usualLive.feasible ? (
                         <b className="tabular-nums text-red-300">
@@ -207,7 +210,7 @@ export default function Home() {
                 </>
               )}
               <div className="mt-3 flex items-center justify-between gap-2">
-                <div className="flex rounded-full bg-black/30 p-0.5 text-[0.75rem]" role="group" aria-label="When to plan for">
+                <div className="flex rounded-full bg-sunken p-0.5 text-[0.75rem]" role="group" aria-label="When to plan for">
                   {(['now', 'usual'] as const).map((m) => {
                     const active = mode === m || (mode === 'auto' && (m === 'usual') === dep.scheduled);
                     return (
@@ -243,6 +246,15 @@ export default function Home() {
         <p className="mb-2 rounded-2xl bg-emerald-500/5 px-4 py-3 text-[0.8125rem] text-emerald-200/90 ring-1 ring-emerald-500/15">
           {cie.verdict === 'act' ? 'Nothing else needs you — the card above is the one action to take.' : 'Nothing on your route needs you right now. TransitMate is watching train alerts, crowding and rain in the background.'}
         </p>
+      )}
+      {onRoute.length > 0 && (
+        <article className="mb-2.5 rounded border border-surface-border border-l-4 border-l-amber-600 bg-surface-card px-4 py-3">
+          <h3 className="text-[0.875rem] font-semibold">
+            {onRoute.length} commuter report{onRoute.length > 1 ? 's' : ''} on your route: {kindLabel(onRoute[0].kind).toLowerCase()} at {onRoute[0].stationName}
+          </h3>
+          <p className="mt-1 text-[0.8125rem] text-slate-300">Not in LTA’s feed yet — official alerts often lag the platform by minutes. Worth a look before you leave.</p>
+          <p className="mt-1.5 font-mono text-[0.625rem] text-slate-500">Cloud Firestore · reports · {onRoute.reduce((a, r) => a + r.confirms, 0)} confirmations</p>
+        </article>
       )}
       <AlertFeed cards={feed} quiet={cie.quiet} />
 

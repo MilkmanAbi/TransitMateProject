@@ -47,7 +47,7 @@ export function PlaceInput({ label, value, onChange, dot }: { label: string; val
 
   return (
     <div className="relative">
-      <label className="flex h-14 items-center gap-3 rounded-xl bg-black/25 px-3 ring-1 ring-white/10 focus-within:ring-brand-400">
+      <label className="flex h-14 items-center gap-3 rounded-xl bg-sunken px-3 ring-1 ring-white/10 focus-within:ring-brand-400">
         <span className={`h-3 w-3 shrink-0 rounded-full ${dot}`} />
         <span className="sr-only">{label}</span>
         <input

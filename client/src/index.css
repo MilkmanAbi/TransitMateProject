@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-top: env(safe-area-inset-top, 0px);
 }
@@ -16,10 +16,12 @@ html.large-text {
   font-size: 19px;
 }
 body {
-  background:
-    radial-gradient(1200px 500px at 110% -10%, rgba(37, 99, 235, 0.18), transparent 60%),
-    radial-gradient(900px 400px at -20% 0%, rgba(8, 145, 178, 0.12), transparent 60%),
-    #0b1220;
+  /* PaperDesign canvas: warm paper with a faint 24px graph rule (never pure white). */
+  background-color: #f1ece2;
+  background-image: linear-gradient(rgba(31, 28, 23, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 28, 23, 0.045) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: #1f1c17;
   min-height: 100dvh;
   overscroll-behavior-y: none;
 }
@@ -27,26 +29,26 @@ button {
   touch-action: manipulation;
 }
 .leaflet-container {
-  background: #0b1220;
+  background: #e6dfd1;
   font: inherit;
 }
 .leaflet-control-attribution {
-  background: rgba(11, 18, 32, 0.75) !important;
-  color: #94a3b8 !important;
+  background: rgba(250, 247, 241, 0.9) !important;
+  color: #554e43 !important;
   font-size: 10px !important;
 }
 .leaflet-control-attribution a {
-  color: #93c5fd !important;
+  color: #2f5178 !important;
 }
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
-  background: #1e293b;
-  color: #e2e8f0;
+  background: #faf7f1;
+  color: #1f1c17;
 }
 .leaflet-bar a {
-  background: #1e293b !important;
-  color: #e2e8f0 !important;
-  border-color: #334155 !important;
+  background: #faf7f1 !important;
+  color: #1f1c17 !important;
+  border-color: #d6cfc1 !important;
 }
 .snap-stripes {
   background-image: repeating-linear-gradient(-45deg, rgba(56, 189, 248, 0.16) 0 10px, rgba(56, 189, 248, 0.05) 10px 20px);
@@ -61,17 +63,17 @@ button {
   scrollbar-width: none;
 }
 .tm-dark-tiles {
-  filter: invert(1) hue-rotate(180deg) brightness(0.85) contrast(0.9) saturate(0.3);
+  filter: grayscale(0.45) sepia(0.18) contrast(0.95) brightness(1.02);
 }
 
 /* Verdict change: the green -> red moment is the one the commuter must not miss. */
 @keyframes tm-verdict-in {
-  0% { transform: scale(0.965); opacity: 0.35; }
+  0% { opacity: 0.4; }
   100% { transform: none; opacity: 1; }
 }
 @keyframes tm-act-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55); }
-  100% { box-shadow: 0 0 0 16px rgba(239, 68, 68, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(143, 52, 38, 0.35); }
+  100% { box-shadow: 0 0 0 16px rgba(143, 52, 38, 0); }
 }
 @keyframes tm-wiggle {
   0%, 100% { transform: rotate(0); }
@@ -80,9 +82,15 @@ button {
   60% { transform: rotate(-8deg); }
   80% { transform: rotate(5deg); }
 }
-.tm-verdict { animation: tm-verdict-in 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.15) both; }
-.tm-act { animation: tm-verdict-in 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.15) both, tm-act-pulse 1.3s ease-out 0.3s 3; }
-.tm-wiggle { animation: tm-wiggle 0.8s ease-in-out 0.4s 2; transform-origin: 50% 20%; }
+.tm-verdict { animation: tm-verdict-in 0.2s ease-out both; }
+.tm-act { animation: tm-verdict-in 0.2s ease-out both, tm-act-pulse 0.9s ease-out 0.2s 1; }
+.tm-wiggle { }
 @media (prefers-reduced-motion: reduce) {
   .tm-verdict, .tm-act, .tm-wiggle, .animate-rise { animation: none !important; }
 }
+
+/* PaperDesign: paper-coloured text on accent/semantic fills; data voice in monospace. */
+.bg-brand-500, .bg-red-600, .bg-red-500, .bg-emerald-600, .bg-emerald-700, .bg-sky-400, .bg-blue-500 { color: #f7f3ea; }
+.tabular-nums { font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace; letter-spacing: -0.02em; }
+.paper-bar { background: #1f1c17; color: #f1ece2; }
+.paper-label { border: 1px solid rgba(241, 236, 226, 0.7); padding: 1px 6px; font-size: 0.625rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }

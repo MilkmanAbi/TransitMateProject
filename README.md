@@ -34,6 +34,7 @@ NEBULA X 2026 · Problem Statement 2 — Smart Commuter Companion · built for *
 - **Visual trade-off.** A **Stay or switch?** card puts your usual route (as it runs today) next to the recommendation, each with a proportional walk/wait/ride bar and an arrival window. The map shows both routes with the disrupted stretch in red. Every option shows expected arrival, fare estimate, crowding at boarding, live bus load and CO₂ saved.
 - **Best time to leave.** A one-glance strip of LTA's 30-min crowd forecast for your boarding platform, e.g. "Crowded when you board · moderate at 8:30 am".
 - **Trip mode for the platform.** "I'll take this" opens step-by-step guidance with big text and a thumb-zone *Next* button. It shows a live bus countdown at your stop and watches the rest of your route: *"Disruption ahead → Re-plan from here"*. It keeps working with no signal.
+- **Commuters as sensors (Cloud Firestore).** Tap any station and report what you see (train stopped, platform packed, lift down…). Reports sync in real time to everyone through Firebase Cloud Firestore (project `travelmatedb-db265`, asia-southeast1). They appear on the Alerts tab and on the station, and as a Home card when they hit your route. That covers the minutes before LTA's official feed catches up. It works on the GitHub Pages demo too.
 - **Inspectable reasoning.** Every alert card carries a one-line source (e.g. `TrainServiceAlerts · EWL EW4–EW8 · Status 2`, `PCDForecast · Tampines · level h`), so you can check why the app said what it said.
 - **Your own commute.** Rachel is a demo persona; set your own home, work, days and times, or switch to Arjun / Mdm Lim.
 - **Planned and unplanned events.**
@@ -132,12 +133,32 @@ fixtures/          raw live captures from 19 Sep 2026 (TrainServiceAlerts, Facil
 scripts/           build-mrt.py (OSM → rail graph), shot.mjs (phone screenshots in Chrome)
 ```
 
+## Design: PaperDesign
+
+The interface follows **[PaperDesign](https://github.com/MilkmanAbi/PaperDesign)**, a design system by **Abinaash (MilkmanAbi)**:
+- one warm paper undertone with four neutral steps, never pure white or black
+- one muted ink-blue accent, with duller semantic companions
+- two radii (4px boxes, pills for bars) and hairline rules instead of glows
+- a serif reading voice for headlines, sans for controls, monospace for data (times, codes)
+- a faint 24px graph-paper canvas
+
+It also applies PaperDesign's honesty rules: state what is live, recorded or simulated, and say what failed. The theme is defined in `client/tailwind.config.ts`.
+
+## Firebase / Firestore
+
+Commuter reports live in Cloud Firestore (`client/src/lib/reports.ts`). The Firebase web config in that file is a public project identifier, not a secret; access is enforced by Firestore security rules:
+- anyone can read
+- a create must match the exact report schema (kind from a fixed list, station name ≤ 60 chars, note ≤ 140 chars, server timestamp, `confirms` = 0)
+- the only allowed update is `confirms + 1`
+- no deletes, no personal data
+
 ## Data and licences
 
 - **LTA DataMall**: bus arrivals, stops, routes, services, TrainServiceAlerts, PCDRealTime/PCDForecast, FacilitiesMaintenance, Taxi-Availability. Used under the LTA DataMall terms.
 - **OpenStreetMap**: rail station points and codes (Overpass extract, `scripts/osm-stations-raw.json`), footpath routing (FOSSGIS OSRM `routed-foot`), basemap tiles (OSM France / HOT). **© OpenStreetMap contributors, ODbL.** Attribution is shown on every map.
 - **data.gov.sg / NEA**: 2-hour weather nowcast (Singapore Open Data Licence).
 - **OneMap (SLA)**: place search.
+- **Commuter reports**: user-submitted, anonymous, stored in Firebase Cloud Firestore (Google).
 - **NebulaX dataset**: `AmendmenttoMP2014RailStation.geojson` station footprints, drawn on the Map tab when zoomed in.
 
 No credentials are committed. `.env` is git-ignored and `.env.example` lists the variable names only.
