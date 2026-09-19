@@ -58,11 +58,10 @@ No database, no Docker, no paid services. data.gov.sg, OneMap search, the OSM fo
 ```bash
 git clone https://github.com/MilkmanAbi/TransitMateProject.git
 cd TransitMateProject
-corepack enable                 # only if pnpm is not installed
+corepack enable                 # uses the pnpm version pinned in package.json
 pnpm install
 cp .env.example .env            # then put your key in .env:  DATAMALL_KEY=xxxxxxxx
-pnpm build                      # builds the React app into client/dist
-pnpm start                      # one server on http://localhost:3001 (API + app)
+pnpm start                      # builds the React app, then serves API + app on http://localhost:3001
 ```
 
 On first start the server downloads LTA's bus network once (`BusStops`, `BusRoutes`, `BusServices`, ~70 paged calls, about 5–20 s). It caches the result in `server/.cache/` for 24 h. `GET /api/health` shows `"network": true` when ready.

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "concurrently -n server,client -c cyan,magenta \"pnpm --filter server dev\" \"pnpm --filter client dev\"",
     "build": "pnpm --filter client build",
-    "start": "pnpm --filter server start",
+    "start": "pnpm --filter client build && pnpm --filter server start",
+    "serve": "pnpm --filter server start",
     "typecheck": "pnpm --filter server typecheck && pnpm --filter client typecheck"
   },
   "devDependencies": {

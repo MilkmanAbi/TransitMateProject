@@ -5,10 +5,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ltaFetchAll } from './datamall.js';
-import mrtData from '../data/mrt.json' with { type: 'json' };
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const CACHE_DIR = path.resolve(here, '../../.cache');
+const mrtData = JSON.parse(fs.readFileSync(path.resolve(here, '../data/mrt.json'), 'utf8')) as {
+  stations: MrtStation[];
+  edges: MrtEdge[];
+  interchanges: string[][];
+};
 const DISK_TTL = 24 * 3600 * 1000;
 
 export interface BusStop {
