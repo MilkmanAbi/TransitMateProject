@@ -23,7 +23,7 @@ function BottomNav() {
             key={to}
             to={to}
             end={to === '/'}
-            className={({ isActive }) => `relative flex h-16 flex-col items-center justify-center gap-1 text-[11px] font-medium ${isActive ? 'text-brand-400' : 'text-slate-400'}`}
+            className={({ isActive }) => `relative flex h-16 flex-col items-center justify-center gap-1 text-[0.6875rem] font-medium ${isActive ? 'text-brand-400' : 'text-slate-400'}`}
           >
             {({ isActive }) => (
               <>
@@ -50,13 +50,13 @@ function StatusBanners() {
   return (
     <div className="sticky top-0 z-[1001] bg-surface" style={{ paddingTop: 'var(--safe-top)' }}>
       {!online && (
-        <div className="flex items-center gap-2 bg-slate-800 px-4 py-2 text-[13px] text-slate-200">
+        <div className="flex items-center gap-2 bg-slate-800 px-4 py-2 text-[0.8125rem] text-slate-200">
           <WifiOff size={16} /> Offline — showing your last saved journey{alerts ? ` (alerts from ${ago(alerts.fetchedAt)})` : ''}.
         </div>
       )}
       {scenario && (
-        <div className="sim-stripes flex items-center gap-2 border-b border-amber-500/40 px-4 py-1.5 text-[12px] font-semibold text-amber-200">
-          <span className="rounded bg-amber-500 px-1.5 py-0.5 text-[10px] font-black tracking-wider text-black">SIMULATED</span>
+        <div className="sim-stripes flex items-center gap-2 border-b border-amber-500/40 px-4 py-1.5 text-[0.75rem] font-semibold text-amber-200">
+          <span className="rounded bg-amber-500 px-1.5 py-0.5 text-[0.625rem] font-black tracking-wider text-black">SIMULATED</span>
           <span className="flex-1 truncate">Replay: {alerts?.scenarioLabel ?? 'injected disruption'}</span>
           <button onClick={() => set({ scenario: null })} className="-my-1.5 grid h-11 w-11 place-items-center rounded-full active:bg-white/10" aria-label="End simulation">
             <X size={16} />
@@ -64,12 +64,12 @@ function StatusBanners() {
         </div>
       )}
       {live.length > 0 && loc.pathname !== '/alerts' && (
-        <NavLink to="/alerts" className="flex items-center gap-2 bg-red-600 px-4 py-2 text-[13px] font-semibold text-white">
+        <NavLink to="/alerts" className="flex items-center gap-2 bg-red-600 px-4 py-2 text-[0.8125rem] font-semibold text-white">
           <span className="h-2 w-2 animate-pulse rounded-full bg-white" />
           <span className="flex-1 truncate">
             {live.map((d) => `${d.lineName}: ${d.status === 2 ? 'no service' : 'delays'} ${d.stations[0]}–${d.stations[d.stations.length - 1]}`).join(' · ')}
           </span>
-          <span className="text-[12px] underline">Details</span>
+          <span className="text-[0.75rem] underline">Details</span>
         </NavLink>
       )}
     </div>
@@ -84,7 +84,7 @@ function Toasts() {
         <button
           key={t.id}
           onClick={() => dismissToast(t.id)}
-          className={`pointer-events-auto max-w-md animate-rise rounded-xl px-4 py-2.5 text-[13px] font-medium shadow-xl ${t.tone === 'error' ? 'bg-red-600/95 text-white' : 'bg-slate-700/95 text-slate-100'}`}
+          className={`pointer-events-auto max-w-md animate-rise rounded-xl px-4 py-2.5 text-[0.8125rem] font-medium shadow-xl ${t.tone === 'error' ? 'bg-red-600/95 text-white' : 'bg-slate-700/95 text-slate-100'}`}
         >
           {t.text}
         </button>

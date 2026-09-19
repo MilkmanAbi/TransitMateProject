@@ -13,7 +13,7 @@ function Eta({ bus, big }: { bus: BusETA; big?: boolean }) {
     <span className={`whitespace-nowrap tabular-nums ${big ? 'text-2xl font-bold' : 'text-sm font-semibold text-slate-400'} ${bus.monitored ? '' : 'opacity-80'}`}>
       {!bus.monitored && <span className="text-slate-500">≈</span>}
       {label}
-      {bus.mins > 0 && <span className={big ? 'ml-0.5 text-xs font-medium text-slate-400' : 'text-[11px] text-slate-500'}>{big ? 'min' : 'm'}</span>}
+      {bus.mins > 0 && <span className={big ? 'ml-0.5 text-xs font-medium text-slate-400' : 'text-[0.6875rem] text-slate-500'}>{big ? 'min' : 'm'}</span>}
     </span>
   );
 }
@@ -29,10 +29,10 @@ export function ArrivalPanel({ code, compact, limit, title }: { code: string; co
       {title !== false && (
         <div className="flex items-center gap-3 border-b border-white/5 px-4 py-3">
           <div className="min-w-0 flex-1">
-            <Link to={`/stop/${code}`} className="block truncate text-[15px] font-semibold text-white">
+            <Link to={`/stop/${code}`} className="block truncate text-[0.9375rem] font-semibold text-white">
               {data?.stop.name ?? `Stop ${code}`}
             </Link>
-            <p className="truncate text-[12px] text-slate-400">
+            <p className="truncate text-[0.75rem] text-slate-400">
               {code}
               {data?.stop.road ? ` · ${data.stop.road}` : ''}
               {updatedAt ? ` · updated ${ago(updatedAt)}` : ''}
@@ -60,11 +60,11 @@ export function ArrivalPanel({ code, compact, limit, title }: { code: string; co
           <li key={s.service} className="flex items-center gap-3 px-4 py-2.5">
             <BusChip service={s.service} />
             <div className="min-w-0 flex-1">
-              <p className="truncate text-[13px] text-slate-300">{s.destination ? `to ${s.destination}` : s.operator}</p>
+              <p className="truncate text-[0.8125rem] text-slate-300">{s.destination ? `to ${s.destination}` : s.operator}</p>
               <div className="mt-0.5 flex items-center gap-2 whitespace-nowrap">
                 <LoadTag load={s.buses[0].load} compact />
                 {s.buses[0].wab && <Accessibility size={14} className="shrink-0 text-sky-300" aria-label="Wheelchair accessible" />}
-                {s.buses[0].type === 'DD' && <span className="rounded bg-slate-700/60 px-1 text-[10px] font-semibold text-slate-300" title="Double deck">DD</span>}
+                {s.buses[0].type === 'DD' && <span className="rounded bg-slate-700/60 px-1 text-[0.625rem] font-semibold text-slate-300" title="Double deck">DD</span>}
               </div>
             </div>
             <div className="flex shrink-0 items-baseline gap-3 text-right">

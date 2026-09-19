@@ -9,7 +9,7 @@ export function Card({ children, className = '', as: As = 'div' }: { children: R
 export function SectionTitle({ children, right }: { children: ReactNode; right?: ReactNode }) {
   return (
     <div className="mb-2 mt-6 flex items-end justify-between px-1">
-      <h2 className="text-[13px] font-semibold uppercase tracking-wider text-slate-400">{children}</h2>
+      <h2 className="text-[0.8125rem] font-semibold uppercase tracking-wider text-slate-400">{children}</h2>
       {right}
     </div>
   );
@@ -23,7 +23,7 @@ export function LineChip({ line, label }: { line: string; label?: string }) {
   const meta = LINE_META[line];
   return (
     <span
-      className="inline-flex h-6 min-w-[2.25rem] items-center justify-center rounded-md px-1.5 text-[12px] font-bold text-white"
+      className="inline-flex h-6 min-w-[2.25rem] items-center justify-center rounded-md px-1.5 text-[0.75rem] font-bold text-white"
       style={{ background: meta?.color ?? '#475569' }}
     >
       {label ?? meta?.short ?? line}
@@ -33,7 +33,7 @@ export function LineChip({ line, label }: { line: string; label?: string }) {
 
 export function BusChip({ service }: { service: string }) {
   return (
-    <span className="inline-flex h-6 min-w-[2.5rem] items-center justify-center rounded-md bg-emerald-600 px-1.5 text-[12px] font-bold tabular-nums text-white">
+    <span className="inline-flex h-6 min-w-[2.5rem] items-center justify-center rounded-md bg-emerald-600 px-1.5 text-[0.75rem] font-bold tabular-nums text-white">
       {service}
     </span>
   );
@@ -53,7 +53,7 @@ export function Bars({ n, cls }: { n: number; cls: string }) {
 export function LoadTag({ load, compact }: { load: LoadCode; compact?: boolean }) {
   const m = LOAD_META[load] ?? LOAD_META[''];
   return (
-    <span className={`inline-flex items-center gap-1.5 whitespace-nowrap text-[12px] font-medium ${m.cls}`}>
+    <span className={`inline-flex items-center gap-1.5 whitespace-nowrap text-[0.75rem] font-medium ${m.cls}`}>
       <Bars n={m.bars} cls={m.cls} />
       {compact ? m.short : m.label}
     </span>
@@ -63,7 +63,7 @@ export function LoadTag({ load, compact }: { load: LoadCode; compact?: boolean }
 export function CrowdTag({ level, prefix }: { level: CrowdLevel; prefix?: string }) {
   const m = CROWD_META[level] ?? CROWD_META.NA;
   return (
-    <span className={`inline-flex items-center gap-1.5 text-[12px] font-medium ${m.cls}`}>
+    <span className={`inline-flex items-center gap-1.5 text-[0.75rem] font-medium ${m.cls}`}>
       <Bars n={m.bars} cls={m.cls} />
       {prefix}
       {m.label}
@@ -81,5 +81,5 @@ export function Pill({ children, tone = 'slate' }: { children: ReactNode; tone?:
     blue: 'bg-blue-500/15 text-blue-200 ring-1 ring-blue-500/30',
     violet: 'bg-violet-500/15 text-violet-200 ring-1 ring-violet-500/30',
   };
-  return <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold ${tones[tone]}`}>{children}</span>;
+  return <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[0.6875rem] font-semibold ${tones[tone]}`}>{children}</span>;
 }

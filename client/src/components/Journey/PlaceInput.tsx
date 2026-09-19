@@ -59,7 +59,7 @@ export function PlaceInput({ label, value, onChange, dot }: { label: string; val
           }}
           onBlur={() => setTimeout(() => setFocus(false), 200)}
           placeholder={label}
-          className="h-full min-w-0 flex-1 bg-transparent text-[16px] text-white placeholder:text-slate-500 focus:outline-none"
+          className="h-full min-w-0 flex-1 bg-transparent text-[1rem] text-white placeholder:text-slate-500 focus:outline-none"
           enterKeyHint="search"
           autoComplete="off"
         />
@@ -67,13 +67,13 @@ export function PlaceInput({ label, value, onChange, dot }: { label: string; val
       {focus && (
         <div className="absolute inset-x-0 top-[60px] z-[1200] overflow-hidden rounded-xl bg-surface-raised shadow-2xl ring-1 ring-white/10">
           <div className="flex gap-2 overflow-x-auto p-2 no-scrollbar">
-            <button onMouseDown={(e) => e.preventDefault()} onClick={locate} className="flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-brand-500/15 px-3 text-[13px] font-medium text-brand-300">
+            <button onMouseDown={(e) => e.preventDefault()} onClick={locate} className="flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-brand-500/15 px-3 text-[0.8125rem] font-medium text-brand-300">
               <LocateFixed size={15} /> {locating ? 'Locating…' : 'Current location'}
             </button>
-            <button onMouseDown={(e) => e.preventDefault()} onClick={() => pick(commute.from)} className="flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-white/5 px-3 text-[13px] text-slate-200">
+            <button onMouseDown={(e) => e.preventDefault()} onClick={() => pick(commute.from)} className="flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-white/5 px-3 text-[0.8125rem] text-slate-200">
               <Home size={15} /> Home
             </button>
-            <button onMouseDown={(e) => e.preventDefault()} onClick={() => pick(commute.to)} className="flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-white/5 px-3 text-[13px] text-slate-200">
+            <button onMouseDown={(e) => e.preventDefault()} onClick={() => pick(commute.to)} className="flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-white/5 px-3 text-[0.8125rem] text-slate-200">
               <Briefcase size={15} /> Work
             </button>
           </div>
@@ -81,8 +81,8 @@ export function PlaceInput({ label, value, onChange, dot }: { label: string; val
             <button key={i} onMouseDown={(e) => e.preventDefault()} onClick={() => pick(r)} className="flex min-h-[52px] w-full items-center gap-3 border-t border-white/5 px-3 py-2 text-left active:bg-white/5">
               {r.kind === 'station' ? <TrainFront size={18} className="shrink-0 text-brand-400" /> : <MapPin size={18} className="shrink-0 text-slate-400" />}
               <span className="min-w-0">
-                <span className="block truncate text-[14px] text-white">{r.name}</span>
-                <span className="block truncate text-[12px] text-slate-500">{r.address}</span>
+                <span className="block truncate text-[0.875rem] text-white">{r.name}</span>
+                <span className="block truncate text-[0.75rem] text-slate-500">{r.address}</span>
               </span>
             </button>
           ))}

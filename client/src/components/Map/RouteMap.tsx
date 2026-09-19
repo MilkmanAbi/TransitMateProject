@@ -71,7 +71,7 @@ export function RouteMap({ option, usual, from, to, height = '40dvh' }: { option
         <Marker position={[to.lat, to.lng]} icon={pin('B', '#db2777')} />
       </MapContainer>
       {usual && (
-        <div className="pointer-events-none absolute left-2 top-2 z-[500] space-y-1 rounded-xl bg-surface/85 px-2.5 py-1.5 text-[11px] text-slate-300 backdrop-blur">
+        <div className="pointer-events-none absolute left-2 top-2 z-[500] space-y-1 rounded-xl bg-surface/85 px-2.5 py-1.5 text-[0.6875rem] text-slate-300 backdrop-blur">
           <p className="flex items-center gap-1.5">
             <span className="inline-block h-1 w-5 rounded bg-brand-400" /> Recommended
           </p>

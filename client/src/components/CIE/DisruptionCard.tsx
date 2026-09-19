@@ -16,21 +16,21 @@ export function DisruptionCard({ d, names, simulated, taxi, affectsYou }: { d: D
           {simulated && <Pill tone="amber">SIMULATED</Pill>}
           {affectsYou && <Pill tone="violet">On your route</Pill>}
         </div>
-        <h3 className="mt-2 text-[16px] font-semibold text-white">
+        <h3 className="mt-2 text-[1rem] font-semibold text-white">
           {n(a)} ↔ {n(b)}
         </h3>
-        <p className="text-[13px] text-slate-400">
+        <p className="text-[0.8125rem] text-slate-400">
           {d.lineName} · {d.direction === 'Both' ? 'both directions' : `towards ${d.direction}`}
           {d.delayMin ? ` · +${d.delayMin} min` : ''}
         </p>
         <div className="mt-2 flex flex-wrap gap-1">
           {d.stations.map((s) => (
-            <span key={s} className="rounded-md bg-red-500/10 px-1.5 py-0.5 text-[11px] text-red-200">
+            <span key={s} className="rounded-md bg-red-500/10 px-1.5 py-0.5 text-[0.6875rem] text-red-200">
               {s} {n(s)}
             </span>
           ))}
         </div>
-        <ul className="mt-3 space-y-1.5 text-[13px] text-slate-200">
+        <ul className="mt-3 space-y-1.5 text-[0.8125rem] text-slate-200">
           {(d.freeBusStations.length > 0 || d.freeBusIslandWide) && (
             <li className="flex gap-2">
               <BusFront size={16} className="mt-0.5 shrink-0 text-emerald-400" />

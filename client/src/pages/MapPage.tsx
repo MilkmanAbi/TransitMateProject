@@ -42,7 +42,7 @@ export default function MapPage() {
         <div className="absolute inset-x-3 top-3 z-[600]">
           <label className="flex h-12 items-center gap-2 rounded-2xl bg-surface/90 px-3 shadow-xl ring-1 ring-white/10 backdrop-blur">
             <Search size={18} className="text-slate-400" />
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search bus stop — name, road or 5-digit code" className="h-full min-w-0 flex-1 bg-transparent text-[16px] placeholder:text-slate-500 focus:outline-none" />
+            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search bus stop — name, road or 5-digit code" className="h-full min-w-0 flex-1 bg-transparent text-[1rem] placeholder:text-slate-500 focus:outline-none" />
             {q && (
               <button onClick={() => setQ('')} className="grid h-11 w-11 place-items-center" aria-label="Clear search">
                 <X size={16} />
@@ -54,10 +54,10 @@ export default function MapPage() {
               {results.map((r) => (
                 <li key={r.code}>
                   <button onClick={() => nav(`/stop/${r.code}`)} className="flex min-h-[52px] w-full items-center gap-3 border-b border-white/5 px-4 text-left active:bg-white/5">
-                    <span className="rounded-md bg-emerald-600/20 px-1.5 py-0.5 font-mono text-[12px] text-emerald-300">{r.code}</span>
+                    <span className="rounded-md bg-emerald-600/20 px-1.5 py-0.5 font-mono text-[0.75rem] text-emerald-300">{r.code}</span>
                     <span className="min-w-0">
-                      <span className="block truncate text-[14px] text-white">{r.name}</span>
-                      <span className="block truncate text-[12px] text-slate-500">{r.road}</span>
+                      <span className="block truncate text-[0.875rem] text-white">{r.name}</span>
+                      <span className="block truncate text-[0.75rem] text-slate-500">{r.road}</span>
                     </span>
                   </button>
                 </li>
@@ -66,7 +66,7 @@ export default function MapPage() {
           )}
         </div>
 
-        <div className="absolute bottom-6 left-3 z-[600] rounded-xl bg-surface/85 px-3 py-2 text-[11px] text-slate-300 backdrop-blur">
+        <div className="absolute bottom-6 left-3 z-[600] rounded-xl bg-surface/85 px-3 py-2 text-[0.6875rem] text-slate-300 backdrop-blur">
           <p className="mb-1 font-semibold text-slate-200">Station crowd · live</p>
           <p className="flex items-center gap-3">
             <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-green-500" />Low</span>

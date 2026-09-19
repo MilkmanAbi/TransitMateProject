@@ -10,7 +10,7 @@ export function LegStrip({ legs, dim }: { legs: Leg[]; dim?: boolean }) {
         <Fragment key={i}>
           {i > 0 && <ChevronRight size={14} className="text-slate-600" />}
           {l.mode === 'walk' ? (
-            <span className="inline-flex items-center gap-0.5 text-[12px] text-slate-400">
+            <span className="inline-flex items-center gap-0.5 text-[0.75rem] text-slate-400">
               <Footprints size={14} />
               {Math.max(1, Math.round(l.minutes))}
             </span>

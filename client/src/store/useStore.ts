@@ -10,6 +10,7 @@ export interface Persona {
   threshold: number;
   largeText: boolean;
   lines: string[];
+  stops: string[];
 }
 
 // The three personas from the PS2 brief. Rachel is the one we build and demo for; the others show that the
@@ -22,6 +23,7 @@ export const PERSONAS: Persona[] = [
     threshold: 10,
     largeText: false,
     lines: ['EWL'],
+    stops: ['75009', '03031'],
     commute: {
       from: { name: 'Home · Tampines Central', lat: 1.35355, lng: 103.94508 },
       to: { name: 'Office · One Raffles Place', lat: 1.28437, lng: 103.85122 },
@@ -37,6 +39,7 @@ export const PERSONAS: Persona[] = [
     threshold: 15,
     largeText: false,
     lines: ['PGLRT', 'NEL', 'CCL'],
+    stops: ['65259', '18051'],
     commute: {
       from: { name: 'Home · Punggol Central', lat: 1.40525, lng: 103.90237 },
       to: { name: 'Work · one-north', lat: 1.29983, lng: 103.78752 },
@@ -52,6 +55,7 @@ export const PERSONAS: Persona[] = [
     threshold: 5,
     largeText: true,
     lines: ['EWL'],
+    stops: ['84009', '06011'],
     commute: {
       from: { name: 'Home · Bedok North Ave 1', lat: 1.32706, lng: 103.93155 },
       to: { name: 'Singapore General Hospital', lat: 1.27950, lng: 103.83480 },
@@ -118,7 +122,7 @@ export const useStore = create<State>()(
 
       setPersona: (id) => {
         const p = PERSONAS.find((x) => x.id === id) ?? PERSONAS[0];
-        set({ profile: p.id, commute: p.commute, threshold: p.threshold, largeText: p.largeText, lastCommutePlan: null });
+        set({ profile: p.id, commute: p.commute, threshold: p.threshold, largeText: p.largeText, savedStops: p.stops, lastCommutePlan: null });
       },
       setCommute: (c) => set({ commute: { ...get().commute, ...c }, lastCommutePlan: null }),
       set: (p) => set(p),

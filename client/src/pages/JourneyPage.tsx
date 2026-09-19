@@ -79,12 +79,12 @@ export default function JourneyPage() {
           <div className="mt-2 flex gap-2">
             <label className="flex h-12 flex-1 items-center gap-2 rounded-xl bg-black/25 px-3 ring-1 ring-white/10">
               <Clock size={16} className="text-slate-400" />
-              <select value={day} onChange={(e) => setDay(e.target.value as typeof day)} className="bg-transparent text-[15px] focus:outline-none" aria-label="When">
+              <select value={day} onChange={(e) => setDay(e.target.value as typeof day)} className="bg-transparent text-[0.9375rem] focus:outline-none" aria-label="When">
                 <option value="now">Leave now</option>
                 <option value="today">Today at</option>
                 <option value="tomorrow">Tomorrow at</option>
               </select>
-              {day !== 'now' && <input type="time" value={when} onChange={(e) => setWhen(e.target.value)} className="ml-auto w-[5.5rem] bg-transparent text-[15px] focus:outline-none" aria-label="Departure time" />}
+              {day !== 'now' && <input type="time" value={when} onChange={(e) => setWhen(e.target.value)} className="ml-auto w-[5.5rem] bg-transparent text-[0.9375rem] focus:outline-none" aria-label="Departure time" />}
             </label>
             <button onClick={() => run()} disabled={loading} className="flex h-12 items-center gap-2 rounded-xl bg-brand-500 px-5 font-semibold text-white active:bg-brand-700 disabled:opacity-60">
               <Search size={17} /> Plan
@@ -94,10 +94,10 @@ export default function JourneyPage() {
       ) : (
         <button onClick={() => setEditing(true)} className="flex w-full items-center gap-3 rounded-2xl bg-surface-card/70 px-4 py-3 text-left ring-1 ring-white/10">
           <div className="min-w-0 flex-1">
-            <p className="truncate text-[14px] font-semibold text-white">
+            <p className="truncate text-[0.875rem] font-semibold text-white">
               {plan.from.name} → {plan.to.name}
             </p>
-            <p className="text-[12px] text-slate-400">
+            <p className="text-[0.75rem] text-slate-400">
               {Math.abs(plan.departAt - plan.generatedAt) < 120_000
                 ? 'Leaving now'
                 : `Leaving ${new Date(plan.departAt).toLocaleDateString('en-SG', { weekday: 'short', timeZone: 'Asia/Singapore' })} ${hhmm(plan.departAt)}`}{' '}
@@ -120,12 +120,12 @@ export default function JourneyPage() {
         <div className={`mt-3 space-y-3 ${loading ? 'opacity-60' : ''}`}>
           {plan.why.length > 0 && (
             <section className={`rounded-2xl p-3.5 ring-1 ${plan.changed ? 'bg-red-500/10 ring-red-500/30' : 'bg-amber-500/10 ring-amber-500/25'}`}>
-              <h2 className="flex items-center gap-2 text-[14px] font-semibold text-white">
+              <h2 className="flex items-center gap-2 text-[0.875rem] font-semibold text-white">
                 {plan.changed ? <Siren size={17} className="text-red-400" /> : <TriangleAlert size={17} className="text-amber-400" />}
                 {plan.changed ? 'Route changed — here’s why' : 'Live conditions on this trip'}
                 {plan.simulated && <Pill tone="amber">SIMULATED</Pill>}
               </h2>
-              <ul className="mt-1.5 space-y-1 pl-6 text-[13px] leading-relaxed text-slate-200">
+              <ul className="mt-1.5 space-y-1 pl-6 text-[0.8125rem] leading-relaxed text-slate-200">
                 {plan.why.map((w, i) => (
                   <li key={i} className="list-disc">
                     {w}
@@ -140,7 +140,7 @@ export default function JourneyPage() {
           {showUsual && plan.usualLive && (
             <div className="flex items-center gap-3 rounded-2xl border border-dashed border-white/15 px-4 py-3">
               <div className="min-w-0 flex-1">
-                <p className="text-[12px] font-medium uppercase tracking-wide text-slate-500">Your usual route, as it runs then</p>
+                <p className="text-[0.75rem] font-medium uppercase tracking-wide text-slate-500">Your usual route, as it runs then</p>
                 <div className="mt-1">
                   <LegStrip legs={plan.usualLive.legs} dim />
                 </div>
@@ -148,8 +148,8 @@ export default function JourneyPage() {
               <div className="text-right">
                 {plan.usualLive.feasible ? (
                   <>
-                    <p className="text-[18px] font-bold tabular-nums text-slate-300">{plan.usualLive.minutes} min</p>
-                    <p className="text-[12px] text-amber-300">+{Math.max(0, plan.usualLive.minutes - (plan.usual?.minutes ?? 0))} vs normal</p>
+                    <p className="text-[1.125rem] font-bold tabular-nums text-slate-300">{plan.usualLive.minutes} min</p>
+                    <p className="text-[0.75rem] text-amber-300">+{Math.max(0, plan.usualLive.minutes - (plan.usual?.minutes ?? 0))} vs normal</p>
                   </>
                 ) : (
                   <Pill tone="red">Not running</Pill>
@@ -158,7 +158,7 @@ export default function JourneyPage() {
             </div>
           )}
 
-          <SectionTitle right={<span className="text-[11px] text-slate-500">ranked for {profile === 'lim' ? 'Mdm Lim' : profile[0].toUpperCase() + profile.slice(1)}</span>}>Options</SectionTitle>
+          <SectionTitle right={<span className="text-[0.6875rem] text-slate-500">ranked for {profile === 'lim' ? 'Mdm Lim' : profile[0].toUpperCase() + profile.slice(1)}</span>}>Options</SectionTitle>
           {plan.options.length === 0 && <p className="text-sm text-slate-400">No route found. Try a nearby landmark or station.</p>}
           <div className="space-y-3">
             {plan.options.map((o, i) => (
@@ -166,7 +166,7 @@ export default function JourneyPage() {
             ))}
           </div>
 
-          <p className="flex gap-2 px-1 pt-2 text-[11px] leading-relaxed text-slate-500">
+          <p className="flex gap-2 px-1 pt-2 text-[0.6875rem] leading-relaxed text-slate-500">
             <Info size={14} className="shrink-0" />
             Times are ranges, not promises: train waits use typical headways, bus waits use live LTA arrivals when you’re leaving within 45 min, and ride times carry ±10–35% spread. Walking legs are routed on OpenStreetMap footpaths.
           </p>
