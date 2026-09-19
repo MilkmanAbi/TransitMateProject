@@ -3,3 +3,6 @@ packages:
   - server
 allowBuilds:
   esbuild: true
+# pnpm 10 reads onlyBuiltDependencies; pnpm 11 reads allowBuilds. esbuild needs its postinstall.
+onlyBuiltDependencies:
+  - esbuild

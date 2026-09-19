@@ -48,7 +48,7 @@ function StatusBanners() {
   const loc = useLocation();
   const live = alerts?.disruptions ?? [];
   return (
-    <div className="sticky top-0 z-[1001]" style={{ paddingTop: 'var(--safe-top)' }}>
+    <div className="sticky top-0 z-[1001] bg-surface" style={{ paddingTop: 'var(--safe-top)' }}>
       {!online && (
         <div className="flex items-center gap-2 bg-slate-800 px-4 py-2 text-[13px] text-slate-200">
           <WifiOff size={16} /> Offline — showing your last saved journey{alerts ? ` (alerts from ${ago(alerts.fetchedAt)})` : ''}.
