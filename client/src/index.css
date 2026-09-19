@@ -1,0 +1,59 @@
+@import 'leaflet/dist/leaflet.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+html {
+  font-size: 16px;
+  -webkit-tap-highlight-color: transparent;
+}
+html.large-text {
+  font-size: 19px;
+}
+body {
+  background:
+    radial-gradient(1200px 500px at 110% -10%, rgba(37, 99, 235, 0.18), transparent 60%),
+    radial-gradient(900px 400px at -20% 0%, rgba(8, 145, 178, 0.12), transparent 60%),
+    #0b1220;
+  min-height: 100dvh;
+  overscroll-behavior-y: none;
+}
+button {
+  touch-action: manipulation;
+}
+.leaflet-container {
+  background: #0b1220;
+  font: inherit;
+}
+.leaflet-control-attribution {
+  background: rgba(11, 18, 32, 0.75) !important;
+  color: #94a3b8 !important;
+  font-size: 10px !important;
+}
+.leaflet-control-attribution a {
+  color: #93c5fd !important;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+.leaflet-bar a {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+.sim-stripes {
+  background-image: repeating-linear-gradient(-45deg, rgba(245, 158, 11, 0.16) 0 10px, rgba(245, 158, 11, 0.05) 10px 20px);
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}

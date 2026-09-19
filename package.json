@@ -10,8 +10,11 @@
     "typecheck": "pnpm --filter server typecheck && pnpm --filter client typecheck"
   },
   "devDependencies": {
-    "concurrently": "^9.0.0"
+    "concurrently": "^9.0.0",
+    "puppeteer-core": "^25.11.0"
   },
   "packageManager": "pnpm@11.9.0",
-  "engines": { "node": ">=20" }
+  "engines": {
+    "node": ">=20"
+  }
 }

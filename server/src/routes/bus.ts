@@ -28,10 +28,17 @@ bus.get('/stops', wrap(async (req) => {
 }));
 
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+// LTA stop names are abbreviated ("Raffles Pl Stn Exit F"); map what people type onto that (list adapted from BusTech location.js).
+const ABBR: Record<string, string> = {
+  place: 'pl', station: 'stn', mrt: 'stn', street: 'st', avenue: 'ave', road: 'rd', interchange: 'int', opposite: 'opp',
+  before: 'bef', after: 'aft', block: 'blk', central: 'ctrl', centre: 'ctr', center: 'ctr', tower: 'twr', school: 'sch',
+  upper: 'upp', bukit: 'bt', jalan: 'jln', lorong: 'lor', tanjong: 'tg', drive: 'dr', crescent: 'cres', terminal: 'ter',
+  building: 'bldg', primary: 'pr', secondary: 'sec', hospital: 'hosp', junction: 'jct', industrial: 'ind', park: 'pk',
+};
 bus.get('/stops/search', wrap(async (req) => {
   const q = norm(String(req.query.q ?? ''));
   if (q.length < 2) return [];
-  const toks = q.split(' ');
+  const toks = q.split(' ').map((t) => ABBR[t] ?? t);
   const out: { code: string; name: string; road: string; lat: number; lng: number; score: number }[] = [];
   for (const s of net.stops.values()) {
     const hay = norm(`${s.Description} ${s.RoadName} ${s.BusStopCode}`);
