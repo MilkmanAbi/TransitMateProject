@@ -32,10 +32,10 @@ export function JourneyBar({ legs, height = 30 }: { legs: Leg[]; height?: number
   const segs = segments(legs);
   const total = segs.reduce((a, s) => a + s.min, 0) || 1;
   return (
-    <div className="flex w-full gap-[2px] overflow-hidden rounded-lg" style={{ height }} role="img" aria-label={legs.map((l) => (l.mode === 'walk' ? `walk ${Math.round(l.minutes)} min` : `${l.mode === 'bus' ? `bus ${l.service}` : l.lineName} ${Math.round(l.minutes)} min`)).join(', then ')}>
+    <div className="flex w-full gap-[2px] overflow-hidden rounded-lg" style={{ height: `${height / 16}rem` }} role="img" aria-label={legs.map((l) => (l.mode === 'walk' ? `walk ${Math.round(l.minutes)} min` : `${l.mode === 'bus' ? `bus ${l.service}` : l.lineName} ${Math.round(l.minutes)} min`)).join(', then ')}>
       {segs.map((s, i) => {
         const pct = (s.min / total) * 100;
-        const narrow = pct < 11;
+        const narrow = pct < (document.documentElement.classList.contains('large-text') ? 14 : 11);
         const style: React.CSSProperties = { flexGrow: s.min, flexBasis: 0, minWidth: s.kind === 'wait' ? 6 : 18 };
         if (s.kind === 'walk')
           return (

@@ -16,6 +16,11 @@ function noticeDates(content: string) {
   const year = Number(content.match(/(20\d\d)/)?.[1] ?? new Date().getFullYear());
   const seen = new Set<string>();
   const out: { label: string; soon: boolean; past: boolean }[] = [];
+  const range = content.match(/from\s+(\d{1,2}\s+[a-z]{3})[a-z]*\s+to\s+(\d{1,2}\s+[a-z]{3})/i);
+  if (range) {
+    const end = new Date(year, MONTHS.indexOf(range[2].slice(-3).toLowerCase()), Number(range[2].split(/\s+/)[0]));
+    return [{ label: `${range[1]} – ${range[2]}${end.getTime() >= Date.now() ? ' (ongoing)' : ''}`, soon: end.getTime() >= Date.now(), past: end.getTime() < Date.now() }];
+  }
   for (const m of content.matchAll(/(\d{1,2})\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*/gi)) {
     const d = new Date(year, MONTHS.indexOf(m[2].toLowerCase()), Number(m[1]));
     const key = d.toDateString();

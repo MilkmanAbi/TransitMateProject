@@ -1,6 +1,6 @@
 import type { FeatureCollection } from 'geojson';
 import L from 'leaflet';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { CircleMarker, GeoJSON, MapContainer, Polyline, Tooltip, useMap, useMapEvents } from 'react-leaflet';
 import { api } from '@/api/datamall';
 import type { RailEdge, Station } from '@/hooks/useStations';
@@ -123,8 +123,8 @@ export function TransitMap({
           const level = crowd[key] ?? 'NA';
           const hit = disrupted.has(s.code);
           return (
+            <Fragment key={s.code}>
             <CircleMarker
-              key={s.code}
               center={[s.lat, s.lng]}
               radius={hit ? 9 : 7}
               eventHandlers={{ click: () => onStation(s) }}
@@ -135,6 +135,8 @@ export function TransitMap({
                 {CROWD_META[level].label}
               </Tooltip>
             </CircleMarker>
+            <CircleMarker center={[s.lat, s.lng]} radius={16} pathOptions={{ stroke: false, fillColor: '#fff', fillOpacity: 0.001 }} eventHandlers={{ click: () => onStation(s) }} />
+            </Fragment>
           );
         })}
       <StopsLayer onStop={onStop} />
