@@ -26,7 +26,9 @@ export default function MapPage() {
   }, [q]);
 
   const locate = () =>
-    navigator.geolocation?.getCurrentPosition(
+    !window.isSecureContext
+      ? toast('Location needs HTTPS — open the app via the https:// tunnel URL', 'info')
+      : navigator.geolocation?.getCurrentPosition(
       (p) => setFlyTo([p.coords.latitude, p.coords.longitude]),
       () => toast('Could not get your location'),
       { enableHighAccuracy: true, timeout: 8000 },
@@ -42,7 +44,7 @@ export default function MapPage() {
             <Search size={18} className="text-slate-400" />
             <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search bus stop — name, road or 5-digit code" className="h-full min-w-0 flex-1 bg-transparent text-[16px] placeholder:text-slate-500 focus:outline-none" />
             {q && (
-              <button onClick={() => setQ('')} className="grid h-9 w-9 place-items-center" aria-label="Clear search">
+              <button onClick={() => setQ('')} className="grid h-11 w-11 place-items-center" aria-label="Clear search">
                 <X size={16} />
               </button>
             )}

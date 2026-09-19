@@ -29,6 +29,7 @@ export function PlaceInput({ label, value, onChange, dot }: { label: string; val
     (document.activeElement as HTMLElement | null)?.blur();
   };
   const locate = () => {
+    if (!window.isSecureContext) return toast('Location needs HTTPS — open the app via the https:// tunnel URL, or pick Home/Work', 'info');
     if (!navigator.geolocation) return toast('Location not available on this device');
     setLocating(true);
     navigator.geolocation.getCurrentPosition(
@@ -66,13 +67,13 @@ export function PlaceInput({ label, value, onChange, dot }: { label: string; val
       {focus && (
         <div className="absolute inset-x-0 top-[60px] z-[1200] overflow-hidden rounded-xl bg-surface-raised shadow-2xl ring-1 ring-white/10">
           <div className="flex gap-2 overflow-x-auto p-2 no-scrollbar">
-            <button onMouseDown={(e) => e.preventDefault()} onClick={locate} className="flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-brand-500/15 px-3 text-[13px] font-medium text-brand-300">
+            <button onMouseDown={(e) => e.preventDefault()} onClick={locate} className="flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-brand-500/15 px-3 text-[13px] font-medium text-brand-300">
               <LocateFixed size={15} /> {locating ? 'Locating…' : 'Current location'}
             </button>
-            <button onMouseDown={(e) => e.preventDefault()} onClick={() => pick(commute.from)} className="flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-white/5 px-3 text-[13px] text-slate-200">
+            <button onMouseDown={(e) => e.preventDefault()} onClick={() => pick(commute.from)} className="flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-white/5 px-3 text-[13px] text-slate-200">
               <Home size={15} /> Home
             </button>
-            <button onMouseDown={(e) => e.preventDefault()} onClick={() => pick(commute.to)} className="flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-white/5 px-3 text-[13px] text-slate-200">
+            <button onMouseDown={(e) => e.preventDefault()} onClick={() => pick(commute.to)} className="flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-white/5 px-3 text-[13px] text-slate-200">
               <Briefcase size={15} /> Work
             </button>
           </div>

@@ -38,10 +38,10 @@ export function ArrivalPanel({ code, compact, limit, title }: { code: string; co
               {updatedAt ? ` · updated ${ago(updatedAt)}` : ''}
             </p>
           </div>
-          <button onClick={refresh} className="grid h-10 w-10 place-items-center rounded-full text-slate-400 active:bg-white/10" aria-label="Refresh arrivals">
+          <button onClick={refresh} className="grid h-11 w-11 place-items-center rounded-full text-slate-400 active:bg-white/10" aria-label="Refresh arrivals">
             <RefreshCw size={18} className={loading ? 'animate-spin' : ''} />
           </button>
-          <button onClick={() => toggleStop(code)} className="grid h-10 w-10 place-items-center rounded-full active:bg-white/10" aria-label={saved ? 'Unsave stop' : 'Save stop'}>
+          <button onClick={() => toggleStop(code)} className="grid h-11 w-11 place-items-center rounded-full active:bg-white/10" aria-label={saved ? 'Unsave stop' : 'Save stop'}>
             <Star size={18} className={saved ? 'fill-amber-400 text-amber-400' : 'text-slate-400'} />
           </button>
         </div>

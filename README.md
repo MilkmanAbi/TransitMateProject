@@ -48,7 +48,7 @@ NEBULA X 2026 · Problem Statement 2 — Smart Commuter Companion · built for *
 | Need | Version | Notes |
 |---|---|---|
 | Node.js | **20 or newer** (tested on 25.6) | https://nodejs.org |
-| pnpm | 9+ (repo pins 11.9 via `packageManager`) | `corepack enable` installs the pinned version automatically |
+| pnpm | 10+ (repo pins 11.9 via `packageManager`) | Node 20–24: `corepack enable`. Node 25+ no longer ships corepack: `npm i -g pnpm` |
 | LTA DataMall AccountKey | free | Register at https://datamall.lta.gov.sg/content/datamall/en/request-for-api.html. The key arrives by email within minutes. |
 
 No database, no Docker, no paid services. data.gov.sg, OneMap search, the OSM foot router and the OSM tiles need no key.
@@ -58,7 +58,7 @@ No database, no Docker, no paid services. data.gov.sg, OneMap search, the OSM fo
 ```bash
 git clone https://github.com/MilkmanAbi/TransitMateProject.git
 cd TransitMateProject
-corepack enable                 # uses the pnpm version pinned in package.json
+corepack enable || npm i -g pnpm   # corepack on Node 20–24; npm fallback on Node 25+
 pnpm install
 cp .env.example .env            # then put your key in .env:  DATAMALL_KEY=xxxxxxxx
 pnpm start                      # builds the React app, then serves API + app on http://localhost:3001
@@ -66,7 +66,9 @@ pnpm start                      # builds the React app, then serves API + app on
 
 On first start the server downloads LTA's bus network once (`BusStops`, `BusRoutes`, `BusServices`, ~70 paged calls, about 5–20 s). It caches the result in `server/.cache/` for 24 h. `GET /api/health` shows `"network": true` when ready.
 
-**Open it on a phone.** Put the phone on the same Wi-Fi and open `http://<your-laptop-LAN-IP>:3001`. Mobile browsers only allow "Current location" over HTTPS, so on plain LAN http use the Home/Work chips or type a place. For a public HTTPS URL, run `npx localtunnel --port 3001` (or `cloudflared tunnel --url http://localhost:3001`).
+**Open it on a phone (recommended: HTTPS tunnel).** In a second terminal run `npx localtunnel --port 3001` (or `cloudflared tunnel --url http://localhost:3001`) and open the printed `https://…` URL on the phone. HTTPS is what lets the phone share "Current location". Without a tunnel, put the phone on the same Wi-Fi and open `http://<laptop-LAN-IP>:3001`. Everything works except "Current location" (browsers block it over plain http), so use the Home/Work chips or type a place.
+
+Tested: a fresh `git clone` → `pnpm install` → `pnpm start` with an empty cache on Node 20.20 and Node 25.6 (Windows 11).
 
 **Development mode** (hot reload): `pnpm dev`. The API runs on :3001 and Vite on http://localhost:5173, proxying `/api`.
 

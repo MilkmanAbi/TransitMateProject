@@ -58,7 +58,7 @@ function StatusBanners() {
         <div className="sim-stripes flex items-center gap-2 border-b border-amber-500/40 px-4 py-1.5 text-[12px] font-semibold text-amber-200">
           <span className="rounded bg-amber-500 px-1.5 py-0.5 text-[10px] font-black tracking-wider text-black">SIMULATED</span>
           <span className="flex-1 truncate">Replay: {alerts?.scenarioLabel ?? 'injected disruption'}</span>
-          <button onClick={() => set({ scenario: null })} className="grid h-8 w-8 place-items-center rounded-full active:bg-white/10" aria-label="End simulation">
+          <button onClick={() => set({ scenario: null })} className="-my-1.5 grid h-11 w-11 place-items-center rounded-full active:bg-white/10" aria-label="End simulation">
             <X size={16} />
           </button>
         </div>

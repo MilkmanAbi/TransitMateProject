@@ -38,6 +38,7 @@ export interface CIEOutput {
   cards: CIERecommendation[];
   quiet: CIERecommendation[];
   commuteLines: string[];
+  hero: RouteOption | null;
 }
 
 const RANK: Record<CIESeverity, number> = { critical: 0, warning: 1, info: 2, ok: 3 };
@@ -74,7 +75,9 @@ export function runCIE(i: CIEInput): CIEOutput {
   const extra = usual && usualLive ? usualLive.minutes - usual.minutes : 0;
   const cut = usualLive && (!usualLive.feasible || usualLive.legs.some((l) => l.mode === 'shuttle'));
   let verdict: Verdict = 'clear';
-  if (plan && best && (onRoute.length || plan.changed) && (cut || extra >= i.threshold || plan.changed)) {
+  // Interrupt only if the usual trip is cut, or worse by at least the commuter's own threshold.
+  const mustAct = !!(plan && best && (cut || (onRoute.length > 0 && extra >= i.threshold)));
+  if (plan && best && mustAct) {
     const delta = usual ? Math.round(best.minutes - usual.minutes) : 0;
     verdict = 'act';
     cards.push({
@@ -94,10 +97,22 @@ export function runCIE(i: CIEInput): CIEOutput {
       id: 'minor',
       kind: 'disruption',
       severity: 'info',
-      title: `${onRoute[0].lineName}: +${Math.round(extra)} min on your route`,
-      body: `Below your ${i.threshold}-min threshold, so TransitMate isn't interrupting you. Leave as usual.`,
+      title: `${onRoute[0].lineName}: +${Math.max(0, Math.round(extra))} min on your route`,
+      body: `Below your ${i.threshold}-min threshold, so TransitMate isn't interrupting you.${plan?.changed && best ? ` If you'd rather avoid it: ${best.summary} (${best.min}–${best.max} min).` : ' Leave as usual.'}`,
+      action: plan?.changed ? { label: 'Compare', route: '/plan?commute=1' } : undefined,
       timestamp: i.now,
       simulated: sim,
+      affectsYou: true,
+    });
+  } else if (plan?.changed && best && usual) {
+    cards.push({
+      id: 'better',
+      kind: 'leave',
+      severity: 'info',
+      title: `Today ${best.summary} suits you better than ${usual.summary}`,
+      body: plan.why.slice(-1)[0] ?? 'Live conditions favour a different route.',
+      action: { label: 'Compare', route: '/plan?commute=1' },
+      timestamp: i.now,
       affectsYou: true,
     });
   }
@@ -211,15 +226,22 @@ export function runCIE(i: CIEInput): CIEOutput {
 
   let headline = 'Checking your commute…';
   let sub = '';
-  if (best && usual) {
-    const arriveBy = '';
+  // Below the threshold the hero keeps showing the usual route (as it runs today), not the alternative.
+  let hero: RouteOption | null = best;
+  if (plan && best && usual) {
     if (verdict === 'act') {
       headline = `Take ${best.summary} today`;
       sub = `${firstInstruction(best)}. ${best.min}–${best.max} min door to door.`;
     } else {
-      headline = verdict === 'clear' ? 'All clear — leave as usual' : 'Heads-up on your commute';
-      sub = `${best.summary} · ${best.min}–${best.max} min door to door${arriveBy ? '' : ''}`;
+      hero = plan.changed ? (usualLive ?? usual) : best;
+      if (onRoute.length) {
+        headline = 'Leave as usual';
+        sub = `${onRoute[0].lineName} +${Math.max(0, Math.round(extra))} min — under your ${i.threshold}-min threshold · ${hero.min}–${hero.max} min door to door`;
+      } else {
+        headline = verdict === 'clear' ? 'All clear — leave as usual' : 'Heads-up on your commute';
+        sub = `${hero.summary} · ${hero.min}–${hero.max} min door to door`;
+      }
     }
   }
-  return { verdict, headline, sub, cards, quiet, commuteLines };
+  return { verdict, headline, sub, cards, quiet, commuteLines, hero };
 }

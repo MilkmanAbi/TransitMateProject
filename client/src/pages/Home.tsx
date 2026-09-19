@@ -33,7 +33,7 @@ export default function Home() {
   const [settings, setSettings] = useState(false);
   const { plan, cie, dep, loading, updatedAt, stale, refresh } = useCommute(mode);
   const persona = PERSONAS.find((p) => p.id === profile)!;
-  const best = plan?.options[0];
+  const best = cie.hero ?? plan?.options[0];
   const tone = TONE[cie.verdict];
   const leaveBy = best ? todayAt(commute.arriveBy, plan!.departAt) - best.max * 60_000 : null;
   const saved = monthSaved();
@@ -105,13 +105,13 @@ export default function Home() {
                   {(['now', 'usual'] as const).map((m) => {
                     const active = mode === m || (mode === 'auto' && (m === 'usual') === dep.scheduled);
                     return (
-                      <button key={m} onClick={() => setMode(m)} className={`h-9 rounded-full px-3 font-medium ${active ? 'bg-white/15 text-white' : 'text-slate-400'}`}>
+                      <button key={m} onClick={() => setMode(m)} className={`h-11 rounded-full px-3.5 font-medium ${active ? 'bg-white/15 text-white' : 'text-slate-400'}`}>
                         {m === 'now' ? 'Leave now' : `At ${commute.departTime}`}
                       </button>
                     );
                   })}
                 </div>
-                <button onClick={refresh} className="flex h-9 items-center gap-1 rounded-full px-2 text-[11px] text-slate-400 active:bg-white/10" aria-label="Refresh">
+                <button onClick={refresh} className="flex h-11 items-center gap-1 rounded-full px-2 text-[11px] text-slate-400 active:bg-white/10" aria-label="Refresh">
                   <RefreshCw size={13} className={loading ? 'animate-spin' : ''} />
                   {stale ? 'saved ' : ''}
                   {updatedAt ? ago(updatedAt) : ''}
