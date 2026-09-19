@@ -62,7 +62,7 @@ export function StationSheet({ station, siblings, onClose }: { station: Station 
           {d.freeBusStations.some((s) => codes.includes(s)) ? ' Free bus boarding here.' : ''}
         </p>
       ))}
-      {fc && fc.slots.length > 2 && <CrowdStrip data={fc} />}
+      {fc && fc.slots.length > 2 && <CrowdStrip data={fc} when="right now" />}
       <div className="mt-3 rounded-2xl bg-surface-card/60 p-3.5 ring-1 ring-white/[0.07]">
         <p className="flex items-center gap-1.5 text-[0.8125rem] font-semibold">
           <ArrowUpDown size={15} className="text-amber-400" /> Lifts

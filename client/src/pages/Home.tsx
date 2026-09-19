@@ -97,12 +97,19 @@ export default function Home() {
         </Link>
       )}
       {!onboarded && (
-        <button onClick={() => { setSettings(true); set({ onboarded: true }); }} className="mt-3 flex w-full items-center gap-3 rounded-2xl bg-brand-500/10 px-4 py-3 text-left ring-1 ring-brand-400/30">
-          <span className="flex-1 text-[0.8125rem] leading-snug text-brand-50">
-            <b className="text-white">Demo: planning for Rachel</b>, Tampines → Raffles Place on the EWL. Tap to switch persona or set your own home, work and times.
-          </span>
-          <ChevronDown size={16} className="-rotate-90 text-brand-300" />
-        </button>
+        <div className="mt-3 rounded-2xl bg-brand-500/10 p-3.5 ring-1 ring-brand-400/30">
+          <p className="text-[0.8125rem] leading-snug text-brand-50">
+            <b className="text-white">You’re seeing Rachel’s commute</b> — Tampines → Raffles Place on the EWL, live. TransitMate stays quiet until her trip is worse by more than 10 min.
+          </p>
+          <div className="mt-2.5 grid grid-cols-2 gap-2">
+            <button onClick={() => { setSettings(true); set({ onboarded: true }); }} className="h-11 rounded-xl bg-white/10 text-[0.8125rem] font-semibold active:bg-white/15">
+              Use my commute
+            </button>
+            <button onClick={() => set({ scenario: 'ewl-track-fault', onboarded: true })} className="h-11 rounded-xl bg-amber-500 text-[0.8125rem] font-bold text-black active:bg-amber-600">
+              ▶ Simulate EWL fault
+            </button>
+          </div>
+        </div>
       )}
 
       <section key={cie.verdict} className={`relative mt-3 overflow-hidden rounded-3xl bg-surface-card/85 p-4 ring-1 ${tone.ring} ${plan ? tone.anim : ''}`}>

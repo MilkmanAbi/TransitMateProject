@@ -8,7 +8,7 @@ const RANK: Record<CrowdLevel, number> = { l: 0, m: 1, h: 2, NA: 3 };
 
 // LTA's 30-minute Station Crowd Density forecast for the boarding platform around departure time —
 // the one input that lets the app say "leave 20 min later" before anything has gone wrong.
-export function CrowdStrip({ data }: { data: { station: string; boardAt: number; slots: { start: number; level: CrowdLevel }[] } }) {
+export function CrowdStrip({ data, when = 'when you board' }: { data: { station: string; boardAt: number; slots: { start: number; level: CrowdLevel }[] }; when?: string }) {
   const { slots, boardAt, station } = data;
   if (slots.length < 3) return null;
   const curIdx = slots.reduce((acc, s, i) => (s.start <= boardAt ? i : acc), 0);
@@ -20,8 +20,8 @@ export function CrowdStrip({ data }: { data: { station: string; boardAt: number;
     cur.level === 'NA'
       ? 'No forecast for this slot'
       : better
-        ? `${CROWD_META[cur.level].label} when you board · ${CROWD_META[better.level].label.toLowerCase()} at ${clock12(better.start)}`
-        : `${CROWD_META[cur.level].label} when you board${cur.level === 'l' ? ' — no need to shift' : ''}`;
+        ? `${CROWD_META[cur.level].label} ${when} · ${CROWD_META[better.level].label.toLowerCase()} at ${clock12(better.start)}`
+        : `${CROWD_META[cur.level].label} ${when}${cur.level === 'l' && when === 'when you board' ? ' — no need to shift' : ''}`;
   return (
     <section className="mt-3 rounded-2xl bg-surface-card/60 p-3.5 ring-1 ring-white/[0.07]">
       <div className="flex items-center justify-between gap-2">
