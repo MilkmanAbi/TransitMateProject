@@ -55,7 +55,7 @@ export function firstInstruction(o: RouteOption): string {
     const eta = ride.live ? ` (next in ${Math.max(0, Math.round((Date.parse(ride.live.eta) - Date.now()) / 60000))} min)` : '';
     return `${walk}bus ${ride.service} from ${ride.from.name}${eta}`;
   }
-  return `${walk}${LINE_META[ride.line ?? '']?.name ?? ride.line} from ${ride.from.name} towards ${ride.to.name}`;
+  return `${walk}${LINE_META[ride.line ?? '']?.name ?? ride.line} from ${ride.from.name} to ${ride.to.name}`;
 }
 
 export function runCIE(i: CIEInput): CIEOutput {

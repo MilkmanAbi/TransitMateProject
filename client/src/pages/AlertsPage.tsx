@@ -7,7 +7,7 @@ import { usePoll } from '@/hooks/usePoll';
 import { stationNames, useStations } from '@/hooks/useStations';
 import { linesOf } from '@/lib/cie';
 import { ago } from '@/lib/format';
-import { useStore } from '@/store/useStore';
+import { PERSONAS, useStore } from '@/store/useStore';
 import type { LiftOutage, TaxiCount } from '@/types';
 
 const KIND = { planned: ['Planned', 'blue'], bus: ['Bus diversion', 'cyan'], disruption: ['Disruption', 'red'], info: ['Notice', 'slate'] } as const;
@@ -18,7 +18,8 @@ export default function AlertsPage() {
   const names = stationNames(stations);
   const [scenarios, setScenarios] = useState<{ id: string; label: string }[]>([]);
   const [liftsOpen, setLiftsOpen] = useState(false);
-  const myLines = linesOf(lastCommutePlan?.usual);
+  const planned = linesOf(lastCommutePlan?.usual);
+  const myLines = planned.length ? planned : (PERSONAS.find((p) => p.id === profile)?.lines ?? []);
   const disrupted = (alerts?.disruptions.length ?? 0) > 0;
   const taxi = usePoll<TaxiCount>(disrupted ? () => api.taxi() : null, 60_000, [disrupted]);
   const lifts = usePoll<LiftOutage[]>(() => api.lifts(), 10 * 60_000, []);
