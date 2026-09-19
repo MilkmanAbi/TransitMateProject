@@ -68,7 +68,7 @@ cp .env.example .env            # then put your key in .env:  DATAMALL_KEY=xxxxx
 pnpm start                      # builds the React app, then serves API + app on http://localhost:3001
 ```
 
-On first start the server downloads LTA's bus network once (`BusStops`, `BusRoutes`, `BusServices`, ~70 paged calls, about 5–20 s). It caches the result in `server/.cache/` for 24 h. `GET /api/health` shows `"network": true` when ready.
+On first start the server downloads LTA's bus network once (`BusStops`, `BusRoutes`, `BusServices`, ~70 paged calls, usually 5–40 s depending on DataMall). It caches the result in `server/.cache/` for 24 h. `GET /api/health` shows `"network": true` when ready.
 
 **Open it on a phone (recommended: HTTPS tunnel).** In a second terminal run `npx localtunnel --port 3001` (or `cloudflared tunnel --url http://localhost:3001`) and open the printed `https://…` URL on the phone. HTTPS is what lets the phone share "Current location". Without a tunnel, put the phone on the same Wi-Fi and open `http://<laptop-LAN-IP>:3001`. Everything works except "Current location" (browsers block it over plain http), so use the Home/Work chips or type a place.
 

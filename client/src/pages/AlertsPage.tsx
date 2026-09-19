@@ -10,6 +10,26 @@ import { ago, LINE_META } from '@/lib/format';
 import { PERSONAS, useStore } from '@/store/useStore';
 import type { LiftOutage, TaxiCount } from '@/types';
 
+const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+// Dates named in a planned notice, as chips ("Tomorrow · Sun 20 Sep"), so planned works read at a glance.
+function noticeDates(content: string) {
+  const year = Number(content.match(/(20\d\d)/)?.[1] ?? new Date().getFullYear());
+  const seen = new Set<string>();
+  const out: { label: string; soon: boolean; past: boolean }[] = [];
+  for (const m of content.matchAll(/(\d{1,2})\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*/gi)) {
+    const d = new Date(year, MONTHS.indexOf(m[2].toLowerCase()), Number(m[1]));
+    const key = d.toDateString();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const diff = Math.round((d.getTime() - today.getTime()) / 86_400_000);
+    const day = d.toLocaleDateString('en-SG', { weekday: 'short', day: 'numeric', month: 'short' });
+    out.push({ label: diff === 0 ? `Today · ${day}` : diff === 1 ? `Tomorrow · ${day}` : day, soon: diff >= 0 && diff <= 1, past: diff < 0 });
+  }
+  return out;
+}
+
 const KIND = { planned: ['Planned', 'blue'], bus: ['Bus diversion', 'cyan'], disruption: ['Disruption', 'red'], info: ['Notice', 'slate'] } as const;
 
 export default function AlertsPage() {
@@ -92,6 +112,15 @@ export default function AlertsPage() {
                 {mine ? <Pill tone="violet">On your route</Pill> : <span className="text-[0.6875rem] text-slate-400">not on your route</span>}
                 {injected && <Pill tone="amber">SIMULATED</Pill>}
               </div>
+              {m.kind === 'planned' && noticeDates(m.content).length > 0 && (
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {noticeDates(m.content).map((d) => (
+                    <span key={d.label} className={`rounded-md px-2 py-0.5 text-[0.75rem] font-semibold ${d.soon ? 'bg-blue-500 text-white' : d.past ? 'bg-white/5 text-slate-400 line-through' : 'bg-blue-500/15 text-blue-200'}`}>
+                      {d.label}
+                    </span>
+                  ))}
+                </div>
+              )}
               <p className="mt-2 text-[0.8125rem] leading-relaxed text-slate-200">{m.content}</p>
               <p className="mt-1 text-[0.6875rem] text-slate-400">{m.created}</p>
             </Card>
