@@ -69,6 +69,7 @@ export interface Disruption {
   shuttleStations: string[];
   shuttleDirection: string;
   delayMin: number | null;
+  planned?: { date: string; reason: string };
 }
 export interface ServiceMessage {
   content: string;

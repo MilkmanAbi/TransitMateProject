@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { getTrainAlerts } from '../lib/alerts.js';
+import { getTrainAlerts, plannedClosuresOn } from '../lib/alerts.js';
 import { crowdRealtimeAll, type CrowdLevel } from '../lib/live.js';
-import { loadNetwork } from '../lib/network.js';
+import { loadNetwork, net } from '../lib/network.js';
 import { buildConditions, plan, type Place, type ProfileId } from '../lib/planner.js';
 import { nowcastAt } from '../lib/weather.js';
 import { liftMaintenance } from './train.js';
@@ -31,7 +31,9 @@ planner.get('/', wrap(async (req) => {
   ]);
   const liftOut = new Map<string, string[]>();
   for (const l of lifts) liftOut.set(l.StationCode, [...(liftOut.get(l.StationCode) ?? []), l.LiftDesc]);
-  const conds = buildConditions(alerts.disruptions, liftOut);
+  const planned = plannedClosuresOn(alerts.messages, departAt, (line) => net.stationList.filter((s) => s.line === line).map((s) => s.code));
+  const disruptions = [...alerts.disruptions, ...planned];
+  const conds = buildConditions(disruptions, liftOut);
   const result = await plan({ from, to, departAt, profile, conds, crowd, wet: { origin: wo, dest: wd } });
-  return { ...result, simulated: alerts.simulated, scenarioLabel: alerts.scenarioLabel, disruptions: alerts.disruptions };
+  return { ...result, simulated: alerts.simulated, scenarioLabel: alerts.scenarioLabel, disruptions };
 }));

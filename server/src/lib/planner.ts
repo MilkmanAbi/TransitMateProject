@@ -642,7 +642,11 @@ export async function plan(input: {
   let changed = false;
   if (usual && usualLiveEnriched && bestO) {
     const hit = input.conds.disruptions.filter((d) => usualLiveEnriched.legs.some((l) => l.line === d.line && l.affectedPaths?.length) || usualLiveEnriched.legs.some((l) => l.mode === 'shuttle'));
-    if (!usualLiveEnriched.feasible) {
+    const plannedHit = hit.find((d) => d.planned);
+    if (plannedHit) {
+      const day = new Date(input.departAt + 8 * 3600_000).toLocaleDateString('en-SG', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' });
+      why.push(`Planned closure: ${plannedHit.lineName} is closed on ${day} for ${plannedHit.planned!.reason} (LTA service notice)${usualLiveEnriched.feasible ? ' — shuttle buses replace it' : ''}.`);
+    } else if (!usualLiveEnriched.feasible) {
       why.push(`Your usual route (${usual.summary}) is cut: no ${hit[0]?.lineName ?? 'train'} service between ${stationNames(hit[0]?.stations)}.`);
     } else if (usualLiveEnriched.legs.some((l) => l.mode === 'shuttle')) {
       why.push(`Your usual ${usual.summary} ride is broken between ${stationNames(hit[0]?.stations)} — LTA is running free bridging buses there.`);

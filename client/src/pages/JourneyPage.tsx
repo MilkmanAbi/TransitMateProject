@@ -18,7 +18,8 @@ export default function JourneyPage() {
   const isCommute = params.get('commute') === '1';
   const [from, setFrom] = useState<Place | null>(isCommute ? commute.from : (lastPlan?.from ?? commute.from));
   const [to, setTo] = useState<Place | null>(isCommute ? commute.to : (lastPlan?.to ?? null));
-  const [when, setWhen] = useState<string>('now');
+  const [day, setDay] = useState<'now' | 'today' | 'tomorrow'>('now');
+  const [when, setWhen] = useState<string>(commute.departTime);
   const [plan, setPlan] = useState<PlanResult | null>(isCommute ? null : lastPlan);
   const [loading, setLoading] = useState(false);
   const [sel, setSel] = useState(0);
@@ -29,7 +30,7 @@ export default function JourneyPage() {
     setLoading(true);
     setEditing(false);
     try {
-      const departAt = when === 'now' ? undefined : todayAt(when) < Date.now() ? todayAt(when) + 86_400_000 : todayAt(when);
+      const departAt = day === 'now' ? undefined : todayAt(when) + (day === 'tomorrow' || todayAt(when) < Date.now() ? 86_400_000 : 0);
       const p = await api.plan(f, t, { departAt, profile, scenario });
       setPlan(p);
       setSel(0);
@@ -45,7 +46,10 @@ export default function JourneyPage() {
   useEffect(() => {
     if (isCommute) {
       const dep = departureFor(commute.departTime, commute.days, 'auto');
-      if (dep.scheduled) setWhen(commute.departTime);
+      if (dep.scheduled) {
+        setDay('today');
+        setWhen(commute.departTime);
+      }
       run(commute.from, commute.to);
     } else if (plan && Date.now() - plan.generatedAt > 90_000 && navigator.onLine) run(plan.from, plan.to);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,7 +70,7 @@ export default function JourneyPage() {
                 setFrom(to);
                 setTo(from);
               }}
-              className="absolute right-3 top-[38px] z-10 grid h-9 w-9 place-items-center rounded-full bg-surface-raised ring-1 ring-white/10"
+              className="absolute right-2 top-[34px] z-10 grid h-11 w-11 place-items-center rounded-full bg-surface-raised ring-1 ring-white/10"
               aria-label="Swap origin and destination"
             >
               <ArrowDownUp size={16} />
@@ -75,11 +79,12 @@ export default function JourneyPage() {
           <div className="mt-2 flex gap-2">
             <label className="flex h-12 flex-1 items-center gap-2 rounded-xl bg-black/25 px-3 ring-1 ring-white/10">
               <Clock size={16} className="text-slate-400" />
-              <select value={when === 'now' ? 'now' : 'at'} onChange={(e) => setWhen(e.target.value === 'now' ? 'now' : commute.departTime)} className="bg-transparent text-[15px] focus:outline-none">
+              <select value={day} onChange={(e) => setDay(e.target.value as typeof day)} className="bg-transparent text-[15px] focus:outline-none" aria-label="When">
                 <option value="now">Leave now</option>
-                <option value="at">Leave at…</option>
+                <option value="today">Today at</option>
+                <option value="tomorrow">Tomorrow at</option>
               </select>
-              {when !== 'now' && <input type="time" value={when} onChange={(e) => setWhen(e.target.value)} className="ml-auto bg-transparent text-[15px] focus:outline-none" />}
+              {day !== 'now' && <input type="time" value={when} onChange={(e) => setWhen(e.target.value)} className="ml-auto w-[5.5rem] bg-transparent text-[15px] focus:outline-none" aria-label="Departure time" />}
             </label>
             <button onClick={() => run()} disabled={loading} className="flex h-12 items-center gap-2 rounded-xl bg-brand-500 px-5 font-semibold text-white active:bg-brand-700 disabled:opacity-60">
               <Search size={17} /> Plan
@@ -93,7 +98,10 @@ export default function JourneyPage() {
               {plan.from.name} → {plan.to.name}
             </p>
             <p className="text-[12px] text-slate-400">
-              {Math.abs(plan.departAt - plan.generatedAt) < 120_000 ? 'Leaving now' : `Leaving ${hhmm(plan.departAt)}`} · planned {ago(plan.generatedAt)}
+              {Math.abs(plan.departAt - plan.generatedAt) < 120_000
+                ? 'Leaving now'
+                : `Leaving ${new Date(plan.departAt).toLocaleDateString('en-SG', { weekday: 'short', timeZone: 'Asia/Singapore' })} ${hhmm(plan.departAt)}`}{' '}
+              · planned {ago(plan.generatedAt)}
             </p>
           </div>
           <Pencil size={16} className="text-slate-400" />
@@ -132,7 +140,7 @@ export default function JourneyPage() {
           {showUsual && plan.usualLive && (
             <div className="flex items-center gap-3 rounded-2xl border border-dashed border-white/15 px-4 py-3">
               <div className="min-w-0 flex-1">
-                <p className="text-[12px] font-medium uppercase tracking-wide text-slate-500">Your usual route today</p>
+                <p className="text-[12px] font-medium uppercase tracking-wide text-slate-500">Your usual route, as it runs then</p>
                 <div className="mt-1">
                   <LegStrip legs={plan.usualLive.legs} dim />
                 </div>

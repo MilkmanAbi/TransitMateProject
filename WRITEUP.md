@@ -99,6 +99,9 @@ A deterministic rules engine. Every card traces back to a feed field and a thres
 
 ## 5. Planned vs unplanned events
 
+- **Planned closures are routed, not just listed.** `plannedClosuresOn()` reads whole-line closures with dates out of the live notice stream (e.g. *"Bukit Panjang LRT will be closed on 20 Sep and 27 Sep 2026 … use shuttle and regular bus services"*). When the departure date matches, the planner blocks that line and adds bridging-bus edges.
+  - A trip from Senja to Choa Chu Kang **tomorrow** is rerouted to bus 190 with *"Planned closure: … closed on Sun 20 Sept for renewal works"*. The same trip **today** uses the LRT.
+  - Partial closures (a single loop direction, an exit or a lift) are shown but not routed around.
 - **Planned: live, not simulated.** Today's feed carried a real bus diversion (170/170X), a **Bukit Panjang LRT closure on 20 and 27 Sep**, and a **Sengkang West LRT inner-loop closure until 18 Oct**. The Alerts tab classifies these as *Planned* or *Bus diversion*, tags the line, and marks each one "on your route" or not. For Rachel (EWL) they sit in the quiet list, because not interrupting her is the correct behaviour. The raw capture is in `fixtures/train-alerts-2026-09-19-live.json`.
 - **Unplanned (major).** `AffectedSegments` was empty all day, so this path is shown by **replay**. `server/src/lib/alerts.ts` defines two scenarios in the exact `TrainServiceAlerts` shape: an EWL track fault Tanah Merah–Paya Lebar with free bus and bridging bus, and an EWL signalling fault with +20 min. They are enabled from the Alerts tab.
   - Every response carries `simulated: true`, and the UI labels each touched element **SIMULATED** (striped banner, card badges).

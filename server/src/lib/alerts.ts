@@ -30,6 +30,7 @@ export interface Disruption {
   shuttleStations: string[];
   shuttleDirection: string;
   delayMin: number | null;
+  planned?: { date: string; reason: string };
 }
 export type MessageKind = 'planned' | 'bus' | 'disruption' | 'info';
 export interface ServiceMessage {
@@ -170,6 +171,25 @@ export const SCENARIOS: Scenario[] = [
       };
     },
   },
+  {
+    id: 'bplrt-planned-closure',
+    label: 'Planned: Bukit Panjang LRT closed tomorrow (replay of LTA notice of 18 Sep)',
+    build: (now) => {
+      const fmt = (d: Date) => new Date(d.getTime() + 8 * 3600_000).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' });
+      const a = fmt(new Date(now.getTime() + 86_400_000));
+      const b = fmt(new Date(now.getTime() + 8 * 86_400_000));
+      return {
+        Status: 1,
+        AffectedSegments: [],
+        Message: [
+          {
+            Content: `05:00-BP-Planned Service Adjustments. Bukit Panjang LRT will be closed on ${a} and ${b} ${new Date(now.getTime() + 86_400_000).getFullYear()} to facilitate renewal works. Please use shuttle and regular bus services.`,
+            CreatedDate: stamp(new Date(now.getTime() - 3600_000)).date,
+          },
+        ],
+      };
+    },
+  },
 ];
 export const scenarioById = (id: string | undefined | null) => SCENARIOS.find((s) => s.id === id) ?? null;
 
@@ -185,3 +205,31 @@ export async function getTrainAlerts(scenarioId?: string | null): Promise<TrainA
 }
 
 export const allLineIds = () => LINES.map((l) => l.id);
+
+// Planned whole-line closures announced in the live Message stream, e.g. "Bukit Panjang LRT will be closed on
+// 20 Sep and 27 Sep 2026 … Please use shuttle and regular bus services." Partial closures (one loop direction)
+// stay informational only.
+const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+export function plannedClosuresOn(messages: ServiceMessage[], departAt: number, stationsOf: (line: string) => string[]): Disruption[] {
+  const d = new Date(departAt + 8 * 3600_000);
+  const ymd = `${d.getUTCFullYear()}-${d.getUTCMonth() + 1}-${d.getUTCDate()}`;
+  const out: Disruption[] = [];
+  for (const m of messages) {
+    if (m.kind !== 'planned' || m.lines.length !== 1 || !/\bclosed\b/i.test(m.content) || /loop|direction|platform|exit|lift/i.test(m.content)) continue;
+    const year = Number(m.content.match(/\b(20\d\d)\b/)?.[1] ?? d.getUTCFullYear());
+    const dates = [...m.content.matchAll(/\b(\d{1,2})\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\b/gi)].map(
+      (x) => `${year}-${MONTHS.indexOf(x[2].toLowerCase()) + 1}-${Number(x[1])}`,
+    );
+    if (!dates.includes(ymd)) continue;
+    const line = lineFromAnyCode(m.lines[0]);
+    const stations = stationsOf(m.lines[0]);
+    if (!line || !stations.length) continue;
+    const shuttle = /shuttle|bridging/i.test(m.content);
+    out.push({
+      line: line.id, lineName: line.name, status: 2, direction: 'Both', stations,
+      freeBusStations: [], freeBusIslandWide: false, shuttleStations: shuttle ? stations : [], shuttleDirection: 'Both', delayMin: null,
+      planned: { date: ymd, reason: m.content.match(/to facilitate ([^.]+)/i)?.[1] ?? 'planned works' },
+    });
+  }
+  return out;
+}

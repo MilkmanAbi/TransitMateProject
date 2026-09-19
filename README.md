@@ -90,6 +90,7 @@ Tested: a fresh `git clone` → `pnpm install` → `pnpm start` with an empty ca
 5. Back in **Alerts**, switch to **EWL signalling fault (+20 min delays)**. It is now a *delay*, not a cut, and the engine compares it against Rachel's 10-min threshold. Open the persona switcher (*Planning for Rachel ▾*) to try a 5-min or 20-min threshold and see when it stops interrupting.
 6. **Map** tab: every MRT/LRT station is coloured by **live** LTA crowd level. Search a stop (e.g. `Raffles Pl`, `75009`) or zoom in and tap a green stop for live arrivals.
 7. Stop the simulation with the ✕ on the amber banner.
+8. **Planned works, from a real LTA notice (not simulated).** The 19 Sep live feed announces that the *Bukit Panjang LRT will be closed on 20 Sep and 27 Sep 2026*. Go to **Plan**, set From: `Senja` (Senja LRT), To: `Choa Chu Kang MRT`, **Tomorrow at 08:00**, then tap **Plan**. You get *"Planned closure: Bukit Panjang LRT is closed on Sun, 20 Sept for renewal works — shuttle buses replace it · Recommended Bus 190"*, with the usual LRT ride dashed on the map. This is date-aware: leave today and the LRT is used as normal. Once that notice has left the live feed, use the Alerts replay **Planned: Bukit Panjang LRT closed tomorrow**. It re-issues the same notice text with rolling dates and is labelled SIMULATED.
 
 ---
 

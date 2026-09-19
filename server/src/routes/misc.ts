@@ -46,7 +46,7 @@ misc.get('/geo/search', wrap(async (req) => {
   const stations = net.stationList
     .filter((s) => norm(s.name).includes(nq) || s.code.toLowerCase() === nq)
     .slice(0, 3)
-    .map((s) => ({ name: `${s.name} MRT`, address: `${s.code} · ${s.line}`, lat: s.lat, lng: s.lng, kind: 'station' as const }));
+    .map((s) => ({ name: `${s.name} ${['BPL', 'SKLRT', 'PGLRT'].includes(s.line) ? 'LRT' : 'MRT'}`, address: `${s.code} · ${s.line}`, lat: s.lat, lng: s.lng, kind: 'station' as const }));
   let places: { name: string; address: string; lat: number; lng: number; kind: 'place' }[] = [];
   try {
     places = await cached(`onemap:${nq}`, 3600_000, async () => {
