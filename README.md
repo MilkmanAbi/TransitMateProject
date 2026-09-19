@@ -22,7 +22,7 @@ NEBULA X 2026 · Problem Statement 2 — Smart Commuter Companion · built for *
 | ![Home](docs/home.jpg) | ![Home, disrupted](docs/home-sim.jpg) | ![Stay or switch](docs/plan.jpg) | ![Trip](docs/trip.jpg) | ![Map](docs/map.jpg) |
 
 - **Try it in a browser:** https://milkmanabi.github.io/TransitMateProject/ is a **static demo** built by GitHub Actions (`.github/workflows/pages.yml`). Pages can't run the server, so it replays a **recorded snapshot** of LTA/NEA data (made with `scripts/snapshot.mjs`, labelled on every screen). The demo journeys work: Rachel / Arjun / Mdm Lim commutes, the EWL fault and delay replays, the planned BPLRT closure, trip mode and the network map. For live data and planning any trip, run it locally (below).
-- **Demo video (2:10):** [`docs/transitmate-demo.mp4`](docs/transitmate-demo.mp4), a phone-sized walkthrough with captions; voiceover script in [`docs/VOICEOVER.md`](docs/VOICEOVER.md). A quick GIF version is at [`docs/demo.gif`](docs/demo.gif).
+- **Demo video (2:10):** [`docs/transitmate-demo.mp4`](docs/transitmate-demo.mp4), a phone-sized walkthrough with captions and narration (Microsoft neural TTS, en-SG voice); script in [`docs/VOICEOVER.md`](docs/VOICEOVER.md). A quick GIF version is at [`docs/demo.gif`](docs/demo.gif).
 - **Write-up** (persona, architecture, assumptions, limitations, how every number was measured): [`WRITEUP.md`](WRITEUP.md)
 
 ---
@@ -130,7 +130,7 @@ server/            Express proxy + planner (TypeScript, run with tsx)
   src/lib/alerts.ts    TrainServiceAlerts parser, canonical lines, replay scenarios
   src/data/mrt.json    rail graph built from OpenStreetMap (scripts/build-mrt.py)
 fixtures/          raw live captures from 19 Sep 2026 (TrainServiceAlerts, FacilitiesMaintenance)
-scripts/           build-mrt.py (OSM → rail graph), shot.mjs (phone screenshots in Chrome)
+scripts/           build-mrt.py (OSM → rail graph), snapshot.mjs (records the Pages demo snapshot)
 ```
 
 ## Design: PaperDesign
