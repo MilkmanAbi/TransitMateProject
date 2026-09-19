@@ -3,7 +3,14 @@ import { PERSONAS, useStore } from '@/store/useStore';
 import { Sheet } from './Sheet';
 
 export function SettingsSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const { profile, setPersona, commute, setCommute, threshold, largeText, set } = useStore();
+  const { profile, setPersona, commute, setCommute, threshold, largeText, notify, set, toast } = useStore();
+  const toggleNotify = async () => {
+    if (notify) return set({ notify: false });
+    if (!('Notification' in window)) return toast('This browser can’t show notifications (on iPhone, add TransitMate to the Home Screen first)', 'info');
+    const perm = await Notification.requestPermission();
+    if (perm === 'granted') set({ notify: true });
+    else toast('Notifications were blocked in browser settings', 'info');
+  };
   return (
     <Sheet open={open} onClose={onClose} title="You & your commute">
       <p className="mb-2 text-[0.8125rem] text-slate-400">Who is TransitMate planning for? Each persona re-weights the same live data differently.</p>
@@ -51,6 +58,16 @@ export function SettingsSheet({ open, onClose }: { open: boolean; onClose: () =>
         <span className="text-[0.9375rem]">Large text</span>
         <span className={`relative h-7 w-12 rounded-full transition ${largeText ? 'bg-brand-500' : 'bg-slate-600'}`}>
           <span className={`absolute top-1 h-5 w-5 rounded-full bg-white transition-all ${largeText ? 'left-6' : 'left-1'}`} />
+        </span>
+      </button>
+
+      <button onClick={toggleNotify} className="mt-2 flex min-h-[52px] w-full items-center justify-between rounded-xl bg-surface-card px-4 text-left">
+        <span>
+          <span className="block text-[0.9375rem]">Alert me when I need to act</span>
+          <span className="block text-[0.75rem] text-slate-400">Device notification when your commute verdict turns red</span>
+        </span>
+        <span className={`relative h-7 w-12 shrink-0 rounded-full transition ${notify ? 'bg-brand-500' : 'bg-slate-600'}`}>
+          <span className={`absolute top-1 h-5 w-5 rounded-full bg-white transition-all ${notify ? 'left-6' : 'left-1'}`} />
         </span>
       </button>
 

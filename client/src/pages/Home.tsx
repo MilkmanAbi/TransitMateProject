@@ -1,5 +1,5 @@
 import { CheckCircle2, ChevronDown, CloudRain, CloudSun, Leaf, RefreshCw, Siren, TriangleAlert } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrivalPanel } from '@/components/Arrivals/ArrivalPanel';
 import { AlertFeed } from '@/components/CIE/AlertFeed';
@@ -38,6 +38,20 @@ export default function Home() {
   const leaveBy = best ? todayAt(commute.arriveBy, plan!.departAt) - best.max * 60_000 : null;
   const saved = monthSaved();
   const boardCrowd = best?.legs.find((l) => l.mode === 'mrt')?.crowd;
+  const notify = useStore((s) => s.notify);
+  const lastNotified = useRef<string | null>(null);
+
+  // A local notification (not Web Push) the moment the verdict turns red for a new reason.
+  useEffect(() => {
+    const key = cie.verdict === 'act' && best ? `${best.signature}|${plan?.why[0] ?? ''}` : null;
+    if (!key || !notify || key === lastNotified.current || !('Notification' in window) || Notification.permission !== 'granted') return;
+    lastNotified.current = key;
+    const body = `${cie.sub}${plan?.simulated ? ' (simulated disruption)' : ''}`;
+    const opts = { body, tag: 'tm-commute', icon: '/icon.svg' };
+    const fallback = () => void new Notification(cie.headline, opts);
+    if (!navigator.serviceWorker) return fallback();
+    navigator.serviceWorker.getRegistration().then((reg) => (reg ? reg.showNotification(cie.headline, opts) : fallback())).catch(fallback);
+  }, [cie.verdict, cie.headline, cie.sub, best, plan, notify]);
 
   return (
     <div className="animate-rise">

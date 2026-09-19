@@ -79,6 +79,7 @@ interface State {
   largeText: boolean;
   savedStops: string[];
   scenario: string | null;
+  notify: boolean;
   onboarded: boolean;
   lastCommutePlan: PlanResult | null;
   lastPlan: PlanResult | null;
@@ -109,6 +110,7 @@ export const useStore = create<State>()(
       largeText: false,
       savedStops: ['75009', '03031'],
       scenario: null,
+      notify: false,
       onboarded: false,
       lastCommutePlan: null,
       lastPlan: null,
@@ -149,6 +151,7 @@ export const useStore = create<State>()(
         largeText: s.largeText,
         savedStops: s.savedStops,
         scenario: s.scenario,
+        notify: s.notify,
         onboarded: s.onboarded,
         lastCommutePlan: s.lastCommutePlan,
         lastPlan: s.lastPlan,
