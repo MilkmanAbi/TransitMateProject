@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '@/api/datamall';
 import { ArrivalPanel } from '@/components/Arrivals/ArrivalPanel';
 import { Sheet } from '@/components/Layout/Sheet';
+import { StationSheet } from '@/components/Map/StationSheet';
 import { TransitMap } from '@/components/Map/TransitMap';
-import { useRailNet } from '@/hooks/useStations';
+import { type Station, useRailNet } from '@/hooks/useStations';
 import { useStore } from '@/store/useStore';
 import type { StopSummary } from '@/types';
 
@@ -13,6 +14,7 @@ export default function MapPage() {
   const { stations, edges } = useRailNet();
   const { crowdNow, alerts, commute, toast } = useStore();
   const [stop, setStop] = useState<StopSummary | null>(null);
+  const [station, setStation] = useState<Station | null>(null);
   const [flyTo, setFlyTo] = useState<[number, number] | null>(null);
   const [q, setQ] = useState('');
   const [results, setResults] = useState<StopSummary[]>([]);
@@ -37,7 +39,7 @@ export default function MapPage() {
   return (
     <div className="-mx-4 -mt-3 animate-rise">
       <div className="relative" style={{ height: 'calc(100dvh - 64px - var(--safe-bottom) - var(--banner-h, 0px))' }}>
-        <TransitMap stations={stations} edges={edges} crowd={crowdNow} disrupted={disrupted} center={[commute.from.lat, commute.from.lng]} flyTo={flyTo} onStop={setStop} />
+        <TransitMap stations={stations} edges={edges} crowd={crowdNow} disrupted={disrupted} center={[commute.from.lat, commute.from.lng]} flyTo={flyTo} onStop={setStop} onStation={setStation} />
 
         <div className="absolute inset-x-3 top-3 z-[600]">
           <label className="flex h-12 items-center gap-2 rounded-2xl bg-surface/90 px-3 shadow-xl ring-1 ring-white/10 backdrop-blur">
@@ -73,12 +75,13 @@ export default function MapPage() {
             <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-amber-500" />Mod</span>
             <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-red-500" />High</span>
           </p>
-          <p className="mt-1 text-slate-400">Zoom in for bus stops</p>
+          <p className="mt-1 text-slate-400">Tap a station · zoom in for bus stops</p>
         </div>
         <button onClick={locate} className="absolute bottom-6 right-3 z-[600] grid h-12 w-12 place-items-center rounded-full bg-brand-500 shadow-xl" aria-label="Go to my location">
           <LocateFixed size={20} />
         </button>
       </div>
+      <StationSheet station={station} siblings={stations} onClose={() => setStation(null)} />
       <Sheet open={!!stop} onClose={() => setStop(null)} title="Live arrivals">
         {stop && <ArrivalPanel code={stop.code} />}
       </Sheet>

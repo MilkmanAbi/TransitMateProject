@@ -103,5 +103,5 @@ export function useCommute(mode: DepartMode = 'auto') {
     [alerts, plan, commute, profile, threshold, weather, weatherDest, crowd, liftsQ.data, taxiQ.data],
   );
 
-  return { plan, cie, dep, crowdSlots: slots, loading: planQ.loading, updatedAt: planQ.updatedAt ?? plan?.generatedAt ?? null, stale: !planQ.data && !!lastCommutePlan, refresh: () => setTick((t) => t + 1) };
+  return { plan, cie, dep, crowdSlots: slots, error: planQ.error, loading: planQ.loading, updatedAt: planQ.updatedAt ?? plan?.generatedAt ?? null, stale: !planQ.data && !!lastCommutePlan, refresh: () => setTick((t) => t + 1) };
 }

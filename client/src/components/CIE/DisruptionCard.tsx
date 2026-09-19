@@ -1,4 +1,5 @@
 import { BusFront, CarTaxiFront, TrainFront } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { LineChip, Pill } from '@/components/ui';
 import type { Disruption, TaxiCount } from '@/types';
 
@@ -50,6 +51,11 @@ export function DisruptionCard({ d, names, simulated, taxi, affectsYou }: { d: D
             </li>
           )}
         </ul>
+        {affectsYou && (
+          <Link to="/plan?commute=1" className="mt-3 flex h-11 items-center justify-center rounded-xl bg-red-600 text-[0.875rem] font-bold text-white active:bg-red-700">
+            See your new route →
+          </Link>
+        )}
       </div>
     </article>
   );

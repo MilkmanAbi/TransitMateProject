@@ -99,6 +99,7 @@ export function TransitMap({
   center,
   flyTo,
   onStop,
+  onStation,
 }: {
   stations: Station[];
   edges: RailEdge[];
@@ -107,6 +108,7 @@ export function TransitMap({
   center: [number, number];
   flyTo: [number, number] | null;
   onStop: (s: StopSummary) => void;
+  onStation: (s: Station) => void;
 }) {
   return (
     <MapContainer center={center} zoom={12} zoomControl={false} className="h-full w-full">
@@ -124,7 +126,8 @@ export function TransitMap({
             <CircleMarker
               key={s.code}
               center={[s.lat, s.lng]}
-              radius={hit ? 9 : 6}
+              radius={hit ? 9 : 7}
+              eventHandlers={{ click: () => onStation(s) }}
               pathOptions={{ color: hit ? '#ef4444' : (LINE_META[s.line]?.color ?? '#94a3b8'), weight: hit ? 4 : 2.5, fillColor: CROWD_FILL[level], fillOpacity: 0.95 }}
             >
               <Tooltip direction="top">

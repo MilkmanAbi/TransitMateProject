@@ -31,7 +31,7 @@ export default function Home() {
   const { savedStops, profile, commute, weather, alerts, notify, onboarded, set, trip } = useStore();
   const [mode, setMode] = useState<DepartMode>('auto');
   const [settings, setSettings] = useState(false);
-  const { plan, cie, dep, crowdSlots, loading, updatedAt, stale, refresh } = useCommute(mode);
+  const { plan, cie, dep, crowdSlots, error, loading, updatedAt, stale, refresh } = useCommute(mode);
   const persona = PERSONAS.find((p) => p.id === profile)!;
   const best = cie.hero ?? plan?.options[0];
   const tone = TONE[cie.verdict];
@@ -115,7 +115,21 @@ export default function Home() {
           <p className="mt-2 truncate text-[0.8125rem] text-slate-400">
             {commute.from.name.replace(/^Home · /, '')} → {commute.to.name.replace(/^(Office|Work) · /, '')}
           </p>
-          {!plan ? (
+          {!plan && error ? (
+            <div className="mt-3 rounded-xl bg-black/25 p-3 text-[0.875rem]">
+              <p className="font-semibold text-amber-300">Can’t reach live transport data</p>
+              <p className="mt-1 text-slate-300">
+                {/DATAMALL_KEY/.test(error.message)
+                  ? 'The server has no LTA DataMall key. Add DATAMALL_KEY to .env and restart (see README).'
+                  : /offline/i.test(error.message)
+                    ? 'You’re offline and there’s no saved plan yet. It will appear once you’ve been online once.'
+                    : `${error.message}. Your saved stops and alerts below may still work.`}
+              </p>
+              <button onClick={refresh} className="mt-2 h-11 rounded-xl bg-white/10 px-4 font-semibold">
+                Try again
+              </button>
+            </div>
+          ) : !plan ? (
             <div className="mt-3 space-y-2">
               <Skeleton className="h-8 w-3/4" />
               <Skeleton className="h-7" />

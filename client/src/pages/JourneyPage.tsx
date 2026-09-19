@@ -17,20 +17,22 @@ export default function JourneyPage() {
   const { commute, profile, scenario, lastPlan, set, toast } = useStore();
   const isCommute = params.get('commute') === '1';
   // Re-plan hand-off from Trip mode: /plan?from=<Place json>&to=<Place json>
-  const handoff = (() => {
+  const parseP = (k: string) => {
     try {
-      const f = params.get('from');
-      const t = params.get('to');
-      return f && t ? { from: JSON.parse(f) as Place, to: JSON.parse(t) as Place } : null;
+      const v = params.get(k);
+      return v ? (JSON.parse(v) as Place) : null;
     } catch {
       return null;
     }
-  })();
-  const [from, setFrom] = useState<Place | null>(handoff?.from ?? (isCommute ? commute.from : (lastPlan?.from ?? commute.from)));
-  const [to, setTo] = useState<Place | null>(handoff?.to ?? (isCommute ? commute.to : (lastPlan?.to ?? null)));
+  };
+  const hFrom = parseP('from');
+  const hTo = parseP('to');
+  const handoff = hFrom && hTo ? { from: hFrom, to: hTo } : null;
+  const [from, setFrom] = useState<Place | null>(hFrom ?? (isCommute ? commute.from : hTo ? null : (lastPlan?.from ?? commute.from)));
+  const [to, setTo] = useState<Place | null>(hTo ?? (isCommute ? commute.to : hFrom ? null : (lastPlan?.to ?? null)));
   const [day, setDay] = useState<'now' | 'today' | 'tomorrow'>('now');
   const [when, setWhen] = useState<string>(commute.departTime);
-  const [plan, setPlan] = useState<PlanResult | null>(isCommute ? null : lastPlan);
+  const [plan, setPlan] = useState<PlanResult | null>(isCommute || hFrom || hTo ? null : lastPlan);
   const [loading, setLoading] = useState(false);
   const [sel, setSel] = useState(0);
   const [editing, setEditing] = useState(!plan);
