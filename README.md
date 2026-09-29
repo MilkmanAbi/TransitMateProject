@@ -1,4 +1,4 @@
-# TransitMate
+# TransitMate - Hackathon BS
 
 **A commuter companion that tells you *before you leave* when today is different, and what to do instead.**
 
